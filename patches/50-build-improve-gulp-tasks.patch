@@ -4,21 +4,21 @@ index c643cf99..5688ee60 100644
 +++ b/build/gulpfile.reh.ts
 @@ -562,3 +562,3 @@ function prepareCopilotRipgrepShimTaskREH(platform: string, arch: string, destin
  
--			const serverTask = task.define(`vscode-${type}${dashed(platform)}${dashed(arch)}${dashed(minified)}`, task.series(
-+			const prepackTask = task.define(`vscode-${type}${dashed(minified)}-prepack`, task.series(
+-			const serverTask = task.define(`gencode-${type}${dashed(platform)}${dashed(arch)}${dashed(minified)}`, task.series(
++			const prepackTask = task.define(`gencode-${type}${dashed(minified)}-prepack`, task.series(
  				copyCodiconsTask,
 @@ -569,2 +569,6 @@ function prepareCopilotRipgrepShimTaskREH(platform: string, arch: string, destin
  				compileExtensionMediaBuildTask,
 +			));
 +			task.task(prepackTask);
 +
-+			const packingTask = task.define(`vscode-${type}${dashed(platform)}${dashed(arch)}${dashed(minified)}-packing`, task.series(
++			const packingTask = task.define(`gencode-${type}${dashed(platform)}${dashed(arch)}${dashed(minified)}-packing`, task.series(
  				writeISODate('out-build'),
 @@ -573,2 +577,8 @@ function prepareCopilotRipgrepShimTaskREH(platform: string, arch: string, destin
  			));
 +			task.task(packingTask);
 +
-+			const serverTask = task.define(`vscode-${type}${dashed(platform)}${dashed(arch)}${dashed(minified)}`, task.series(
++			const serverTask = task.define(`gencode-${type}${dashed(platform)}${dashed(arch)}${dashed(minified)}`, task.series(
 +				prepackTask,
 +				packingTask,
 +			));
@@ -45,9 +45,9 @@ index 95ae1790..28f786e6 100644
  			prepareCopilotRipgrepShimTask(platform, arch, destinationFolderName)
 @@ -617,3 +616,4 @@ BUILD_TARGETS.forEach(buildTarget => {
  		);
--		const vscodeTask = task.define(`vscode${dashed(platform)}${dashed(arch)}${dashed(minified)}`, task.series(
+-		const gencodeTask = task.define(`gencode${dashed(platform)}${dashed(arch)}${dashed(minified)}`, task.series(
 +
-+		const prepackTask = task.define(`vscode${dashed(minified)}-prepack`, task.series(
++		const prepackTask = task.define(`gencode${dashed(minified)}-prepack`, task.series(
  			copyCodiconsTask,
 @@ -621,4 +621,7 @@ BUILD_TARGETS.forEach(buildTarget => {
  			compileNonNativeExtensionsBuildTask,
@@ -56,17 +56,17 @@ index 95ae1790..28f786e6 100644
 +		));
 +		task.task(prepackTask);
 +
-+		const packingTask = task.define(`vscode${dashed(platform)}${dashed(arch)}${dashed(minified)}-packing`, task.series(
++		const packingTask = task.define(`gencode${dashed(platform)}${dashed(arch)}${dashed(minified)}-packing`, task.series(
  			writeISODate('out-build'),
 @@ -627,2 +630,8 @@ BUILD_TARGETS.forEach(buildTarget => {
  		));
 +		task.task(packingTask);
 +
-+		const vscodeTask = task.define(`vscode${dashed(platform)}${dashed(arch)}${dashed(minified)}`, task.series(
++		const gencodeTask = task.define(`gencode${dashed(platform)}${dashed(arch)}${dashed(minified)}`, task.series(
 +			prepackTask,
 +			packingTask,
 +		));
- 		task.task(vscodeTask);
+ 		task.task(gencodeTask);
 diff --git a/build/lib/esbuild.ts b/build/lib/esbuild.ts
 index ab0a7021..27ae2de0 100644
 --- a/build/lib/esbuild.ts

@@ -22,10 +22,10 @@ index 6d3d8991..b1d48278 100644
  	{ platform: 'linux', arch: 'ppc64le' },
 +	{ platform: 'linux', arch: 'riscv64' },
  ];
-diff --git a/build/gulpfile.vscode.linux.ts b/build/gulpfile.vscode.linux.ts
+diff --git a/build/gulpfile.gencode.linux.ts b/build/gulpfile.gencode.linux.ts
 index 30f12247..81a3c8a9 100644
---- a/build/gulpfile.vscode.linux.ts
-+++ b/build/gulpfile.vscode.linux.ts
+--- a/build/gulpfile.gencode.linux.ts
++++ b/build/gulpfile.gencode.linux.ts
 @@ -36,2 +36,3 @@ function getDebPackageArch(arch: string): string {
  		case 'ppc64le': return 'ppc64el';
 +		case 'riscv64': return 'riscv64';
@@ -38,10 +38,10 @@ index 30f12247..81a3c8a9 100644
  	{ arch: 'ppc64le' },
 +	{ arch: 'riscv64' },
  ];
-diff --git a/build/gulpfile.vscode.ts b/build/gulpfile.vscode.ts
+diff --git a/build/gulpfile.gencode.ts b/build/gulpfile.gencode.ts
 index 4d338b4d..07593121 100644
---- a/build/gulpfile.vscode.ts
-+++ b/build/gulpfile.vscode.ts
+--- a/build/gulpfile.gencode.ts
++++ b/build/gulpfile.gencode.ts
 @@ -599,2 +599,3 @@ const BUILD_TARGETS = [
  	{ platform: 'linux', arch: 'ppc64le' },
 +	{ platform: 'linux', arch: 'riscv64' },
@@ -63,8 +63,8 @@ index 1eb77249..f65788a9 100644
 +		case 'riscv64':
 +			cmd.push(`-l${chromiumSysroot}/usr/lib/riscv64-linux-gnu`,
 +				`-l${chromiumSysroot}/lib/riscv64-linux-gnu`,
-+				`-l${vscodeSysroot}/usr/lib/riscv64-linux-gnu`,
-+				`-l${vscodeSysroot}/lib/riscv64-linux-gnu`);
++				`-l${gencodeSysroot}/usr/lib/riscv64-linux-gnu`,
++				`-l${gencodeSysroot}/lib/riscv64-linux-gnu`);
 +			break;
  	}
 diff --git a/build/linux/debian/dep-lists.ts b/build/linux/debian/dep-lists.ts
@@ -118,7 +118,7 @@ diff --git a/build/linux/debian/install-sysroot.ts b/build/linux/debian/install-
 index 4135ed23..7d5b3f33 100644
 --- a/build/linux/debian/install-sysroot.ts
 +++ b/build/linux/debian/install-sysroot.ts
-@@ -131,2 +131,6 @@ export async function getVSCodeSysroot(arch: DebianArchString, isMusl: boolean =
+@@ -131,2 +131,6 @@ export async function getGenCodeSysroot(arch: DebianArchString, isMusl: boolean =
  			break;
 +		case 'riscv64':
 +			expectedName = `riscv64-linux-gnu${prefix}.tar.gz`;

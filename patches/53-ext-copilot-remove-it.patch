@@ -114,7 +114,7 @@ index f778021f..f3a49ba9 100644
 +		const deps = es.merge(cleanedDeps, osProxyResolverPlatformPackage)
  			.pipe(filter(getRipgrepExcludeFilter(platform, arch)))
 @@ -262,4 +222,2 @@ function packageTask(platform: string, arch: string, sourceFolderName: string, d
- 				'**/@vscode/ripgrep-universal/bin/**',
+ 				'**/@gencode/ripgrep-universal/bin/**',
 -				// The SDK runtime wrapper and native module must remain adjacent on disk.
 -				'**/@github/copilot-sdk-{darwin,linux,linuxmusl,win32}-*/**',
  				// The Dev Container CLI is spawned as an external Node process,
@@ -128,7 +128,7 @@ index f778021f..f3a49ba9 100644
 -						quality: String(quality),
 -						applicationName: product.applicationName,
 -						dataFolderName: product.dataFolderName,
--						serverDataFolderName: product.serverDataFolderName || '.vscode-remote',
+-						serverDataFolderName: product.serverDataFolderName || '.gencode-remote',
 -					}));
 -					this.emit('data', file);
 -				}))
@@ -206,9 +206,9 @@ index 3988197d..a34db59d 100644
 -        "@github/copilot-sdk": "1.0.23-preview.5",
          "@hpke/core": "^1.9.0",
 @@ -26,3 +24,2 @@
-         "@vscode/codicons": "^0.0.46-46",
--        "@vscode/copilot-api": "^0.5.2",
-         "@vscode/deviceid": "^0.1.1",
+         "@gencode/codicons": "^0.0.46-46",
+-        "@gencode/copilot-api": "^0.5.2",
+         "@gencode/deviceid": "^0.1.1",
 @@ -84,5 +81,3 @@
        "devDependencies": {
 -        "@anthropic-ai/claude-agent-sdk": "0.3.281",
@@ -408,7 +408,7 @@ index 3988197d..a34db59d 100644
 -      "license": "MIT",
 -      "dependencies": {
 -        "koffi": "3.2.1",
--        "vscode-jsonrpc": "8.2.1",
+-        "gencode-jsonrpc": "8.2.1",
 -        "zod": "4.3.6"
 -      },
 -      "engines": {
@@ -1168,13 +1168,13 @@ index 3988197d..a34db59d 100644
      "node_modules/@opentelemetry/api": {
 @@ -4335,8 +3586,2 @@
      },
--    "node_modules/@vscode/copilot-api": {
+-    "node_modules/@gencode/copilot-api": {
 -      "version": "0.5.2",
--      "resolved": "https://registry.npmjs.org/@vscode/copilot-api/-/copilot-api-0.5.2.tgz",
+-      "resolved": "https://registry.npmjs.org/@gencode/copilot-api/-/copilot-api-0.5.2.tgz",
 -      "integrity": "sha512-U+2jyi0/Hpum2ZnED47cVFKgx5+p+thRhOPDKc1+t2PVAzsKlr3aJPKxMeMLOIXGWyLuQcng5BuFvj1vxD1d8w==",
 -      "license": "SEE LICENSE"
 -    },
-     "node_modules/@vscode/deviceid": {
+     "node_modules/@gencode/deviceid": {
 @@ -13747,15 +12992,2 @@
      },
 -    "node_modules/json-schema-to-ts": {
@@ -1235,16 +1235,16 @@ index 3988197d..a34db59d 100644
      "node_modules/ts-api-utils": {
 @@ -20674,11 +19870,2 @@
      },
--    "node_modules/vscode-jsonrpc": {
+-    "node_modules/gencode-jsonrpc": {
 -      "version": "8.2.1",
--      "resolved": "https://registry.npmjs.org/vscode-jsonrpc/-/vscode-jsonrpc-8.2.1.tgz",
+-      "resolved": "https://registry.npmjs.org/gencode-jsonrpc/-/gencode-jsonrpc-8.2.1.tgz",
 -      "integrity": "sha512-kdjOSJ2lLIn7r1rtrMbbNCHjyMPfRnowdKjBQ+mGq6NAW5QY2bEZC/khaC5OR8svbbjvLEaIXkOq45e2X9BIbQ==",
 -      "license": "MIT",
 -      "engines": {
 -        "node": ">=14.0.0"
 -      }
 -    },
-     "node_modules/vscode-oniguruma": {
+     "node_modules/gencode-oniguruma": {
 diff --git a/package.json b/package.json
 index 8683caf9..ddca997c 100644
 --- a/package.json
@@ -1283,9 +1283,9 @@ index 8683caf9..ddca997c 100644
 -    "@github/copilot-sdk": "1.0.23-preview.5",
      "@hpke/core": "^1.9.0",
 @@ -116,3 +106,2 @@
-     "@vscode/codicons": "^0.0.46-46",
--    "@vscode/copilot-api": "^0.5.2",
-     "@vscode/deviceid": "^0.1.1",
+     "@gencode/codicons": "^0.0.46-46",
+-    "@gencode/copilot-api": "^0.5.2",
+     "@gencode/deviceid": "^0.1.1",
 @@ -174,5 +163,3 @@
    "devDependencies": {
 -    "@anthropic-ai/claude-agent-sdk": "0.3.281",
@@ -1293,7 +1293,7 @@ index 8683caf9..ddca997c 100644
 -    "@openai/codex": "0.162.0",
      "@playwright/cli": "^0.1.9",
 @@ -327,4 +314,3 @@
-     "@vscode/windows-process-tree@0.8.0": true
+     "@gencode/windows-process-tree@0.8.0": true
 -  },
 -  "copilotRuntimeVersion": "1.0.100-1"
 +  }
@@ -1308,8 +1308,8 @@ index e0ee079f..752f57a5 100644
          "@hpke/core": "^1.9.0",
 @@ -16,3 +15,2 @@
          "@parcel/watcher": "^2.5.6",
--        "@vscode/copilot-api": "^0.5.2",
-         "@vscode/deviceid": "^0.1.1",
+-        "@gencode/copilot-api": "^0.5.2",
+         "@gencode/deviceid": "^0.1.1",
 @@ -75,151 +73,2 @@
      },
 -    "node_modules/@github/copilot-sdk": {
@@ -1319,7 +1319,7 @@ index e0ee079f..752f57a5 100644
 -      "license": "MIT",
 -      "dependencies": {
 -        "koffi": "3.2.1",
--        "vscode-jsonrpc": "8.2.1",
+-        "gencode-jsonrpc": "8.2.1",
 -        "zod": "4.3.6"
 -      },
 -      "engines": {
@@ -1755,13 +1755,13 @@ index e0ee079f..752f57a5 100644
      "node_modules/@microsoft/1ds-core-js": {
 @@ -903,8 +464,2 @@
      },
--    "node_modules/@vscode/copilot-api": {
+-    "node_modules/@gencode/copilot-api": {
 -      "version": "0.5.2",
--      "resolved": "https://registry.npmjs.org/@vscode/copilot-api/-/copilot-api-0.5.2.tgz",
+-      "resolved": "https://registry.npmjs.org/@gencode/copilot-api/-/copilot-api-0.5.2.tgz",
 -      "integrity": "sha512-U+2jyi0/Hpum2ZnED47cVFKgx5+p+thRhOPDKc1+t2PVAzsKlr3aJPKxMeMLOIXGWyLuQcng5BuFvj1vxD1d8w==",
 -      "license": "SEE LICENSE"
 -    },
-     "node_modules/@vscode/deviceid": {
+     "node_modules/@gencode/deviceid": {
 @@ -1597,32 +1152,2 @@
      },
 -    "node_modules/koffi": {
@@ -1797,16 +1797,16 @@ index e0ee079f..752f57a5 100644
      "node_modules/libsodium": {
 @@ -2136,11 +1661,2 @@
      },
--    "node_modules/vscode-jsonrpc": {
+-    "node_modules/gencode-jsonrpc": {
 -      "version": "8.2.1",
--      "resolved": "https://registry.npmjs.org/vscode-jsonrpc/-/vscode-jsonrpc-8.2.1.tgz",
+-      "resolved": "https://registry.npmjs.org/gencode-jsonrpc/-/gencode-jsonrpc-8.2.1.tgz",
 -      "integrity": "sha512-kdjOSJ2lLIn7r1rtrMbbNCHjyMPfRnowdKjBQ+mGq6NAW5QY2bEZC/khaC5OR8svbbjvLEaIXkOq45e2X9BIbQ==",
 -      "license": "MIT",
 -      "engines": {
 -        "node": ">=14.0.0"
 -      }
 -    },
-     "node_modules/vscode-oniguruma": {
+     "node_modules/gencode-oniguruma": {
 diff --git a/remote/package.json b/remote/package.json
 index 860ed40b..9bd5a4bc 100644
 --- a/remote/package.json
@@ -1817,10 +1817,10 @@ index 860ed40b..9bd5a4bc 100644
      "@hpke/core": "^1.9.0",
 @@ -11,3 +10,2 @@
      "@parcel/watcher": "^2.5.6",
--    "@vscode/copilot-api": "^0.5.2",
-     "@vscode/deviceid": "^0.1.1",
+-    "@gencode/copilot-api": "^0.5.2",
+     "@gencode/deviceid": "^0.1.1",
 @@ -80,4 +78,3 @@
-     "@vscode/windows-process-tree@0.8.0": true
+     "@gencode/windows-process-tree@0.8.0": true
 -  },
 -  "copilotRuntimeVersion": "1.0.100-1"
 +  }
@@ -2285,7 +2285,7 @@ index 4db04a66..be84deb5 100644
 -
  	const runtime = await createAgentHostRuntime({
 @@ -202,3 +161,3 @@ async function main(): Promise<void> {
- 		hostLaunchKind: AgentHostLaunchKind.VSCodeCLI,
+ 		hostLaunchKind: AgentHostLaunchKind.GenCodeCLI,
 -		providerConfigurations: [createCodexProviderConfiguration(environmentService.userHome, process.env[AgentHostCodexAgentCodexHomeEnvVar])],
 +		providerConfigurations: [],
  		byok: { kind: 'unavailable' },
@@ -3301,7 +3301,7 @@ index b8b451dd..01c77fec 100644
 -		const properties = {
 -			conversationId: AgentSession.id(report.session),
 -			chatSessionId: getTelemetryChatSessionId(report.chat),
--			vscodeRequestId: report.turnId,
+-			gencodeRequestId: report.turnId,
 -			initiatorClientType: report.clientType,
 -			...(report.predictedLabel !== undefined ? { predictedLabel: report.predictedLabel } : {}),
 -			...(report.routingMethod !== undefined ? { routingMethod: report.routingMethod } : {}),
@@ -4375,7 +4375,7 @@ index fbc7e51c..27c199ba 100644
 -}
 -
  /**
-@@ -60,9 +55,2 @@ else if (globalThis._VSCODE_PRODUCT_JSON && globalThis._VSCODE_PACKAGE_JSON) {
+@@ -60,9 +55,2 @@ else if (globalThis._GENCODE_PRODUCT_JSON && globalThis._GENCODE_PACKAGE_JSON) {
  	}
 -
 -	if (!product.copilotVersions) {

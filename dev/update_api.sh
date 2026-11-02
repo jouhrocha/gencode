@@ -2,19 +2,19 @@
 
 set -e
 
-export VSCODE_QUALITY="stable"
+export GENCODE_QUALITY="stable"
 
 while getopts ":i" opt; do
   case "$opt" in
     i)
-      export VSCODE_QUALITY="insider"
+      export GENCODE_QUALITY="insider"
       ;;
     *)
       ;;
   esac
 done
 
-URL=$( curl -s "https://update.code.visualstudio.com/api/update/win32-x64-archive/${VSCODE_QUALITY}/0000000000000000000000000000000000000000" | jq -c '.url' | sed -E 's/.*"([^"]+)".*/\1/' )
+URL=$( curl -s "https://update.code.visualstudio.com/api/update/win32-x64-archive/${GENCODE_QUALITY}/0000000000000000000000000000000000000000" | jq -c '.url' | sed -E 's/.*"([^"]+)".*/\1/' )
 # echo "url: ${URL}"
 FILE="${URL##*/}"
 # echo "file: ${FILE}"
@@ -29,7 +29,7 @@ if [[ ! -d "${DIRECTORY}" ]]; then
   unzip "${FILE}" -d "${DIRECTORY}"
 fi
 
-if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
+if [[ "${GENCODE_QUALITY}" == "insider" ]]; then
   DLL_PATH=$(find "${DIRECTORY}" -type f -name "code-insiders")
 else
   DLL_PATH=$(find "${DIRECTORY}" -type f -name "code")

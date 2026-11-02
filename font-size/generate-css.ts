@@ -104,7 +104,7 @@ async function main(): Promise<void> { // {{{
 
 	if(area) {
 		for(const file of area.files) {
-			const result = await processFile(path.join('..', 'vscode', file), [area]);
+			const result = await processFile(path.join('..', 'gencode', file), [area]);
 			if(result.fails) {
 				console.error(`Error processing ${file}:`, result.error);
 			}
@@ -125,7 +125,7 @@ async function main(): Promise<void> { // {{{
 		}
 
 		for(const [file, areas] of Object.entries(files)) {
-			const result = await processFile(path.join('..', 'vscode', file), areas);
+			const result = await processFile(path.join('..', 'gencode', file), areas);
 			if(result.fails) {
 				console.error(`Error processing ${file}:`, result.error);
 			}
@@ -269,7 +269,7 @@ function replacePx(area: Area) { // {{{
 		}
 
 		const coeff = formatCoefficient(pxValue / area.defaultSize);
-		const varname = area.name === 'workbench' ? '--vscode-workbench-font-size' : `--vscode-workbench-${area.name}-font-size`;
+		const varname = area.name === 'workbench' ? '--gencode-workbench-font-size' : `--gencode-workbench-${area.name}-font-size`;
 
 		return `calc(var(${varname}) * ${coeff})`;
 	};

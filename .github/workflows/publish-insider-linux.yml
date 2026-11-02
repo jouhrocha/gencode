@@ -8,7 +8,7 @@ on:
 
 env:
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-  APP_NAME: VSCodium
+  APP_NAME: GenCode
   ASSETS_REPOSITORY: ${{ github.repository }}-insiders
   BINARY_NAME: codium-insiders
   DISABLE_UPDATE: yes
@@ -17,7 +17,7 @@ env:
   ORG_NAME: ${{ github.repository_owner }}
   OS_NAME: linux
   VERSIONS_REPOSITORY: ${{ github.repository_owner }}/versions
-  VSCODE_QUALITY: insider
+  GENCODE_QUALITY: insider
 
 jobs:
   check:
@@ -35,10 +35,10 @@ jobs:
           ref: ${{ env.GITHUB_BRANCH }}
           persist-credentials: false
 
-      - name: Clone VSCode repo
+      - name: Clone GenCode repo
         run: ./get_repo.sh
 
-      - name: Check existing VSCodium tags/releases
+      - name: Check existing GenCode tags/releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CHECK_ALL: yes
@@ -54,7 +54,7 @@ jobs:
       MS_TAG: ${{ needs.check.outputs.MS_TAG }}
       RELEASE_VERSION: ${{ needs.check.outputs.RELEASE_VERSION }}
       SHOULD_BUILD: ${{ needs.check.outputs.SHOULD_BUILD }}
-      VSCODE_ARCH: x64
+      GENCODE_ARCH: x64
     outputs:
       BUILD_SOURCEVERSION: ${{ env.BUILD_SOURCEVERSION }}
 
@@ -88,7 +88,7 @@ jobs:
         run: sudo apt-get update -y && sudo apt-get install -y libkrb5-dev
         if: env.SHOULD_BUILD == 'yes'
 
-      - name: Clone VSCode repo
+      - name: Clone GenCode repo
         run: ./get_repo.sh
         if: env.SHOULD_BUILD == 'yes'
 
@@ -99,19 +99,19 @@ jobs:
         run: ./build.sh
         if: env.SHOULD_BUILD == 'yes'
 
-      - name: Compress vscode artifact
+      - name: Compress gencode artifact
         run: |
-          find vscode -type f -not -path "*/node_modules/*" -not -path "vscode/.build/node/*" -not -path "vscode/.git/*" > vscode.txt
-          echo "vscode/.build/extensions/node_modules" >> vscode.txt
-          echo "vscode/.git" >> vscode.txt
-          tar -czf vscode.tar.gz -T vscode.txt
+          find gencode -type f -not -path "*/node_modules/*" -not -path "gencode/.build/node/*" -not -path "gencode/.git/*" > gencode.txt
+          echo "gencode/.build/extensions/node_modules" >> gencode.txt
+          echo "gencode/.git" >> gencode.txt
+          tar -czf gencode.tar.gz -T gencode.txt
         if: env.SHOULD_BUILD == 'yes'
 
-      - name: Upload vscode artifact
+      - name: Upload gencode artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: vscode
-          path: ./vscode.tar.gz
+          name: gencode
+          path: ./gencode.tar.gz
           retention-days: 30
         if: env.SHOULD_BUILD == 'yes'
 
@@ -128,31 +128,31 @@ jobs:
       matrix:
         include:
         - slug: X64
-          vscode_arch: x64
+          gencode_arch: x64
           npm_arch: x64
-          image: vscodium/vscodium-linux-build-agent:focal-x64
+          image: gencode/gencode-linux-build-agent:focal-x64
           upload_binary: yes
         - slug: ARM64
-          vscode_arch: arm64
+          gencode_arch: arm64
           npm_arch: arm64
-          image: vscodium/vscodium-linux-build-agent:focal-arm64
+          image: gencode/gencode-linux-build-agent:focal-arm64
           upload_binary: yes
         - slug: ARM32
-          vscode_arch: armhf
+          gencode_arch: armhf
           npm_arch: arm
-          image: vscodium/vscodium-linux-build-agent:focal-armhf
+          image: gencode/gencode-linux-build-agent:focal-armhf
         - slug: RISCV64
-          vscode_arch: riscv64
+          gencode_arch: riscv64
           npm_arch: riscv64
-          image: vscodium/vscodium-linux-build-agent:focal-riscv64
+          image: gencode/gencode-linux-build-agent:focal-riscv64
         - slug: LOONG64
-          vscode_arch: loong64
+          gencode_arch: loong64
           npm_arch: loong64
-          image: vscodium/vscodium-linux-build-agent:crimson-loong64
+          image: gencode/gencode-linux-build-agent:crimson-loong64
         - slug: PPC64
-          vscode_arch: ppc64le
+          gencode_arch: ppc64le
           npm_arch: ppc64
-          image: vscodium/vscodium-linux-build-agent:focal-ppc64le
+          image: gencode/gencode-linux-build-agent:focal-ppc64le
     container:
       image: ${{ matrix.image }}
     env:
@@ -162,7 +162,7 @@ jobs:
       MS_TAG: ${{ needs.check.outputs.MS_TAG }}
       RELEASE_VERSION: ${{ needs.check.outputs.RELEASE_VERSION }}
       SHOULD_BUILD: ${{ needs.check.outputs.SHOULD_BUILD }}
-      VSCODE_ARCH: ${{ matrix.vscode_arch }}
+      GENCODE_ARCH: ${{ matrix.gencode_arch }}
     outputs:
       RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
       SHOULD_BUILD: ${{ env.SHOULD_BUILD }}
@@ -178,7 +178,7 @@ jobs:
         run: ./build/linux/install_gh.sh
         if: env.DISABLED != 'yes' && env.SHOULD_BUILD == 'yes'
 
-      - name: Check existing VSCodium tags/releases
+      - name: Check existing GenCode tags/releases
         env:
           CHECK_REH: 'no'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -192,10 +192,10 @@ jobs:
       - uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2.0.0
         if: env.DISABLED != 'yes' && env.SHOULD_BUILD == 'yes'
 
-      - name: Download vscode artifact
+      - name: Download gencode artifact
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          name: vscode
+          name: gencode
         if: env.DISABLED != 'yes' && env.SHOULD_BUILD == 'yes'
 
       - name: Build
@@ -207,13 +207,13 @@ jobs:
         if: env.DISABLED != 'yes' && env.SHOULD_BUILD == 'yes'
 
       - name: Package binary
-        run: tar -czf vscode-bin.tar.gz -C "VSCode-linux-${VSCODE_ARCH}" .
+        run: tar -czf gencode-bin.tar.gz -C "GenCode-linux-${GENCODE_ARCH}" .
         if: env.DISABLED != 'yes' && env.SHOULD_BUILD == 'yes' && matrix.upload_binary == 'yes'
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: vscode-bin-${{ matrix.slug }}
-          path: ./vscode-bin.tar.gz
+          name: gencode-bin-${{ matrix.slug }}
+          path: ./gencode-bin.tar.gz
           retention-days: 1
         if: env.DISABLED != 'yes' && env.SHOULD_BUILD == 'yes' && matrix.upload_binary == 'yes'
 
@@ -221,9 +221,9 @@ jobs:
         env:
           SHOULD_BUILD_REH: 'no'
           SHOULD_BUILD_REH_WEB: 'no'
-          VSCODE_SYSROOT_REPOSITORY: ${{ steps.build.outputs.VSCODE_SYSROOT_REPOSITORY }}
-          VSCODE_SYSROOT_VERSION: ${{ steps.build.outputs.VSCODE_SYSROOT_VERSION }}
-          VSCODE_SYSROOT_PREFIX: ${{ steps.build.outputs.VSCODE_SYSROOT_PREFIX }}
+          GENCODE_SYSROOT_REPOSITORY: ${{ steps.build.outputs.GENCODE_SYSROOT_REPOSITORY }}
+          GENCODE_SYSROOT_VERSION: ${{ steps.build.outputs.GENCODE_SYSROOT_VERSION }}
+          GENCODE_SYSROOT_PREFIX: ${{ steps.build.outputs.GENCODE_SYSROOT_PREFIX }}
         run: ./prepare_assets.sh
         if: env.DISABLED != 'yes' && env.SHOULD_BUILD == 'yes'
 
@@ -290,10 +290,10 @@ jobs:
         uses: pkgforge-dev/anylinux-setup-action@b2d1ce4216f71162e00ae58fa11ee9aeb723d0d5 # v5
         if: env.DISABLED != 'yes'
 
-      - name: Download vscode binary artifact
+      - name: Download gencode binary artifact
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          name: vscode-bin-${{ matrix.slug }}
+          name: gencode-bin-${{ matrix.slug }}
         if: env.DISABLED != 'yes'
 
       - name: Make AppImage
@@ -324,25 +324,25 @@ jobs:
       matrix:
         include:
         - slug: X64
-          vscode_arch: x64
+          gencode_arch: x64
           npm_arch: x64
         - slug: ARM64
-          vscode_arch: arm64
+          gencode_arch: arm64
           npm_arch: arm64
         - slug: ARM32
-          vscode_arch: armhf
+          gencode_arch: armhf
           npm_arch: arm
         - slug: PPC64
-          vscode_arch: ppc64le
+          gencode_arch: ppc64le
           npm_arch: ppc64
         - slug: RISCV64
-          vscode_arch: riscv64
+          gencode_arch: riscv64
           npm_arch: riscv64
         - slug: LOONG64
-          vscode_arch: loong64
+          gencode_arch: loong64
           npm_arch: loong64
         - slug: S390X
-          vscode_arch: s390x
+          gencode_arch: s390x
           npm_arch: s390x
     env:
       BUILD_SOURCEVERSION: ${{ needs.compile.outputs.BUILD_SOURCEVERSION }}
@@ -351,7 +351,7 @@ jobs:
       MS_TAG: ${{ needs.check.outputs.MS_TAG }}
       RELEASE_VERSION: ${{ needs.check.outputs.RELEASE_VERSION }}
       SHOULD_BUILD: ${{ needs.check.outputs.SHOULD_BUILD }}
-      VSCODE_ARCH: ${{ matrix.vscode_arch }}
+      GENCODE_ARCH: ${{ matrix.gencode_arch }}
     if: needs.check.outputs.SHOULD_BUILD == 'yes'
 
     steps:
@@ -388,17 +388,17 @@ jobs:
         run: ./build/linux/install_gh.sh
         if: env.DISABLED != 'yes'
 
-      - name: Check existing VSCodium tags/releases
+      - name: Check existing GenCode tags/releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CHECK_ONLY_REH: 'yes'
         run: ./check_tags.sh
         if: env.DISABLED != 'yes'
 
-      - name: Download vscode artifact
+      - name: Download gencode artifact
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          name: vscode
+          name: gencode
         if: env.DISABLED != 'yes' && (env.SHOULD_BUILD_REH != 'no' || env.SHOULD_BUILD_REH_WEB != 'no')
 
       - name: Build
@@ -428,10 +428,10 @@ jobs:
       matrix:
         include:
         - slug: X64
-          vscode_arch: x64
+          gencode_arch: x64
           npm_arch: x64
         - slug: ARM64
-          vscode_arch: arm64
+          gencode_arch: arm64
           npm_arch: arm64
     env:
       BUILD_SOURCEVERSION: ${{ needs.compile.outputs.BUILD_SOURCEVERSION }}
@@ -441,7 +441,7 @@ jobs:
       OS_NAME: alpine
       RELEASE_VERSION: ${{ needs.check.outputs.RELEASE_VERSION }}
       SHOULD_BUILD: ${{ needs.check.outputs.SHOULD_BUILD }}
-      VSCODE_ARCH: ${{ matrix.vscode_arch }}
+      GENCODE_ARCH: ${{ matrix.gencode_arch }}
     if: needs.check.outputs.SHOULD_BUILD == 'yes'
 
     steps:
@@ -464,7 +464,7 @@ jobs:
       - name: Install GH
         run: ./build/linux/install_gh.sh
 
-      - name: Check existing VSCodium tags/releases
+      - name: Check existing GenCode tags/releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CHECK_ONLY_REH: 'yes'
@@ -474,10 +474,10 @@ jobs:
         run: sudo apt-get update -y && sudo apt-get install -y libkrb5-dev
         if: env.SHOULD_BUILD == 'yes'
 
-      - name: Download vscode artifact
+      - name: Download gencode artifact
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          name: vscode
+          name: gencode
         if: env.DISABLED != 'yes' && (env.SHOULD_BUILD_REH != 'no' || env.SHOULD_BUILD_REH_WEB != 'no')
 
       - name: Build
@@ -505,8 +505,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        - package_name: vscodium-insiders-bin
-        - package_name: vscodium-insiders
+        - package_name: gencode-insiders-bin
+        - package_name: gencode-insiders
 
     steps:
       - name: Get version
@@ -582,5 +582,5 @@ jobs:
         uses: peter-evans/repository-dispatch@28959ce8df70de7be546dd1250a005dd32156697 # v4.0.1
         with:
           token: ${{ secrets.STRONGER_GITHUB_TOKEN }}
-          repository: VSCodium/repositories-linux
+          repository: GenCode/repositories-linux
           event-type: deploy

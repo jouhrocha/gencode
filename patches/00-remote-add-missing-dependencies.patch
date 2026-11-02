@@ -5,7 +5,7 @@ index 23024e33..302478c6 100644
 @@ -53,2 +53,3 @@
          "tas-client": "0.4.6",
 +        "tslib": "^2.6.3",
-         "vscode-oniguruma": "1.7.0",
+         "gencode-oniguruma": "1.7.0",
 @@ -2060,2 +2061,8 @@
      },
 +    "node_modules/tslib": {
@@ -22,4 +22,4 @@ index b84062c0..fa1f0ae7 100644
 @@ -48,2 +48,3 @@
      "tas-client": "0.4.6",
 +    "tslib": "^2.6.3",
-     "vscode-oniguruma": "1.7.0",
+     "gencode-oniguruma": "1.7.0",

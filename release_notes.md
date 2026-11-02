@@ -1,4 +1,4 @@
-update vscode to [@@MS_TAG@@](@@MS_URL@@)
+update gencode to [@@MS_TAG@@](@@MS_URL@@)
 
 @@RELEASE_NOTES@@
 

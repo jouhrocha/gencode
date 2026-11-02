@@ -3,24 +3,24 @@ index 67bc741..4f0521b 100755
 --- a/build/azure-pipelines/linux/setup-env.sh
 +++ b/build/azure-pipelines/linux/setup-env.sh
 @@ -88,2 +88,14 @@ elif [ "$npm_config_arch" == "ppc64" ]; then
- 	export VSCODE_REMOTE_LDFLAGS="--sysroot=$VSCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot -L$VSCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot/usr/lib/powerpc64le-linux-gnu -L$VSCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot/lib/powerpc64le-linux-gnu"
+ 	export GENCODE_REMOTE_LDFLAGS="--sysroot=$GENCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot -L$GENCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot/usr/lib/powerpc64le-linux-gnu -L$GENCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot/lib/powerpc64le-linux-gnu"
 +elif [ "$npm_config_arch" == "s390x" ]; then
 +	# Set compiler toolchain for client native modules
-+	export CC=$VSCODE_CLIENT_SYSROOT_DIR/s390x-linux-gnu/bin/s390x-linux-gnu-gcc
-+	export CXX=$VSCODE_CLIENT_SYSROOT_DIR/s390x-linux-gnu/bin/s390x-linux-gnu-g++
-+	export CXXFLAGS="--sysroot=$VSCODE_CLIENT_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot"
-+	export LDFLAGS="--sysroot=$VSCODE_CLIENT_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot -L$VSCODE_CLIENT_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot/usr/lib/s390x-linux-gnu -L$VSCODE_CLIENT_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot/lib/s390x-linux-gnu"
++	export CC=$GENCODE_CLIENT_SYSROOT_DIR/s390x-linux-gnu/bin/s390x-linux-gnu-gcc
++	export CXX=$GENCODE_CLIENT_SYSROOT_DIR/s390x-linux-gnu/bin/s390x-linux-gnu-g++
++	export CXXFLAGS="--sysroot=$GENCODE_CLIENT_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot"
++	export LDFLAGS="--sysroot=$GENCODE_CLIENT_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot -L$GENCODE_CLIENT_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot/usr/lib/s390x-linux-gnu -L$GENCODE_CLIENT_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot/lib/s390x-linux-gnu"
 +
 +	# Set compiler toolchain for remote server
-+	export VSCODE_REMOTE_CC=$VSCODE_REMOTE_SYSROOT_DIR/s390x-linux-gnu/bin/s390x-linux-gnu-gcc
-+	export VSCODE_REMOTE_CXX=$VSCODE_REMOTE_SYSROOT_DIR/s390x-linux-gnu/bin/s390x-linux-gnu-g++
-+	export VSCODE_REMOTE_CXXFLAGS="--sysroot=$VSCODE_REMOTE_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot"
-+	export VSCODE_REMOTE_LDFLAGS="--sysroot=$VSCODE_REMOTE_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot -L$VSCODE_REMOTE_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot/usr/lib/s390x-linux-gnu -L$VSCODE_REMOTE_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot/lib/s390x-linux-gnu"
++	export GENCODE_REMOTE_CC=$GENCODE_REMOTE_SYSROOT_DIR/s390x-linux-gnu/bin/s390x-linux-gnu-gcc
++	export GENCODE_REMOTE_CXX=$GENCODE_REMOTE_SYSROOT_DIR/s390x-linux-gnu/bin/s390x-linux-gnu-g++
++	export GENCODE_REMOTE_CXXFLAGS="--sysroot=$GENCODE_REMOTE_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot"
++	export GENCODE_REMOTE_LDFLAGS="--sysroot=$GENCODE_REMOTE_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot -L$GENCODE_REMOTE_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot/usr/lib/s390x-linux-gnu -L$GENCODE_REMOTE_SYSROOT_DIR/s390x-linux-gnu/s390x-linux-gnu/sysroot/lib/s390x-linux-gnu"
  fi
-diff --git a/build/checksums/vscode-sysroot.txt b/build/checksums/vscode-sysroot.txt
+diff --git a/build/checksums/gencode-sysroot.txt b/build/checksums/gencode-sysroot.txt
 index dd159f8..8e8cbe9 100644
---- a/build/checksums/vscode-sysroot.txt
-+++ b/build/checksums/vscode-sysroot.txt
+--- a/build/checksums/gencode-sysroot.txt
++++ b/build/checksums/gencode-sysroot.txt
 @@ -8 +8,2 @@ ac4b6b14b4cec027a22a51bbbb049b3504958a78106c8a8d5cec144206b767d1  x86_64-linux-g
  2d1a21d3ed310a62e229f056839cccd52c96c7d7c63542b7ba7c34ff20a3f832  powerpc64le-linux-gnu-glibc-2.28-gcc-10.5.0.tar.gz
 +7055f3d40e7195fb1e13f0fbaf5ffadf781bddaca5fd5e0d9972f4157a203fb5  s390x-linux-gnu-glibc-2.28.tar.gz
@@ -40,10 +40,10 @@ index e7881de..affa8df 100644
  	{ platform: 'linux', arch: 'loong64' },
 +	{ platform: 'linux', arch: 's390x' },
  ];
-diff --git a/build/gulpfile.vscode.linux.ts b/build/gulpfile.vscode.linux.ts
+diff --git a/build/gulpfile.gencode.linux.ts b/build/gulpfile.gencode.linux.ts
 index e146586..ca18865 100644
---- a/build/gulpfile.vscode.linux.ts
-+++ b/build/gulpfile.vscode.linux.ts
+--- a/build/gulpfile.gencode.linux.ts
++++ b/build/gulpfile.gencode.linux.ts
 @@ -35,2 +35,3 @@ function getDebPackageArch(arch: string): string {
  		case 'loong64': return 'loong64';
 +		case 's390x': return 's390x';
@@ -56,10 +56,10 @@ index e146586..ca18865 100644
  	{ arch: 'loong64' },
 +	{ arch: 's390x' },
  ];
-diff --git a/build/gulpfile.vscode.ts b/build/gulpfile.vscode.ts
+diff --git a/build/gulpfile.gencode.ts b/build/gulpfile.gencode.ts
 index e1e5265..295a755 100644
---- a/build/gulpfile.vscode.ts
-+++ b/build/gulpfile.vscode.ts
+--- a/build/gulpfile.gencode.ts
++++ b/build/gulpfile.gencode.ts
 @@ -705,2 +705,3 @@ const BUILD_TARGETS = [
  	{ platform: 'linux', arch: 'loong64' },
 +	{ platform: 'linux', arch: 's390x' },
@@ -73,8 +73,8 @@ index 5ee005e..71fb92e 100644
 +		case 's390x':
 +			cmd.push(`-l${chromiumSysroot}/usr/lib/s390x-linux-gnu`,
 +				`-l${chromiumSysroot}/lib/s390x-linux-gnu`,
-+				`-l${vscodeSysroot}/usr/lib/s390x-linux-gnu`,
-+				`-l${vscodeSysroot}/lib/s390x-linux-gnu`);
++				`-l${gencodeSysroot}/usr/lib/s390x-linux-gnu`,
++				`-l${gencodeSysroot}/lib/s390x-linux-gnu`);
 +			break;
  	}
 diff --git a/build/linux/debian/dep-lists.ts b/build/linux/debian/dep-lists.ts
@@ -128,7 +128,7 @@ diff --git a/build/linux/debian/install-sysroot.ts b/build/linux/debian/install-
 index aece9b9..52a25ce 100644
 --- a/build/linux/debian/install-sysroot.ts
 +++ b/build/linux/debian/install-sysroot.ts
-@@ -167,2 +167,6 @@ export async function getVSCodeSysroot(arch: DebianArchString, isMusl: boolean =
+@@ -167,2 +167,6 @@ export async function getGenCodeSysroot(arch: DebianArchString, isMusl: boolean =
  			break;
 +		case 's390x':
 +			expectedName = `s390x-linux-gnu${prefix}.tar.gz`;

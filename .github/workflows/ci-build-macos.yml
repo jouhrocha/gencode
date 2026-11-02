@@ -22,14 +22,14 @@ on:
       - "**/*.md"
 
 env:
-  APP_NAME: VSCodium
+  APP_NAME: GenCode
   BINARY_NAME: ${{ (github.ref == 'refs/heads/insider' || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'insider')) && 'codium-insiders' || 'codium' }}
   GH_REPO_PATH: ${{ github.repository }}
   GITHUB_BRANCH: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.event.head }}
   ORG_NAME: ${{ github.repository_owner }}
   OS_NAME: osx
   MAX_OLD_SPACE_SIZE: 12288
-  VSCODE_QUALITY: ${{ (github.ref == 'refs/heads/insider' || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'insider')) && 'insider' || 'stable' }}
+  GENCODE_QUALITY: ${{ (github.ref == 'refs/heads/insider' || (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'insider')) && 'insider' || 'stable' }}
 
 permissions: {}
 
@@ -37,15 +37,15 @@ jobs:
   build:
     runs-on: ${{ matrix.runner }}
     env:
-      VSCODE_ARCH: ${{ matrix.vscode_arch }}
+      GENCODE_ARCH: ${{ matrix.gencode_arch }}
     strategy:
       fail-fast: false
       matrix:
         include:
           - runner: macos-15-intel
-            vscode_arch: x64
+            gencode_arch: x64
           - runner: macos-14
-            vscode_arch: arm64
+            gencode_arch: arm64
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -67,9 +67,9 @@ jobs:
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.11'
-        if: env.VSCODE_ARCH == 'x64'
+        if: env.GENCODE_ARCH == 'x64'
 
-      - name: Clone VSCode repo
+      - name: Clone GenCode repo
         run: . get_repo.sh
 
       - name: Build
@@ -85,7 +85,7 @@ jobs:
       - name: Upload assets
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: bin-${{ matrix.vscode_arch }}
+          name: bin-${{ matrix.gencode_arch }}
           path: assets/
           retention-days: 3
         if: env.SHOULD_BUILD == 'yes' && github.event.inputs.generate_assets == 'true'

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-export VSCODE_QUALITY="stable"
+export GENCODE_QUALITY="stable"
 
 while getopts ":i" opt; do
   case "$opt" in
     i)
-      export VSCODE_QUALITY="insider"
+      export GENCODE_QUALITY="insider"
       ;;
     *)
       ;;
@@ -95,7 +95,7 @@ check_file() {
   if [[ -f "${1}" ]]; then
     git apply --reject "../patches/helper/settings.patch"
     git add .
-    git commit --no-verify -q -m "VSCODIUM HELPER"
+    git commit --no-verify -q -m "GENCODE HELPER"
 
     echo applying patch: "${1}"
 
@@ -125,7 +125,7 @@ check_file() {
         echo
       done
 
-      git restore .vscode/settings.json
+      git restore .gencode/settings.json
       git add .
       git diff --staged -U1 > "${1}"
     fi
@@ -135,7 +135,7 @@ check_file() {
   fi
 }
 
-cd vscode || { echo "'vscode' dir not found"; exit 1; }
+cd gencode || { echo "'gencode' dir not found"; exit 1; }
 
 # include common functions
 . ../utils.sh
@@ -143,7 +143,7 @@ cd vscode || { echo "'vscode' dir not found"; exit 1; }
 git add .
 git reset -q --hard HEAD
 
-while [[ -n "$( git log -1 | grep "VSCODIUM HELPER" )" ]]; do
+while [[ -n "$( git log -1 | grep "GENCODE HELPER" )" ]]; do
   git reset -q --hard HEAD~
 done
 
@@ -184,7 +184,7 @@ for FILE in ../patches/*.patch; do
   fi
 done
 
-if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
+if [[ "${GENCODE_QUALITY}" == "insider" ]]; then
   for FILE in ../patches/insider/*.patch; do
     check_file "${FILE}"
   done

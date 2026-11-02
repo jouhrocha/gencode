@@ -33,13 +33,13 @@ if [[ -n "${CERTIFICATE_OSX_P12_DATA}" ]]; then
   echo "+ signing"
   export CODESIGN_IDENTITY AGENT_TEMPDIRECTORY
 
-  DEBUG="electron-osx-sign*" node vscode/build/darwin/sign.ts "$( pwd )"
+  DEBUG="electron-osx-sign*" node gencode/build/darwin/sign.ts "$( pwd )"
   # codesign --display --entitlements :- ""
 
   echo "+ notarize"
 
-  cd "VSCode-darwin-${VSCODE_ARCH}"
-  ZIP_FILE="./${APP_NAME}-darwin-${VSCODE_ARCH}-${RELEASE_VERSION}.zip"
+  cd "GenCode-darwin-${GENCODE_ARCH}"
+  ZIP_FILE="./${APP_NAME}-darwin-${GENCODE_ARCH}-${RELEASE_VERSION}.zip"
 
   zip -r -X -y "${ZIP_FILE}" ./*.app
 
@@ -58,16 +58,16 @@ fi
 
 if [[ "${SHOULD_BUILD_ZIP}" != "no" ]]; then
   echo "Building and moving ZIP"
-  cd "VSCode-darwin-${VSCODE_ARCH}"
-  zip -r -X -y "../assets/${APP_NAME}-darwin-${VSCODE_ARCH}-${RELEASE_VERSION}.zip" ./*.app
+  cd "GenCode-darwin-${GENCODE_ARCH}"
+  zip -r -X -y "../assets/${APP_NAME}-darwin-${GENCODE_ARCH}-${RELEASE_VERSION}.zip" ./*.app
   cd ..
 fi
 
 if [[ -n "${CERTIFICATE_OSX_P12_DATA}" && "${SHOULD_BUILD_DMG}" != "no" ]]; then
   echo "Building and moving DMG"
-  pushd "VSCode-darwin-${VSCODE_ARCH}"
+  pushd "GenCode-darwin-${GENCODE_ARCH}"
   npx create-dmg ./*.app .
-  mv ./*.dmg "../assets/${APP_NAME}.${VSCODE_ARCH}.${RELEASE_VERSION}.dmg"
+  mv ./*.dmg "../assets/${APP_NAME}.${GENCODE_ARCH}.${RELEASE_VERSION}.dmg"
   popd
 fi
 

@@ -16,13 +16,13 @@ diff --git a/cli/src/constants.rs b/cli/src/constants.rs
 index 938f4343..7277908a 100644
 --- a/cli/src/constants.rs
 +++ b/cli/src/constants.rs
-@@ -37,3 +37,6 @@ pub const DOCUMENTATION_URL: Option<&'static str> = option_env!("VSCODE_CLI_DOCU
- pub const VSCODE_CLI_COMMIT: Option<&'static str> = option_env!("VSCODE_CLI_COMMIT");
--pub const VSCODE_CLI_UPDATE_ENDPOINT: Option<&'static str> = option_env!("VSCODE_CLI_UPDATE_URL");
-+pub const VSCODE_CLI_UPDATE_ENDPOINT: Option<&'static str> = option_env!("VSCODE_CLI_UPDATE_ENDPOINT");
-+pub const VSCODE_CLI_DOWNLOAD_ENDPOINT: Option<&'static str> = option_env!("VSCODE_CLI_DOWNLOAD_ENDPOINT");
-+pub const VSCODE_CLI_APP_NAME: Option<&'static str> = option_env!("VSCODE_CLI_APP_NAME");
-+pub const VSCODE_CLI_BINARY_NAME: Option<&'static str> = option_env!("VSCODE_CLI_BINARY_NAME");
+@@ -37,3 +37,6 @@ pub const DOCUMENTATION_URL: Option<&'static str> = option_env!("GENCODE_CLI_DOCU
+ pub const GENCODE_CLI_COMMIT: Option<&'static str> = option_env!("GENCODE_CLI_COMMIT");
+-pub const GENCODE_CLI_UPDATE_ENDPOINT: Option<&'static str> = option_env!("GENCODE_CLI_UPDATE_URL");
++pub const GENCODE_CLI_UPDATE_ENDPOINT: Option<&'static str> = option_env!("GENCODE_CLI_UPDATE_ENDPOINT");
++pub const GENCODE_CLI_DOWNLOAD_ENDPOINT: Option<&'static str> = option_env!("GENCODE_CLI_DOWNLOAD_ENDPOINT");
++pub const GENCODE_CLI_APP_NAME: Option<&'static str> = option_env!("GENCODE_CLI_APP_NAME");
++pub const GENCODE_CLI_BINARY_NAME: Option<&'static str> = option_env!("GENCODE_CLI_BINARY_NAME");
  
 diff --git a/cli/src/options.rs b/cli/src/options.rs
 index 7d152c0e..c0f2fb2e 100644
@@ -31,12 +31,12 @@ index 7d152c0e..c0f2fb2e 100644
 @@ -9,3 +9,3 @@ use serde::{Deserialize, Serialize};
  
 -use crate::constants::SERVER_NAME_MAP;
-+use crate::{constants::VSCODE_CLI_BINARY_NAME, util::errors::CodeError};
++use crate::{constants::GENCODE_CLI_BINARY_NAME, util::errors::CodeError};
  
 @@ -21,2 +21,6 @@ pub enum Quality {
  
 +fn get_binary_name() -> Result<&'static str, CodeError> {
-+	VSCODE_CLI_BINARY_NAME.ok_or_else(|| CodeError::UpdatesNotConfigured("no binary name"))
++	GENCODE_CLI_BINARY_NAME.ok_or_else(|| CodeError::UpdatesNotConfigured("no binary name"))
 +}
 +
  impl Quality {
@@ -90,8 +90,8 @@ index cd94139f..db064277 100644
 +++ b/cli/src/update_service.rs
 @@ -10,3 +10,3 @@ use serde::{Deserialize, Serialize};
  use crate::{
--	constants::VSCODE_CLI_UPDATE_ENDPOINT,
-+	constants::{VSCODE_CLI_APP_NAME, VSCODE_CLI_DOWNLOAD_ENDPOINT, VSCODE_CLI_UPDATE_ENDPOINT},
+-	constants::GENCODE_CLI_UPDATE_ENDPOINT,
++	constants::{GENCODE_CLI_APP_NAME, GENCODE_CLI_DOWNLOAD_ENDPOINT, GENCODE_CLI_UPDATE_ENDPOINT},
  	log, options,
 @@ -18,3 +18,3 @@ use crate::{
  		zipper,
@@ -101,11 +101,11 @@ index cd94139f..db064277 100644
 @@ -58,2 +58,10 @@ fn quality_download_segment(quality: options::Quality) -> &'static str {
  
 +fn get_app_name() -> Result<&'static str, CodeError> {
-+	VSCODE_CLI_APP_NAME.ok_or_else(|| CodeError::UpdatesNotConfigured("no app name"))
++	GENCODE_CLI_APP_NAME.ok_or_else(|| CodeError::UpdatesNotConfigured("no app name"))
 +}
 +
 +fn get_download_endpoint() -> Result<&'static str, CodeError> {
-+	VSCODE_CLI_DOWNLOAD_ENDPOINT.ok_or_else(|| CodeError::UpdatesNotConfigured("no download url"))
++	GENCODE_CLI_DOWNLOAD_ENDPOINT.ok_or_else(|| CodeError::UpdatesNotConfigured("no download url"))
 +}
 +
  fn get_update_endpoint() -> Result<String, CodeError> {
@@ -314,8 +314,8 @@ diff --git a/extensions/tunnel-forwarding/src/extension.ts b/extensions/tunnel-f
 index 2f71999b..e689f628 100644
 --- a/extensions/tunnel-forwarding/src/extension.ts
 +++ b/extensions/tunnel-forwarding/src/extension.ts
-@@ -37,3 +37,3 @@ if (process.env.VSCODE_FORWARDING_IS_DEV) {
+@@ -37,3 +37,3 @@ if (process.env.GENCODE_FORWARDING_IS_DEV) {
  
--	const cliName = vscode.env.appQuality === 'stable' ? 'code-tunnel' : 'code-tunnel-insiders';
+-	const cliName = gencode.env.appQuality === 'stable' ? 'code-tunnel' : 'code-tunnel-insiders';
 +	const cliName = '!!TUNNEL_APP_NAME!!';
  	const extension = process.platform === 'win32' ? '.exe' : '';

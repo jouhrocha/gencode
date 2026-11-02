@@ -20,7 +20,7 @@ index 3c518289..7e280cce 100644
 +++ b/package.json
 @@ -280,2 +280,5 @@
      "@typescript-eslint/types": "8.66.0",
-+    "@vscode/l10n-dev@0.0.35": {
++    "@gencode/l10n-dev@0.0.35": {
 +      "web-tree-sitter": "0.23.0"
 +    },
      "node-gyp-build": "4.8.1",

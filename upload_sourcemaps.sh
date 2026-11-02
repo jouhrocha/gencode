@@ -7,7 +7,7 @@ npm install -g checksum github-release-cli
 mkdir -p sourcemaps
 cd sourcemaps
 
-SOURCE_DIR="../vscode/.build/extensions"
+SOURCE_DIR="../gencode/.build/extensions"
 DESTINATION_DIR="extensions"
 
 find "${SOURCE_DIR}" -type f -name "*.js.map" | while read -r SOURCE_FILE_PATH; do
@@ -17,7 +17,7 @@ find "${SOURCE_DIR}" -type f -name "*.js.map" | while read -r SOURCE_FILE_PATH; 
   cp "${SOURCE_FILE_PATH}" "$DESTINATION_DIR-${FLATTENED_FILENAME}"
 done
 
-SOURCE_DIR="../vscode/out-vscode-min"
+SOURCE_DIR="../gencode/out-gencode-min"
 DESTINATION_DIR="core"
 
 find "${SOURCE_DIR}" -type f -name "*.js.map" | while read -r SOURCE_FILE_PATH; do
@@ -36,7 +36,7 @@ checksum -a sha256 "${APP_NAME}-${RELEASE_VERSION}-sourcemaps.tar.gz" > "${APP_N
 
 REPOSITORY_OWNER="${SOURCEMAPS_REPOSITORY/\/*/}"
 REPOSITORY_NAME="${SOURCEMAPS_REPOSITORY/*\//}"
-RELEASE_TAG="${VSCODE_QUALITY}-${BUILD_SOURCEVERSION}"
+RELEASE_TAG="${GENCODE_QUALITY}-${BUILD_SOURCEVERSION}"
 
 gh release create "${RELEASE_TAG}" --repo "${SOURCEMAPS_REPOSITORY}" --title "${RELEASE_VERSION}"
 

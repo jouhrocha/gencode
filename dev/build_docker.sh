@@ -3,21 +3,21 @@
 
 exists() { type -t "$1" &> /dev/null; }
 
-export APP_NAME="VSCodium"
+export APP_NAME="GenCode"
 export CI_BUILD="no"
 export OS_NAME="linux"
 export SHOULD_BUILD="yes"
 export SKIP_ASSETS="yes"
-export VSCODE_LATEST="no"
-export VSCODE_QUALITY="stable"
+export GENCODE_LATEST="no"
+export GENCODE_QUALITY="stable"
 
 while getopts ":ilp" opt; do
   case "$opt" in
     i)
-      export VSCODE_QUALITY="insider"
+      export GENCODE_QUALITY="insider"
       ;;
     l)
-      export VSCODE_LATEST="yes"
+      export GENCODE_LATEST="yes"
       ;;
     p)
       export SKIP_ASSETS="no"
@@ -30,20 +30,20 @@ done
 UNAME_ARCH=$( uname -m )
 
 if [[ "${UNAME_ARCH}" == "x86_64" ]]; then
-  export VSCODE_ARCH="x64"
+  export GENCODE_ARCH="x64"
 else
   export npm_config_arch=armv7l
   export npm_config_force_process_config="true"
-  export VSCODE_ARCH="armhf"
+  export GENCODE_ARCH="armhf"
 fi
 
 echo "OS_NAME=\"${OS_NAME}\""
 echo "SKIP_ASSETS=\"${SKIP_ASSETS}\""
-echo "VSCODE_ARCH=\"${VSCODE_ARCH}\""
-echo "VSCODE_LATEST=\"${VSCODE_LATEST}\""
-echo "VSCODE_QUALITY=\"${VSCODE_QUALITY}\""
+echo "GENCODE_ARCH=\"${GENCODE_ARCH}\""
+echo "GENCODE_LATEST=\"${GENCODE_LATEST}\""
+echo "GENCODE_QUALITY=\"${GENCODE_QUALITY}\""
 
-rm -rf vscode* VSCode*
+rm -rf gencode* GenCode*
 
 . get_repo.sh
 . build.sh

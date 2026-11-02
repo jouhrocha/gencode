@@ -20,7 +20,7 @@ done
 [[ -z "${COLOR}" ]] && COLOR="blue1"
 [[ -z "${QUALITY}" ]] && QUALITY="stable"
 [[ -z "${SRC_PREFIX}" ]] && SRC_PREFIX=""
-[[ -z "${VSCODE_PREFIX}" ]] && VSCODE_PREFIX=""
+[[ -z "${GENCODE_PREFIX}" ]] && GENCODE_PREFIX=""
 
 check_programs() { # {{{
   for arg in "$@"; do
@@ -33,17 +33,17 @@ check_programs() { # {{{
 
 check_programs "icns2png" "composite" "convert" "png2icns" "icotool" "rsvg-convert" "sed"
 
-. "./${VSCODE_PREFIX}utils.sh"
+. "./${GENCODE_PREFIX}utils.sh"
 
 if ! declare -F load_linux_png &>/dev/null; then
   load_linux_png() {
-    wget "https://raw.githubusercontent.com/VSCodium/icons/main/icons/linux/circle1/${COLOR}/paulo22s.png" -O "$1"
+    wget "https://raw.githubusercontent.com/GenCode/icons/main/icons/linux/circle1/${COLOR}/paulo22s.png" -O "$1"
   }
 fi
 
 if ! declare -F load_windows_ico &>/dev/null; then
   load_windows_ico() {
-    wget "https://raw.githubusercontent.com/VSCodium/icons/main/icons/win32/nobg/${COLOR}/paulo22s.ico" -O "$1"
+    wget "https://raw.githubusercontent.com/GenCode/icons/main/icons/win32/nobg/${COLOR}/paulo22s.ico" -O "$1"
   }
 fi
 
@@ -55,7 +55,7 @@ build_darwin_main() { # {{{
       rsvg-convert -w 1024 -h 1024 "icons/${QUALITY}/codium_cnl.svg" -o "code_1024.png"
     else
       rsvg-convert -w 655 -h 655 "icons/${QUALITY}/codium_cnl.svg" -o "code_logo.png"
-      composite "code_logo.png" -gravity center "${VSCODE_PREFIX}icons/template_macos.png" "code_1024.png"
+      composite "code_logo.png" -gravity center "${GENCODE_PREFIX}icons/template_macos.png" "code_1024.png"
     fi
 
     convert "code_1024.png" -resize 512x512 code_512.png
@@ -75,14 +75,14 @@ build_darwin_types() { # {{{
     rsvg-convert -w 128 -h 128 "icons/${QUALITY}/codium_cnl_w80_b8.svg" -o "code_logo.png"
   fi
 
-  for file in "${VSCODE_PREFIX}"vscode/resources/darwin/*; do
+  for file in "${GENCODE_PREFIX}"gencode/resources/darwin/*; do
     if [[ -f "${file}" ]]; then
       name=$(basename "${file}" '.icns')
 
       if [[ "${name}" != 'code' ]] && [[ ! -f "${SRC_PREFIX}src/${QUALITY}/resources/darwin/${name}.icns" ]]; then
         icns2png -x -s 512x512 "${file}" -o .
 
-        composite -blend 100% -geometry +323+365 "${VSCODE_PREFIX}icons/corner_512.png" "${name}_512x512x32.png" "${name}.png"
+        composite -blend 100% -geometry +323+365 "${GENCODE_PREFIX}icons/corner_512.png" "${name}_512x512x32.png" "${name}.png"
         composite -geometry +359+374 "code_logo.png" "${name}.png" "${name}.png"
 
         convert "${name}.png" -resize 256x256 "${name}_256.png"
@@ -175,7 +175,7 @@ build_windows_types() { # {{{
 
   rsvg-convert -b "#F5F6F7" -w 64 -h 64 "icons/${QUALITY}/codium_cnl.svg" -o "code_logo.png"
 
-  for file in "${VSCODE_PREFIX}"vscode/resources/win32/*.ico; do
+  for file in "${GENCODE_PREFIX}"gencode/resources/win32/*.ico; do
     if [[ -f "${file}" ]]; then
       name=$(basename "${file}" '.ico')
 

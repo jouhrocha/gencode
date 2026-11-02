@@ -29,15 +29,15 @@ export -f replace_with_debug
 d1=$( date +%s )
 
 if [[ "${OS_NAME}" == "linux" ]]; then
-  if [[ ${VSCODE_ARCH} == "x64" ]]; then
-    ./node_modules/@vscode/ripgrep/bin/rg --no-ignore -l "${SEARCH}" . | xargs -I {} bash -c 'replace_with_debug "${1}" "{}"' _ "${REPLACEMENT}"
+  if [[ ${GENCODE_ARCH} == "x64" ]]; then
+    ./node_modules/@gencode/ripgrep/bin/rg --no-ignore -l "${SEARCH}" . | xargs -I {} bash -c 'replace_with_debug "${1}" "{}"' _ "${REPLACEMENT}"
   else
     grep -rl --exclude-dir=.git -E "${SEARCH}" . | xargs -I {} bash -c 'replace_with_debug "${1}" "{}"' _ "${REPLACEMENT}"
   fi
 elif [[ "${OS_NAME}" == "osx" ]]; then
-  ./node_modules/@vscode/ripgrep/bin/rg --no-ignore -l "${SEARCH}" . | xargs -I {} bash -c 'replace_with_debug "${1}" "{}"' _ "${REPLACEMENT}"
+  ./node_modules/@gencode/ripgrep/bin/rg --no-ignore -l "${SEARCH}" . | xargs -I {} bash -c 'replace_with_debug "${1}" "{}"' _ "${REPLACEMENT}"
 else
-  ./node_modules/@vscode/ripgrep/bin/rg --no-ignore --path-separator=// -l "${SEARCH}" . | xargs -I {} bash -c 'replace_with_debug "${1}" "{}"' _ "${REPLACEMENT}"
+  ./node_modules/@gencode/ripgrep/bin/rg --no-ignore --path-separator=// -l "${SEARCH}" . | xargs -I {} bash -c 'replace_with_debug "${1}" "{}"' _ "${REPLACEMENT}"
 fi
 
 d2=$( date +%s )

@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-APP_NAME="${APP_NAME:-VSCodium}"
+APP_NAME="${APP_NAME:-GenCode}"
 APP_NAME_LC="$( echo "${APP_NAME}" | awk '{print tolower($0)}' )"
-ASSETS_REPOSITORY="${ASSETS_REPOSITORY:-VSCodium/vscodium}"
+ASSETS_REPOSITORY="${ASSETS_REPOSITORY:-GenCode/gencode}"
 BINARY_NAME="${BINARY_NAME:-codium}"
-GH_REPO_PATH="${GH_REPO_PATH:-VSCodium/vscodium}"
-ORG_NAME="${ORG_NAME:-VSCodium}"
+GH_REPO_PATH="${GH_REPO_PATH:-GenCode/gencode}"
+ORG_NAME="${ORG_NAME:-GenCode}"
 TUNNEL_APP_NAME="${TUNNEL_APP_NAME:-"${BINARY_NAME}-tunnel"}"
 
-if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
+if [[ "${GENCODE_QUALITY}" == "insider" ]]; then
   GLOBAL_DIRNAME="${GLOBAL_DIRNAME:-"${APP_NAME_LC}"}-insiders"
 else
   GLOBAL_DIRNAME="${GLOBAL_DIRNAME:-"${APP_NAME_LC}"}"
@@ -33,8 +33,12 @@ apply_actions() {
               exit 4
             fi
           else
-            echo "Not found: ${ENTRY_PATH}" >&2
-            exit 4
+            if [[ "${ALLOW_PATCH_FAILURES}" == "yes" ]]; then
+              echo "Already absent: ${ENTRY_PATH}" >&2
+            else
+              echo "Not found: ${ENTRY_PATH}" >&2
+              exit 4
+            fi
           fi
         done
       ;;
@@ -46,7 +50,7 @@ apply_patch() {
   if [[ -z "$2" ]]; then
     echo applying patch: "$1";
   fi
-  # grep '^+++' "$1"  | sed -e 's#+++ [ab]/#./vscode/#' | while read line; do shasum -a 256 "${line}"; done
+  # grep '^+++' "$1"  | sed -e 's#+++ [ab]/#./gencode/#' | while read line; do shasum -a 256 "${line}"; done
 
   cp $1{,.bak}
 
@@ -60,9 +64,13 @@ apply_patch() {
   replace "s|!!RELEASE_VERSION!!|${RELEASE_VERSION}|g" "$1"
   replace "s|!!TUNNEL_APP_NAME!!|${TUNNEL_APP_NAME}|g" "$1"
 
-  if ! git apply --ignore-whitespace "$1"; then
-    echo failed to apply patch "$1" >&2
-    exit 1
+  if ! python3 ../tools/patch_apply.py "$1"; then
+    if [[ "${ALLOW_PATCH_FAILURES}" == "yes" ]]; then
+      echo "warning: parche incompleto $1" >&2
+    else
+      echo failed to apply patch "$1" >&2
+      exit 1
+    fi
   fi
 
   mv -f $1{.bak,}

@@ -7,9 +7,9 @@ if [[ "${CI_BUILD}" == "no" ]]; then
   exit 1
 fi
 
-tar -xzf ./vscode.tar.gz
+tar -xzf ./gencode.tar.gz
 
-cd vscode || { echo "'vscode' dir not found"; exit 1; }
+cd gencode || { echo "'gencode' dir not found"; exit 1; }
 
 for i in {1..5}; do # try 5 times
   npm ci && break
@@ -27,7 +27,7 @@ find .build/extensions -type f -name '*.node' -print -delete
 
 . ../build/windows/rtf/make.sh
 
-if [[ "${VSCODE_ARCH}" == "x64" ]]; then
+if [[ "${GENCODE_ARCH}" == "x64" ]]; then
   . ../build/windows/install_inno_update.sh
 fi
 
@@ -37,19 +37,19 @@ node build/lib/policies/policyGenerator.ts build/lib/policies/policyData.jsonc w
 
 # node build/win32/explorer-dll-fetcher.ts .build/win32/appx
 
-npm run gulp "vscode-win32-${VSCODE_ARCH}-min-packing"
+npm run gulp "gencode-win32-${GENCODE_ARCH}-min-packing"
 
 . ../build_cli.sh
 
-if [[ "${VSCODE_ARCH}" == "x64" ]]; then
+if [[ "${GENCODE_ARCH}" == "x64" ]]; then
   if [[ "${SHOULD_BUILD_REH}" != "no" ]]; then
     echo "Building REH"
-    npm run gulp "vscode-reh-win32-${VSCODE_ARCH}-min"
+    npm run gulp "gencode-reh-win32-${GENCODE_ARCH}-min"
   fi
 
   if [[ "${SHOULD_BUILD_REH_WEB}" != "no" ]]; then
     echo "Building REH-web"
-    npm run gulp "vscode-reh-web-win32-${VSCODE_ARCH}-min"
+    npm run gulp "gencode-reh-web-win32-${GENCODE_ARCH}-min"
   fi
 fi
 

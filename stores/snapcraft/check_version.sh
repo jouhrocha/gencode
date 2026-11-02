@@ -21,7 +21,7 @@ else
     export SHOULD_DEPLOY_TO_RELEASE="yes"
   fi
 
-  if [[ "${VSCODE_QUALITY}" == "stable" ]]; then
+  if [[ "${GENCODE_QUALITY}" == "stable" ]]; then
     CHANNEL="${SNAPCRAFT_STORE_CHANNEL:-stable}"
 
     sudo snap install --channel "${CHANNEL}" --classic snapcraft

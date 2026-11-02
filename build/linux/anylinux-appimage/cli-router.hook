@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # when run in remote terminal, use the remote cli
-if [ -n "$VSCODE_IPC_HOOK_CLI" ]; then
+if [ -n "$GENCODE_IPC_HOOK_CLI" ]; then
   REMOTE_CLI=""
   _IFS=$IFS
   IFS=:

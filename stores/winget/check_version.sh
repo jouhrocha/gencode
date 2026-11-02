@@ -4,7 +4,7 @@ set -e
 
 VERSIONS=$( curl --silent "https://api.github.com/repos/microsoft/winget-pkgs/contents/manifests/v/${APP_IDENTIFIER//.//}" )
 
-if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
+if [[ "${GENCODE_QUALITY}" == "insider" ]]; then
   RELEASE_VERSION="${RELEASE_VERSION/\-insider/}"
 fi
 

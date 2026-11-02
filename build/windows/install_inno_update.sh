@@ -10,5 +10,5 @@ if [ -f "${INNO_PATH}" ]; then
   rm "${INNO_PATH}"
 fi
 
-curl --silent --fail -L https://github.com/VSCodium/inno-updater/releases/download/v${INNO_VERSION}/inno_updater.exe -o "${INNO_PATH}"
+curl --silent --fail -L https://github.com/GenCode/inno-updater/releases/download/v${INNO_VERSION}/inno_updater.exe -o "${INNO_PATH}"
 chmod +x "${INNO_PATH}"

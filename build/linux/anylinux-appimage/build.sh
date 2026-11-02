@@ -12,11 +12,11 @@ echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
 get-debloated-pkgs --add-common --prefer-nano
 
-echo "Extracting VSCodium binary..."
+echo "Extracting GenCode binary..."
 echo "---------------------------------------------------------------"
 
 mkdir -p ./AppDir/bin ./AppDir/share/applications
-tar -xzf vscode-bin.tar.gz -C ./AppDir/bin/
+tar -xzf gencode-bin.tar.gz -C ./AppDir/bin/
 
 NAME_LONG=$(jq -r '.nameLong' ./AppDir/bin/resources/app/product.json)
 NAME_SHORT=$(jq -r '.nameShort' ./AppDir/bin/resources/app/product.json)
@@ -35,7 +35,7 @@ echo "VERSION=${VERSION}"
 echo "${VERSION}" > ~/version
 
 # Desktop entries from repo sources
-SRC_DIR="src/${VSCODE_QUALITY}/resources/linux"
+SRC_DIR="src/${GENCODE_QUALITY}/resources/linux"
 
 cp "${SRC_DIR}/code.desktop" "./AppDir/${NAME}.desktop"
 cp "${SRC_DIR}/code-url-handler.desktop" "./AppDir/share/applications/${NAME}-url-handler.desktop"
@@ -54,9 +54,9 @@ sed -i \
   "./AppDir/share/applications/${NAME}-url-handler.desktop" \
   ./AppDir/bin/cli-router.hook
 
-if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
+if [[ "${GENCODE_QUALITY}" == "insider" ]]; then
   export OUTNAME=${APP_NAME}-Insiders-${VERSION}-anylinux-"${ARCH}".AppImage
-  repo="vscodium-insiders"
+  repo="gencode-insiders"
 else
   export OUTNAME=${APP_NAME}-${VERSION}-anylinux-"${ARCH}".AppImage
   repo=${GITHUB_REPOSITORY#*/}
@@ -66,7 +66,7 @@ export ARCH
 export OUTPATH=./dist
 export ADD_HOOKS="self-updater.hook:fix-namespaces.hook"
 export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${repo}|latest|*${ARCH}.AppImage.zsync"
-export ICON="src/${VSCODE_QUALITY}/resources/linux/code.svg"
+export ICON="src/${GENCODE_QUALITY}/resources/linux/code.svg"
 export DEPLOY_GTK=1
 export DEPLOY_OPENGL=1
 export DEPLOY_VULKAN=1

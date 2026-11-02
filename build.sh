@@ -10,36 +10,36 @@ if [[ "${SHOULD_BUILD}" == "yes" ]]; then
 
   export MAX_OLD_SPACE_SIZE="${MAX_OLD_SPACE_SIZE:-8192}"
 
-  . prepare_vscode.sh
+  . prepare_gencode.sh
 
-  cd vscode || { echo "'vscode' dir not found"; exit 1; }
+  cd gencode || { echo "'gencode' dir not found"; exit 1; }
 
   export NODE_OPTIONS="--max-old-space-size=${MAX_OLD_SPACE_SIZE}"
-  export VSCODE_PUBLISH_COUNTER=1
+  export GENCODE_PUBLISH_COUNTER=1
 
-  npm run gulp vscode-min-prepack
+  npm run gulp gencode-min-prepack
 
   if [[ "${OS_NAME}" == "osx" ]]; then
     # remove win32 node modules
-    rm -f .build/extensions/ms-vscode.js-debug/src/win32-app-container-tokens.*.node
+    rm -f .build/extensions/ms-gencode.js-debug/src/win32-app-container-tokens.*.node
 
     # generate Group Policy definitions
     npm run copy-policy-dto --prefix build
     node build/lib/policies/policyGenerator.ts build/lib/policies/policyData.jsonc darwin
 
-    npm run gulp "vscode-darwin-${VSCODE_ARCH}-min-packing"
+    npm run gulp "gencode-darwin-${GENCODE_ARCH}-min-packing"
 
-    find "../VSCode-darwin-${VSCODE_ARCH}" -print0 | xargs -0 touch -c
+    find "../GenCode-darwin-${GENCODE_ARCH}" -print0 | xargs -0 touch -c
 
     . ../build_cli.sh
 
-    VSCODE_PLATFORM="darwin"
+    GENCODE_PLATFORM="darwin"
   elif [[ "${OS_NAME}" == "windows" ]]; then
     # in CI, packaging will be done by a different job
     if [[ "${CI_BUILD}" == "no" ]]; then
       . ../build/windows/rtf/make.sh
 
-      if [[ "${VSCODE_ARCH}" == "x64" ]]; then
+      if [[ "${GENCODE_ARCH}" == "x64" ]]; then
         . ../build/windows/install_inno_update.sh
       fi
 
@@ -47,9 +47,9 @@ if [[ "${SHOULD_BUILD}" == "yes" ]]; then
       npm run copy-policy-dto --prefix build
       node build/lib/policies/policyGenerator.ts build/lib/policies/policyData.jsonc win32
 
-      npm run gulp "vscode-win32-${VSCODE_ARCH}-min-packing"
+      npm run gulp "gencode-win32-${GENCODE_ARCH}-min-packing"
 
-      if [[ "${VSCODE_ARCH}" != "x64" ]]; then
+      if [[ "${GENCODE_ARCH}" != "x64" ]]; then
         SHOULD_BUILD_REH="no"
         SHOULD_BUILD_REH_WEB="no"
       fi
@@ -57,10 +57,10 @@ if [[ "${SHOULD_BUILD}" == "yes" ]]; then
       . ../build_cli.sh
     fi
 
-    VSCODE_PLATFORM="win32"
+    GENCODE_PLATFORM="win32"
   else # linux
     # remove win32 node modules
-    rm -f .build/extensions/ms-vscode.js-debug/src/win32-app-container-tokens.*.node
+    rm -f .build/extensions/ms-gencode.js-debug/src/win32-app-container-tokens.*.node
 
     # in CI, packaging will be done by a different job
     if [[ "${CI_BUILD}" == "no" ]]; then
@@ -68,22 +68,22 @@ if [[ "${SHOULD_BUILD}" == "yes" ]]; then
       npm run copy-policy-dto --prefix build
       node build/lib/policies/policyGenerator.ts build/lib/policies/policyData.jsonc linux
 
-      npm run gulp "vscode-linux-${VSCODE_ARCH}-min-packing"
+      npm run gulp "gencode-linux-${GENCODE_ARCH}-min-packing"
 
-      find "../VSCode-linux-${VSCODE_ARCH}" -print0 | xargs -0 touch -c
+      find "../GenCode-linux-${GENCODE_ARCH}" -print0 | xargs -0 touch -c
 
       . ../build_cli.sh
     fi
 
-    VSCODE_PLATFORM="linux"
+    GENCODE_PLATFORM="linux"
   fi
 
   if [[ "${SHOULD_BUILD_REH}" != "no" ]]; then
-    npm run gulp "vscode-reh-${VSCODE_PLATFORM}-${VSCODE_ARCH}-min-packing"
+    npm run gulp "gencode-reh-${GENCODE_PLATFORM}-${GENCODE_ARCH}-min-packing"
   fi
 
   if [[ "${SHOULD_BUILD_REH_WEB}" != "no" ]]; then
-    npm run gulp "vscode-reh-web-${VSCODE_PLATFORM}-${VSCODE_ARCH}-min-packing"
+    npm run gulp "gencode-reh-web-${GENCODE_PLATFORM}-${GENCODE_ARCH}-min-packing"
   fi
 
   cd ..

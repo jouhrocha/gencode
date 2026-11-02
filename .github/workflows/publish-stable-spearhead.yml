@@ -8,13 +8,13 @@ on:
         description: Force new Release
       dont_update:
         type: boolean
-        description: Don't update VSCode
+        description: Don't update GenCode
       dont_dispatch:
         type: boolean
         description: Disable dispatch
 
 env:
-  APP_NAME: VSCodium
+  APP_NAME: GenCode
   ASSETS_REPOSITORY: ${{ github.repository }}
   BINARY_NAME: codium
   GH_REPO_PATH: ${{ github.repository }}
@@ -23,9 +23,9 @@ env:
   OS_NAME: osx
   SOURCEMAPS_REPOSITORY: ${{ github.repository_owner }}/sourcemaps
   VERSIONS_REPOSITORY: ${{ github.repository_owner }}/versions
-  VSCODE_ARCH: arm64
-  VSCODE_LATEST: ${{ github.event.inputs.dont_update == 'true' && 'no' || 'yes' }}
-  VSCODE_QUALITY: stable
+  GENCODE_ARCH: arm64
+  GENCODE_LATEST: ${{ github.event.inputs.dont_update == 'true' && 'no' || 'yes' }}
+  GENCODE_QUALITY: stable
 
 jobs:
   check:
@@ -43,10 +43,10 @@ jobs:
           ref: master
           persist-credentials: false
 
-      - name: Clone VSCode repo
+      - name: Clone GenCode repo
         run: . get_repo.sh
 
-      - name: Check existing VSCodium tags/releases
+      - name: Check existing GenCode tags/releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NEW_RELEASE: ${{ github.event.inputs.new_release }}
@@ -78,7 +78,7 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
-      - name: Clone VSCode repo
+      - name: Clone GenCode repo
         run: . get_repo.sh
 
       - name: Build

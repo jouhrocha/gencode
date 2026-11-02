@@ -3,7 +3,7 @@ index 48d76e2..270b078 100644
 --- a/build/npm/dirs.ts
 +++ b/build/npm/dirs.ts
 @@ -53,4 +53,2 @@ export const dirs = [
- 	'extensions/vscode-test-resolver',
+ 	'extensions/gencode-test-resolver',
 -	'remote',
 -	'remote/web',
  	'test/automation',

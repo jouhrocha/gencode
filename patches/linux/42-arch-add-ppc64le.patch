@@ -3,33 +3,33 @@ index d844eb03..e18eb1c1 100755
 --- a/build/azure-pipelines/linux/setup-env.sh
 +++ b/build/azure-pipelines/linux/setup-env.sh
 @@ -90,2 +90,14 @@ elif [ "$npm_config_arch" == "arm" ]; then
-   export VSCODE_REMOTE_LDFLAGS="--sysroot=$VSCODE_REMOTE_SYSROOT_DIR/arm-rpi-linux-gnueabihf/arm-rpi-linux-gnueabihf/sysroot -L$VSCODE_REMOTE_SYSROOT_DIR/arm-rpi-linux-gnueabihf/arm-rpi-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -L$VSCODE_REMOTE_SYSROOT_DIR/arm-rpi-linux-gnueabihf/arm-rpi-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf"
+   export GENCODE_REMOTE_LDFLAGS="--sysroot=$GENCODE_REMOTE_SYSROOT_DIR/arm-rpi-linux-gnueabihf/arm-rpi-linux-gnueabihf/sysroot -L$GENCODE_REMOTE_SYSROOT_DIR/arm-rpi-linux-gnueabihf/arm-rpi-linux-gnueabihf/sysroot/usr/lib/arm-linux-gnueabihf -L$GENCODE_REMOTE_SYSROOT_DIR/arm-rpi-linux-gnueabihf/arm-rpi-linux-gnueabihf/sysroot/lib/arm-linux-gnueabihf"
 +elif [ "$npm_config_arch" == "ppc64" ]; then
 +	# Set compiler toolchain for client native modules
-+	export CC=$VSCODE_CLIENT_SYSROOT_DIR/powerpc64le-linux-gnu/bin/powerpc64le-linux-gnu-gcc
-+	export CXX=$VSCODE_CLIENT_SYSROOT_DIR/powerpc64le-linux-gnu/bin/powerpc64le-linux-gnu-g++
-+	export CXXFLAGS="--sysroot=$VSCODE_CLIENT_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot"
-+	export LDFLAGS="--sysroot=$VSCODE_CLIENT_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot -L$VSCODE_CLIENT_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot/usr/lib/powerpc64le-linux-gnu -L$VSCODE_CLIENT_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot/lib/powerpc64le-linux-gnu"
++	export CC=$GENCODE_CLIENT_SYSROOT_DIR/powerpc64le-linux-gnu/bin/powerpc64le-linux-gnu-gcc
++	export CXX=$GENCODE_CLIENT_SYSROOT_DIR/powerpc64le-linux-gnu/bin/powerpc64le-linux-gnu-g++
++	export CXXFLAGS="--sysroot=$GENCODE_CLIENT_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot"
++	export LDFLAGS="--sysroot=$GENCODE_CLIENT_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot -L$GENCODE_CLIENT_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot/usr/lib/powerpc64le-linux-gnu -L$GENCODE_CLIENT_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot/lib/powerpc64le-linux-gnu"
 +
 +	# Set compiler toolchain for remote server
-+	export VSCODE_REMOTE_CC=$VSCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/bin/powerpc64le-linux-gnu-gcc
-+	export VSCODE_REMOTE_CXX=$VSCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/bin/powerpc64le-linux-gnu-g++
-+	export VSCODE_REMOTE_CXXFLAGS="--sysroot=$VSCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot"
-+	export VSCODE_REMOTE_LDFLAGS="--sysroot=$VSCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot -L$VSCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot/usr/lib/powerpc64le-linux-gnu -L$VSCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot/lib/powerpc64le-linux-gnu"
++	export GENCODE_REMOTE_CC=$GENCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/bin/powerpc64le-linux-gnu-gcc
++	export GENCODE_REMOTE_CXX=$GENCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/bin/powerpc64le-linux-gnu-g++
++	export GENCODE_REMOTE_CXXFLAGS="--sysroot=$GENCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot"
++	export GENCODE_REMOTE_LDFLAGS="--sysroot=$GENCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot -L$GENCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot/usr/lib/powerpc64le-linux-gnu -L$GENCODE_REMOTE_SYSROOT_DIR/powerpc64le-linux-gnu/powerpc64le-linux-gnu/sysroot/lib/powerpc64le-linux-gnu"
  fi
 diff --git a/build/azure-pipelines/linux/verify-glibc-requirements.sh b/build/azure-pipelines/linux/verify-glibc-requirements.sh
 index 52941776..1e33aebb 100755
 --- a/build/azure-pipelines/linux/verify-glibc-requirements.sh
 +++ b/build/azure-pipelines/linux/verify-glibc-requirements.sh
-@@ -9,2 +9,4 @@ elif [ "$VSCODE_ARCH" == "armhf" ]; then
+@@ -9,2 +9,4 @@ elif [ "$GENCODE_ARCH" == "armhf" ]; then
    TRIPLE="arm-rpi-linux-gnueabihf"
-+elif [ "$VSCODE_ARCH" == "ppc64le" ]; then
++elif [ "$GENCODE_ARCH" == "ppc64le" ]; then
 +  TRIPLE="powerpc64le-linux-gnu"
  fi
-diff --git a/build/checksums/vscode-sysroot.txt b/build/checksums/vscode-sysroot.txt
+diff --git a/build/checksums/gencode-sysroot.txt b/build/checksums/gencode-sysroot.txt
 index 847383e7..04962e71 100644
---- a/build/checksums/vscode-sysroot.txt
-+++ b/build/checksums/vscode-sysroot.txt
+--- a/build/checksums/gencode-sysroot.txt
++++ b/build/checksums/gencode-sysroot.txt
 @@ -7 +7,3 @@ ac4b6b14b4cec027a22a51bbbb049b3504958a78106c8a8d5cec144206b767d1  x86_64-linux-g
  1ebb6ef1fe2983269fd0855a88f9c9a37f9b515d16524a9146198e4cabdf34f7  x86_64-linux-gnu-glibc-2.28-gcc-8.5.0.tar.gz
 +fa8176d27be18bb0eeb7f55b0fa22255050b430ef68c29136599f02976eb0b1b  powerpc64le-linux-gnu-glibc-2.28.tar.gz
@@ -50,10 +50,10 @@ index 972b335a..6d3d8991 100644
  	{ platform: 'linux', arch: 'arm64' },
 +	{ platform: 'linux', arch: 'ppc64le' },
  ];
-diff --git a/build/gulpfile.vscode.linux.ts b/build/gulpfile.vscode.linux.ts
+diff --git a/build/gulpfile.gencode.linux.ts b/build/gulpfile.gencode.linux.ts
 index 45179160..18454fd9 100644
---- a/build/gulpfile.vscode.linux.ts
-+++ b/build/gulpfile.vscode.linux.ts
+--- a/build/gulpfile.gencode.linux.ts
++++ b/build/gulpfile.gencode.linux.ts
 @@ -31,2 +31,3 @@ function getDebPackageArch(arch: string): string {
  		case 'arm64': return 'arm64';
 +		case 'ppc64le': return 'ppc64el';
@@ -66,10 +66,10 @@ index 45179160..18454fd9 100644
  	{ arch: 'arm64' },
 +	{ arch: 'ppc64le' },
  ];
-diff --git a/build/gulpfile.vscode.ts b/build/gulpfile.vscode.ts
+diff --git a/build/gulpfile.gencode.ts b/build/gulpfile.gencode.ts
 index d192dd89..8bec6a04 100644
---- a/build/gulpfile.vscode.ts
-+++ b/build/gulpfile.vscode.ts
+--- a/build/gulpfile.gencode.ts
++++ b/build/gulpfile.gencode.ts
 @@ -641,2 +641,3 @@ const BUILD_TARGETS = [
  	{ platform: 'linux', arch: 'arm64' },
 +	{ platform: 'linux', arch: 'ppc64le' },
@@ -102,8 +102,8 @@ index 98a96302..6c6bbf55 100644
 +		case 'ppc64le':
 +			cmd.push(`-l${chromiumSysroot}/usr/lib/powerpc64le-linux-gnu`,
 +				`-l${chromiumSysroot}/lib/powerpc64le-linux-gnu`,
-+				`-l${vscodeSysroot}/usr/lib/powerpc64le-linux-gnu`,
-+				`-l${vscodeSysroot}/lib/powerpc64le-linux-gnu`);
++				`-l${gencodeSysroot}/usr/lib/powerpc64le-linux-gnu`,
++				`-l${gencodeSysroot}/lib/powerpc64le-linux-gnu`);
 +			break;
  	}
 diff --git a/build/linux/debian/dep-lists.ts b/build/linux/debian/dep-lists.ts
@@ -156,7 +156,7 @@ diff --git a/build/linux/debian/install-sysroot.ts b/build/linux/debian/install-
 index 7b6ac8bb..ef7dd2ba 100644
 --- a/build/linux/debian/install-sysroot.ts
 +++ b/build/linux/debian/install-sysroot.ts
-@@ -158,2 +158,7 @@ export async function getVSCodeSysroot(arch: DebianArchString, isMusl: boolean =
+@@ -158,2 +158,7 @@ export async function getGenCodeSysroot(arch: DebianArchString, isMusl: boolean =
  			break;
 +		case 'ppc64le':
 +		case 'ppc64el':

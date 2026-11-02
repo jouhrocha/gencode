@@ -21,8 +21,8 @@ if [[ $( gh release view "${RELEASE_VERSION}" --repo "${ASSETS_REPOSITORY}" 2>&1
   APP_NAME_LC="$( echo "${APP_NAME}" | awk '{print tolower($0)}' )"
   VERSION="${RELEASE_VERSION%-insider}"
 
-  if [[ "${VSCODE_QUALITY}" == "insider" ]]; then
-    NOTES="update vscode to [${MS_COMMIT}](https://github.com/microsoft/vscode/tree/${MS_COMMIT})"
+  if [[ "${GENCODE_QUALITY}" == "insider" ]]; then
+    NOTES="update gencode to [${MS_COMMIT}](https://github.com/microsoft/gencode/tree/${MS_COMMIT})"
 
     replace "s|@@APP_NAME@@|${APP_NAME}|g" release_notes.md
     replace "s|@@APP_NAME_LC@@|${APP_NAME_LC}|g" release_notes.md
@@ -30,7 +30,7 @@ if [[ $( gh release view "${RELEASE_VERSION}" --repo "${ASSETS_REPOSITORY}" 2>&1
     replace "s|@@ASSETS_REPOSITORY@@|${ASSETS_REPOSITORY}|g" release_notes.md
     replace "s|@@BINARY_NAME@@|${BINARY_NAME}|g" release_notes.md
     replace "s|@@MS_TAG@@|${MS_COMMIT}|g" release_notes.md
-    replace "s|@@MS_URL@@|https://github.com/microsoft/vscode/tree/${MS_COMMIT}|g" release_notes.md
+    replace "s|@@MS_URL@@|https://github.com/microsoft/gencode/tree/${MS_COMMIT}|g" release_notes.md
     replace "s|@@QUALITY@@|-insider|g" release_notes.md
     replace "s|@@RELEASE_NOTES@@||g" release_notes.md
     replace "s|@@VERSION@@|${VERSION}|g" release_notes.md

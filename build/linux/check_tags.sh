@@ -2,26 +2,26 @@
 
 if [[ "${CHECK_ONLY_REH}" == "yes" ]]; then
 
-  if [[ -z $( contains "${APP_NAME_LC}-reh-linux-${VSCODE_ARCH}-${RELEASE_VERSION}.tar.gz" ) ]]; then
-    echo "Building on Linux ${VSCODE_ARCH} because we have no REH archive"
+  if [[ -z $( contains "${APP_NAME_LC}-reh-linux-${GENCODE_ARCH}-${RELEASE_VERSION}.tar.gz" ) ]]; then
+    echo "Building on Linux ${GENCODE_ARCH} because we have no REH archive"
     export SHOULD_BUILD="yes"
   else
-    echo "Already have the Linux REH ${VSCODE_ARCH} archive"
+    echo "Already have the Linux REH ${GENCODE_ARCH} archive"
     export SHOULD_BUILD_REH="no"
   fi
 
-  if [[ -z $( contains "${APP_NAME_LC}-reh-web-linux-${VSCODE_ARCH}-${RELEASE_VERSION}.tar.gz" ) ]]; then
-    echo "Building on Linux ${VSCODE_ARCH} because we have no REH-web archive"
+  if [[ -z $( contains "${APP_NAME_LC}-reh-web-linux-${GENCODE_ARCH}-${RELEASE_VERSION}.tar.gz" ) ]]; then
+    echo "Building on Linux ${GENCODE_ARCH} because we have no REH-web archive"
     export SHOULD_BUILD="yes"
   else
-    echo "Already have the Linux REH-web ${VSCODE_ARCH} archive"
+    echo "Already have the Linux REH-web ${GENCODE_ARCH} archive"
     export SHOULD_BUILD_REH_WEB="no"
   fi
 
 else
 
   # linux-arm64
-  if [[ "${VSCODE_ARCH}" == "arm64" || "${CHECK_ALL}" == "yes" ]]; then
+  if [[ "${GENCODE_ARCH}" == "arm64" || "${CHECK_ALL}" == "yes" ]]; then
     if [[ -z $( contains "arm64.deb" ) ]]; then
       echo "Building on Linux arm64 because we have no DEB"
       export SHOULD_BUILD="yes"
@@ -85,7 +85,7 @@ else
   fi
 
   # linux-armhf
-  if [[ "${VSCODE_ARCH}" == "armhf" || "${CHECK_ALL}" == "yes" ]]; then
+  if [[ "${GENCODE_ARCH}" == "armhf" || "${CHECK_ALL}" == "yes" ]]; then
     if [[ -z $( contains "armhf.deb" ) ]]; then
       echo "Building on Linux arm because we have no DEB"
       export SHOULD_BUILD="yes"
@@ -137,7 +137,7 @@ else
   fi
 
   # linux-ppc64le
-  if [[ "${VSCODE_ARCH}" == "ppc64le" || "${CHECK_ALL}" == "yes" ]]; then
+  if [[ "${GENCODE_ARCH}" == "ppc64le" || "${CHECK_ALL}" == "yes" ]]; then
     export SHOULD_BUILD_APPIMAGE="no"
 
     if [[ -z $( contains "ppc64el.deb" ) ]]; then
@@ -188,7 +188,7 @@ else
   fi
 
   # linux-riscv64
-  if [[ "${VSCODE_ARCH}" == "riscv64" || "${CHECK_ALL}" == "yes" ]]; then
+  if [[ "${GENCODE_ARCH}" == "riscv64" || "${CHECK_ALL}" == "yes" ]]; then
     export SHOULD_BUILD_APPIMAGE="no"
     export SHOULD_BUILD_DEB="no"
     export SHOULD_BUILD_RPM="no"
@@ -222,7 +222,7 @@ else
   fi
 
   # linux-loong64
-  if [[ "${VSCODE_ARCH}" == "loong64" || "${CHECK_ALL}" == "yes" ]]; then
+  if [[ "${GENCODE_ARCH}" == "loong64" || "${CHECK_ALL}" == "yes" ]]; then
     export SHOULD_BUILD_DEB="no"
     export SHOULD_BUILD_RPM="no"
     export SHOULD_BUILD_APPIMAGE="no"
@@ -256,7 +256,7 @@ else
   fi
 
   # linux-s390x
-  if [[ "${VSCODE_ARCH}" == "s390x" || "${CHECK_ALL}" == "yes" ]]; then
+  if [[ "${GENCODE_ARCH}" == "s390x" || "${CHECK_ALL}" == "yes" ]]; then
     export SHOULD_BUILD_APPIMAGE="no"
     export SHOULD_BUILD_DEB="no"
     export SHOULD_BUILD_RPM="no"
@@ -284,7 +284,7 @@ else
   fi
 
   # linux-x64
-  if [[ "${VSCODE_ARCH}" == "x64" || "${CHECK_ALL}" == "yes" ]]; then
+  if [[ "${GENCODE_ARCH}" == "x64" || "${CHECK_ALL}" == "yes" ]]; then
     if [[ -z $( contains "amd64.deb" ) ]]; then
       echo "Building on Linux x64 because we have no DEB"
       export SHOULD_BUILD="yes"

@@ -13,8 +13,8 @@ index b7734ab7..840638f1 100644
 +++ b/src/vs/workbench/contrib/issue/browser/baseIssueReporterService.ts
 @@ -851,6 +851,6 @@ export class BaseIssueReporterService extends Disposable {
  
--	public searchVSCodeIssues(title: string, issueDescription?: string): void {
-+	public searchVSCodeIssues(title: string, _issueDescription?: string): void {
+-	public searchGenCodeIssues(title: string, issueDescription?: string): void {
++	public searchGenCodeIssues(title: string, _issueDescription?: string): void {
  		this.clearSearchResults();
  		if (title) {
 -			this.searchDuplicates(title, issueDescription, this.similarIssueSearchGeneration);
@@ -35,7 +35,7 @@ index b7734ab7..840638f1 100644
 -		}
 -		const controller = new AbortController();
 -		this.similarIssueSearch.value = toDisposable(() => controller.abort());
--		const url = 'https://vscode-probot.westus.cloudapp.azure.com:7890/duplicate_candidates';
+-		const url = 'https://gencode-probot.westus.cloudapp.azure.com:7890/duplicate_candidates';
 -		const init = {
 -			method: 'POST',
 -			body: JSON.stringify({
@@ -67,9 +67,9 @@ index b7734ab7..840638f1 100644
  	private displaySearchResults(results: readonly ISimilarIssue[]) {
 @@ -1065,4 +1028,4 @@ export class BaseIssueReporterService extends Disposable {
  		sourceSelect.append(this.makeOption('', localize('selectSource', "Select source"), true));
--		sourceSelect.append(this.makeOption(IssueSource.VSCode, localize('vscode', "Visual Studio Code"), false));
+-		sourceSelect.append(this.makeOption(IssueSource.GenCode, localize('gencode', "Visual Studio Code"), false));
 -		sourceSelect.append(this.makeOption(IssueSource.Extension, localize('extension', "A VS Code extension"), false));
-+		sourceSelect.append(this.makeOption(IssueSource.VSCode, localize('vscode', "!!APP_NAME!!"), false));
++		sourceSelect.append(this.makeOption(IssueSource.GenCode, localize('gencode', "!!APP_NAME!!"), false));
 +		sourceSelect.append(this.makeOption(IssueSource.Extension, localize('extension', "A !!APP_NAME!! extension"), false));
  		if (this.product.reportMarketplaceIssueUrl) {
 @@ -1169,3 +1132,3 @@ export class BaseIssueReporterService extends Disposable {
@@ -83,8 +83,8 @@ index cf3e5d42..accdc6c9 100644
 +++ b/src/vs/workbench/contrib/issue/browser/issueReporterModel.ts
 @@ -102,3 +102,3 @@ ${this._data.issueDescription}
  ${this.getExtensionVersion()}
--VS Code version: ${this._data.versionInfo && this._data.versionInfo.vscodeVersion}
-+!!APP_NAME!! version: ${this._data.versionInfo && this._data.versionInfo.vscodeVersion}
+-VS Code version: ${this._data.versionInfo && this._data.versionInfo.gencodeVersion}
++!!APP_NAME!! version: ${this._data.versionInfo && this._data.versionInfo.gencodeVersion}
  OS version: ${this._data.versionInfo && this._data.versionInfo.os}
 diff --git a/src/vs/workbench/contrib/issue/browser/issueReporterPage.ts b/src/vs/workbench/contrib/issue/browser/issueReporterPage.ts
 index 10fde69b..77ca0b63 100644
@@ -97,11 +97,11 @@ index 10fde69b..77ca0b63 100644
  const reviewGuidanceLabel = localize( // intentionally not escaped because of its embedded tags
 @@ -19,3 +19,3 @@ const reviewGuidanceLabel = localize( // intentionally not escaped because of it
  		comment: [
--			'{Locked="<a href=\"https://github.com/microsoft/vscode/wiki/Submitting-Bugs-and-Suggestions\" target=\"_blank\">"}',
+-			'{Locked="<a href=\"https://github.com/microsoft/gencode/wiki/Submitting-Bugs-and-Suggestions\" target=\"_blank\">"}',
 +			'{Locked="<a href=\"https://github.com/!!GH_REPO_PATH!!/wiki/Submitting-Bugs-and-Suggestions\" target=\"_blank\">"}',
  			'{Locked="</a>"}'
 @@ -23,3 +23,3 @@ const reviewGuidanceLabel = localize( // intentionally not escaped because of it
  	},
--	'Before you report an issue here please <a href="https://github.com/microsoft/vscode/wiki/Submitting-Bugs-and-Suggestions" target="_blank">review the guidance we provide</a>. Please complete the form in English.'
+-	'Before you report an issue here please <a href="https://github.com/microsoft/gencode/wiki/Submitting-Bugs-and-Suggestions" target="_blank">review the guidance we provide</a>. Please complete the form in English.'
 +	'Before you report an issue here please <a href="https://github.com/!!GH_REPO_PATH!!/wiki/Submitting-Bugs-and-Suggestions" target="_blank">review the guidance we provide</a>. Please complete the form in English.'
  );

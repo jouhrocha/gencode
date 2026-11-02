@@ -1,7 +1,7 @@
-diff --git a/.vscode/settings.json b/.vscode/settings.json
+diff --git a/.gencode/settings.json b/.gencode/settings.json
 index 7434345..f870f59 100644
---- a/.vscode/settings.json
-+++ b/.vscode/settings.json
+--- a/.gencode/settings.json
++++ b/.gencode/settings.json
 @@ -29,6 +29,6 @@
  	"[typescript]": {
 -		"editor.formatOnSave": true

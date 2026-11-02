@@ -12,7 +12,7 @@ index 7f368a27..a1544c7c 100644
 --- a/src/vs/workbench/contrib/chat/browser/actions/chatContextActions.ts
 +++ b/src/vs/workbench/contrib/chat/browser/actions/chatContextActions.ts
 @@ -321,3 +321,4 @@ class AttachSelectionToChatAction extends Action2 {
- 						ResourceContextKey.Scheme.isEqualTo(Schemas.vscodeUserData)
+ 						ResourceContextKey.Scheme.isEqualTo(Schemas.gencodeUserData)
 -					)
 +					),
 +					ContextKeyExpr.has('config.chat.disableAIFeatures').negate(),

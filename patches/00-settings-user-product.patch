@@ -13,7 +13,7 @@ index b86e22fd..b648a496 100644
  
 +const require = createRequire(import.meta.url);
  // NLS
-@@ -21,2 +25,4 @@ process.env['VSCODE_CLI'] = '1';
+@@ -21,2 +25,4 @@ process.env['GENCODE_CLI'] = '1';
  
 +resolveUserProduct();
 +
@@ -29,7 +29,7 @@ index b86e22fd..b648a496 100644
 +		// Assign the product configuration to the global scope
 +		const productJson = require(userProductPath);
 +
-+		globalThis._VSCODE_USER_PRODUCT_JSON = productJson;
++		globalThis._GENCODE_USER_PRODUCT_JSON = productJson;
 +	} catch (ex) {
 +	}
 +}
@@ -56,7 +56,7 @@ index 3d34aea5..6135f69f 100644
 +		// Assign the product configuration to the global scope
 +		const productJson = require(userProductPath);
 +
-+		globalThis._VSCODE_USER_PRODUCT_JSON = productJson;
++		globalThis._GENCODE_USER_PRODUCT_JSON = productJson;
 +	} catch (ex) {
 +	}
 +}
@@ -72,15 +72,15 @@ index ab169bd8..2155f5c1 100644
 --- a/src/typings/vscode-globals-product.d.ts
 +++ b/src/typings/vscode-globals-product.d.ts
 @@ -43,2 +43,4 @@ declare global {
- 	var _VSCODE_USE_RELATIVE_IMPORTS: boolean | undefined;
+ 	var _GENCODE_USE_RELATIVE_IMPORTS: boolean | undefined;
 +
-+	var _VSCODE_USER_PRODUCT_JSON: Record<string, any>;
++	var _GENCODE_USER_PRODUCT_JSON: Record<string, any>;
  }
 diff --git a/src/vs/platform/product/common/product.ts b/src/vs/platform/product/common/product.ts
 index fbc7e51c..748fa155 100644
 --- a/src/vs/platform/product/common/product.ts
 +++ b/src/vs/platform/product/common/product.ts
-@@ -42,2 +42,25 @@ else if (globalThis._VSCODE_PRODUCT_JSON && globalThis._VSCODE_PACKAGE_JSON) {
+@@ -42,2 +42,25 @@ else if (globalThis._GENCODE_PRODUCT_JSON && globalThis._GENCODE_PACKAGE_JSON) {
  
 +	// Merge user-customized product.json
 +	try {
@@ -99,7 +99,7 @@ index fbc7e51c..748fa155 100644
 +				return result;
 +			}, {}) as any;
 +
-+		const userProduct = globalThis._VSCODE_USER_PRODUCT_JSON || {};
++		const userProduct = globalThis._GENCODE_USER_PRODUCT_JSON || {};
 +
 +		product = merge(product, userProduct);
 +	} catch (ex) {

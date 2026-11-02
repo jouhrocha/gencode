@@ -27,13 +27,13 @@ if [[ -z "${BUILD_SOURCEVERSION}" ]]; then
   exit 0
 fi
 
-# if [[ "${VSCODE_ARCH}" == "ppc64le" ]] || [[ "${VSCODE_ARCH}" == "riscv64" ]] ; then
+# if [[ "${GENCODE_ARCH}" == "ppc64le" ]] || [[ "${GENCODE_ARCH}" == "riscv64" ]] ; then
 #   echo "Skip PPC64LE since only reh is published"
 #   exit 0
 # fi
 
 #  {
-#    "url": "https://az764295.vo.msecnd.net/stable/51b0b28134d51361cf996d2f0a1c698247aeabd8/VSCode-darwin-stable.zip",
+#    "url": "https://az764295.vo.msecnd.net/stable/51b0b28134d51361cf996d2f0a1c698247aeabd8/GenCode-darwin-stable.zip",
 #    "name": "1.33.1",
 #    "version": "51b0b28134d51361cf996d2f0a1c698247aeabd8",
 #    "productVersion": "1.33.1",
@@ -148,37 +148,37 @@ git remote add origin "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@${GH_HOST}/${V
 cd ..
 
 if [[ "${OS_NAME}" == "osx" ]]; then
-  ASSET_NAME="${APP_NAME}-darwin-${VSCODE_ARCH}-${RELEASE_VERSION}.zip"
-  VERSION_PATH="${VSCODE_QUALITY}/darwin/${VSCODE_ARCH}"
+  ASSET_NAME="${APP_NAME}-darwin-${GENCODE_ARCH}-${RELEASE_VERSION}.zip"
+  VERSION_PATH="${GENCODE_QUALITY}/darwin/${GENCODE_ARCH}"
   updateLatestVersion
 elif [[ "${OS_NAME}" == "windows" ]]; then
   # system installer
-  ASSET_NAME="${APP_NAME}Setup-${VSCODE_ARCH}-${RELEASE_VERSION}.exe"
-  VERSION_PATH="${VSCODE_QUALITY}/win32/${VSCODE_ARCH}/system"
+  ASSET_NAME="${APP_NAME}Setup-${GENCODE_ARCH}-${RELEASE_VERSION}.exe"
+  VERSION_PATH="${GENCODE_QUALITY}/win32/${GENCODE_ARCH}/system"
   updateLatestVersion
 
   # user installer
-  ASSET_NAME="${APP_NAME}UserSetup-${VSCODE_ARCH}-${RELEASE_VERSION}.exe"
-  VERSION_PATH="${VSCODE_QUALITY}/win32/${VSCODE_ARCH}/user"
+  ASSET_NAME="${APP_NAME}UserSetup-${GENCODE_ARCH}-${RELEASE_VERSION}.exe"
+  VERSION_PATH="${GENCODE_QUALITY}/win32/${GENCODE_ARCH}/user"
   updateLatestVersion
 
   # windows archive
-  ASSET_NAME="${APP_NAME}-win32-${VSCODE_ARCH}-${RELEASE_VERSION}.zip"
-  VERSION_PATH="${VSCODE_QUALITY}/win32/${VSCODE_ARCH}/archive"
+  ASSET_NAME="${APP_NAME}-win32-${GENCODE_ARCH}-${RELEASE_VERSION}.zip"
+  VERSION_PATH="${GENCODE_QUALITY}/win32/${GENCODE_ARCH}/archive"
   updateLatestVersion
 
-  if [[ "${VSCODE_ARCH}" == "ia32" || "${VSCODE_ARCH}" == "x64" ]]; then
+  if [[ "${GENCODE_ARCH}" == "ia32" || "${GENCODE_ARCH}" == "x64" ]]; then
     # msi
     if [[ "${SHOULD_BUILD_MSI}" != "no" ]]; then
-      ASSET_NAME="${APP_NAME}-${VSCODE_ARCH}-${RELEASE_VERSION}.msi"
-      VERSION_PATH="${VSCODE_QUALITY}/win32/${VSCODE_ARCH}/msi"
+      ASSET_NAME="${APP_NAME}-${GENCODE_ARCH}-${RELEASE_VERSION}.msi"
+      VERSION_PATH="${GENCODE_QUALITY}/win32/${GENCODE_ARCH}/msi"
       updateLatestVersion
     fi
 
     # updates-disabled msi
     if [[ "${SHOULD_BUILD_MSI_NOUP}" != "no" ]]; then
-      ASSET_NAME="${APP_NAME}-${VSCODE_ARCH}-updates-disabled-${RELEASE_VERSION}.msi"
-      VERSION_PATH="${VSCODE_QUALITY}/win32/${VSCODE_ARCH}/msi-updates-disabled"
+      ASSET_NAME="${APP_NAME}-${GENCODE_ARCH}-updates-disabled-${RELEASE_VERSION}.msi"
+      VERSION_PATH="${GENCODE_QUALITY}/win32/${GENCODE_ARCH}/msi-updates-disabled"
       updateLatestVersion
     fi
   fi
@@ -186,8 +186,8 @@ else # linux
   # update service links to tar.gz file
   # see https://update.code.visualstudio.com/api/update/linux-x64/stable/VERSION
   # as examples
-  ASSET_NAME="${APP_NAME}-linux-${VSCODE_ARCH}-${RELEASE_VERSION}.tar.gz"
-  VERSION_PATH="${VSCODE_QUALITY}/linux/${VSCODE_ARCH}"
+  ASSET_NAME="${APP_NAME}-linux-${GENCODE_ARCH}-${RELEASE_VERSION}.tar.gz"
+  VERSION_PATH="${GENCODE_QUALITY}/linux/${GENCODE_ARCH}"
   updateLatestVersion
 fi
 

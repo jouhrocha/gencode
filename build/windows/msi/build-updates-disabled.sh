@@ -8,7 +8,7 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
 
 SCRIPT_DIR=$( pwd )
 
-cd "../../../VSCode-win32-${VSCODE_ARCH}/resources/app"
+cd "../../../GenCode-win32-${GENCODE_ARCH}/resources/app"
 
 jsonTmp=$( jq "del(.updateUrl)" product.json )
 echo "${jsonTmp}" > product.json && unset jsonTmp

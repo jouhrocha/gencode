@@ -30,17 +30,17 @@ else
 
   if [[ "${LATEST_VERSION}" =~ ^([0-9]+\.[0-9]+\.[0-5]) ]]; then
     if [[ "${MS_TAG}" != "${BASH_REMATCH[1]}" ]]; then
-      echo "New VSCode version, new build"
+      echo "New GenCode version, new build"
       export SHOULD_BUILD="yes"
     elif [[ "${NEW_RELEASE}" == "true" ]]; then
       echo "New release build"
       export SHOULD_BUILD="yes"
-    elif [[ "${VSCODE_QUALITY}" == "insider" ]]; then
+    elif [[ "${GENCODE_QUALITY}" == "insider" ]]; then
       BODY=$( echo "${GITHUB_RESPONSE}" | jq -c -r '.body' )
 
       if [[ "${BODY}" =~ \[([a-z0-9]+)\] ]]; then
         if [[ "${MS_COMMIT}" != "${BASH_REMATCH[1]}" ]]; then
-          echo "New VSCode Insiders version, new build"
+          echo "New GenCode Insiders version, new build"
           export SHOULD_BUILD="yes"
         fi
       fi
@@ -99,21 +99,21 @@ else
   if [[ "${IS_SPEARHEAD}" == "yes" ]]; then
     export SHOULD_BUILD_SRC="yes"
   elif [[ "${OS_NAME}" == "linux" ]]; then
-    if [[ "${VSCODE_ARCH}" == "riscv64" ]]; then
+    if [[ "${GENCODE_ARCH}" == "riscv64" ]]; then
       SHOULD_BUILD_DEB="no"
       SHOULD_BUILD_RPM="no"
       SHOULD_BUILD_CLI="no"
-    elif [[ "${VSCODE_ARCH}" == "loong64" ]]; then
+    elif [[ "${GENCODE_ARCH}" == "loong64" ]]; then
       SHOULD_BUILD_DEB="no"
       SHOULD_BUILD_RPM="no"
       SHOULD_BUILD_CLI="no"
-    elif [[ "${VSCODE_ARCH}" == "s390x" ]]; then
+    elif [[ "${GENCODE_ARCH}" == "s390x" ]]; then
       SHOULD_BUILD_DEB="no"
       SHOULD_BUILD_RPM="no"
       SHOULD_BUILD_CLI="no"
     fi
   elif [[ "${OS_NAME}" == "windows" ]]; then
-    if [[ "${VSCODE_ARCH}" == "arm64" ]]; then
+    if [[ "${GENCODE_ARCH}" == "arm64" ]]; then
       export SHOULD_BUILD_REH="no"
       export SHOULD_BUILD_REH_WEB="no"
     fi

@@ -65,7 +65,7 @@ index c288b2e..8303040 100644
 -			new Promise<void>((resolve, reject) => {
 -				importAMDNodeModule('vsda', 'rust/web/vsda.js').then(() => resolve(), reject);
 -
--				// todo@connor4312: there seems to be a bug(?) in vscode-loader with
+-				// todo@connor4312: there seems to be a bug(?) in gencode-loader with
 -				// require() not resolving in web once the script loads, so check manually
 -				checkInterval.cancelAndSet(() => {
 -					if (typeof vsda_web !== 'undefined') {

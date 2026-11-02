@@ -52,10 +52,10 @@ index 20352a89..44c4157d 100644
 -					'LegalCopyright': 'Copyright (C) 2026 Microsoft. All rights reserved',
 +					'LegalCopyright': 'Copyright (C) 2026 !!ORG_NAME!!. All rights reserved',
  					'OriginalFilename': basename,
-diff --git a/build/gulpfile.vscode.ts b/build/gulpfile.vscode.ts
+diff --git a/build/gulpfile.gencode.ts b/build/gulpfile.gencode.ts
 index f3a49ba9..3d0e3d89 100644
---- a/build/gulpfile.vscode.ts
-+++ b/build/gulpfile.vscode.ts
+--- a/build/gulpfile.gencode.ts
++++ b/build/gulpfile.gencode.ts
 @@ -20,3 +20,2 @@ import product from '../product.json' with { type: 'json' };
  import * as crypto from 'crypto';
 -import * as cp from 'child_process';

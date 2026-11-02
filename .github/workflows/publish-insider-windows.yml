@@ -7,7 +7,7 @@ on:
       - publish-insider
 
 env:
-  APP_NAME: VSCodium
+  APP_NAME: GenCode
   ASSETS_REPOSITORY: ${{ github.repository }}-insiders
   BINARY_NAME: codium-insiders
   GH_REPO_PATH: ${{ github.repository }}
@@ -15,7 +15,7 @@ env:
   ORG_NAME: ${{ github.repository_owner }}
   OS_NAME: windows
   VERSIONS_REPOSITORY: ${{ github.repository_owner }}/versions
-  VSCODE_QUALITY: insider
+  GENCODE_QUALITY: insider
 
 jobs:
   check:
@@ -33,10 +33,10 @@ jobs:
           ref: ${{ env.GITHUB_BRANCH }}
           persist-credentials: false
 
-      - name: Clone VSCode repo
+      - name: Clone GenCode repo
         run: ./get_repo.sh
 
-      - name: Check existing VSCodium tags/releases
+      - name: Check existing GenCode tags/releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CHECK_ALL: yes
@@ -55,7 +55,7 @@ jobs:
       MS_TAG: ${{ needs.check.outputs.MS_TAG }}
       RELEASE_VERSION: ${{ needs.check.outputs.RELEASE_VERSION }}
       SHOULD_BUILD: ${{ needs.check.outputs.SHOULD_BUILD }}
-      VSCODE_ARCH: x64
+      GENCODE_ARCH: x64
     outputs:
       BUILD_SOURCEVERSION: ${{ env.BUILD_SOURCEVERSION }}
 
@@ -78,7 +78,7 @@ jobs:
           python-version: "3.11"
         if: env.SHOULD_BUILD == 'yes'
 
-      - name: Clone VSCode repo
+      - name: Clone GenCode repo
         run: ./get_repo.sh
         if: env.SHOULD_BUILD == 'yes'
 
@@ -89,19 +89,19 @@ jobs:
         run: ./build.sh
         if: env.SHOULD_BUILD == 'yes'
 
-      - name: Compress vscode artifact
+      - name: Compress gencode artifact
         run: |
-          find vscode -type f -not -path "*/node_modules/*" -not -path "vscode/.build/node/*" -not -path "vscode/.git/*" > vscode.txt
-          echo "vscode/.build/extensions/node_modules" >> vscode.txt
-          echo "vscode/.git" >> vscode.txt
-          tar -czf vscode.tar.gz -T vscode.txt
+          find gencode -type f -not -path "*/node_modules/*" -not -path "gencode/.build/node/*" -not -path "gencode/.git/*" > gencode.txt
+          echo "gencode/.build/extensions/node_modules" >> gencode.txt
+          echo "gencode/.git" >> gencode.txt
+          tar -czf gencode.tar.gz -T gencode.txt
         if: env.SHOULD_BUILD == 'yes'
 
-      - name: Upload vscode artifact
+      - name: Upload gencode artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: vscode
-          path: ./vscode.tar.gz
+          name: gencode
+          path: ./gencode.tar.gz
           retention-days: 30
         if: env.SHOULD_BUILD == 'yes'
 
@@ -116,7 +116,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        vscode_arch:
+        gencode_arch:
           - x64
           - arm64
     defaults:
@@ -128,7 +128,7 @@ jobs:
       MS_TAG: ${{ needs.check.outputs.MS_TAG }}
       RELEASE_VERSION: ${{ needs.check.outputs.RELEASE_VERSION }}
       SHOULD_BUILD: ${{ needs.check.outputs.SHOULD_BUILD }}
-      VSCODE_ARCH: ${{ matrix.vscode_arch }}
+      GENCODE_ARCH: ${{ matrix.gencode_arch }}
     outputs:
       RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
 
@@ -151,24 +151,24 @@ jobs:
           python-version: '3.11'
         if: env.SHOULD_BUILD == 'yes'
 
-      - name: Check existing VSCodium tags/releases
+      - name: Check existing GenCode tags/releases
         env:
           DISABLE_MSI: ${{ vars.DISABLE_INSIDER_MSI }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./check_tags.sh
         if: env.SHOULD_BUILD == 'yes'
 
-      - name: Download vscode artifact
+      - name: Download gencode artifact
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          name: vscode
+          name: gencode
         if: env.SHOULD_BUILD == 'yes'
 
       - name: Build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          npm_config_arch: ${{ matrix.vscode_arch }}
-          npm_config_target_arch: ${{ matrix.vscode_arch }}
+          npm_config_arch: ${{ matrix.gencode_arch }}
+          npm_config_target_arch: ${{ matrix.gencode_arch }}
         run: ./build/windows/package.sh
         if: env.SHOULD_BUILD == 'yes'
 
@@ -180,7 +180,7 @@ jobs:
         id: upload-unsigned-artifacts
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: unsigned-${{ matrix.vscode_arch }}
+          name: unsigned-${{ matrix.gencode_arch }}
           path: |
             assets/*.exe
             assets/*.msi
@@ -195,7 +195,7 @@ jobs:
           project-slug: ${{ secrets.SIGNPATH_PROJECT_SLUG }}
           signing-policy-slug: ${{ secrets.SIGNPATH_POLICY_SLUG }}
           github-artifact-id: ${{ steps.upload-unsigned-artifacts.outputs.artifact-id }}
-          artifact-configuration-slug: ${{ matrix.vscode_arch }}
+          artifact-configuration-slug: ${{ matrix.gencode_arch }}
           wait-for-completion: true
           # 3h to manually approve the request
           wait-for-completion-timeout-in-seconds: 28800
@@ -230,8 +230,8 @@ jobs:
       run:
         shell: bash
     env:
-      APP_IDENTIFIER: VSCodium.VSCodium.Insiders
-      ASSETS_REPOSITORY: VSCodium/vscodium-insiders
+      APP_IDENTIFIER: GenCode.GenCode.Insiders
+      ASSETS_REPOSITORY: GenCode/gencode-insiders
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

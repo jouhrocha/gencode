@@ -13,56 +13,56 @@ node -v
 # include common functions
 . ./utils.sh
 
-tar -xzf ./vscode.tar.gz
+tar -xzf ./gencode.tar.gz
 
-chown -R root:root vscode
+chown -R root:root gencode
 
-cd vscode || { echo "'vscode' dir not found"; exit 1; }
+cd gencode || { echo "'gencode' dir not found"; exit 1; }
 
-export VSCODE_PLATFORM='linux'
-export VSCODE_SKIP_NODE_VERSION_CHECK=1
-export VSCODE_SYSROOT_PREFIX='-glibc-2.28-gcc-10.5.0'
+export GENCODE_PLATFORM='linux'
+export GENCODE_SKIP_NODE_VERSION_CHECK=1
+export GENCODE_SYSROOT_PREFIX='-glibc-2.28-gcc-10.5.0'
 
-if [[ "${VSCODE_ARCH}" == "arm64" ]]; then
-  export VSCODE_SKIP_SYSROOT=1
+if [[ "${GENCODE_ARCH}" == "arm64" ]]; then
+  export GENCODE_SKIP_SYSROOT=1
   # export USE_GNUPP2A=1
-elif [[ "${VSCODE_ARCH}" == "ppc64le" ]]; then
-  export VSCODE_SYSROOT_REPOSITORY='VSCodium/vscode-linux-build-agent'
-  export VSCODE_SYSROOT_VERSION='20260706'
+elif [[ "${GENCODE_ARCH}" == "ppc64le" ]]; then
+  export GENCODE_SYSROOT_REPOSITORY='GenCode/gencode-linux-build-agent'
+  export GENCODE_SYSROOT_VERSION='20260706'
   export ELECTRON_SKIP_BINARY_DOWNLOAD=1
   export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-  export VSCODE_ELECTRON_REPOSITORY='lex-ibm/electron-ppc64le-build-scripts'
+  export GENCODE_ELECTRON_REPOSITORY='lex-ibm/electron-ppc64le-build-scripts'
   export IGNORE_ELECTRON_VERSION="yes"
-elif [[ "${VSCODE_ARCH}" == "riscv64" ]]; then
-  export VSCODE_ELECTRON_REPOSITORY='riscv-forks/electron-riscv-releases'
+elif [[ "${GENCODE_ARCH}" == "riscv64" ]]; then
+  export GENCODE_ELECTRON_REPOSITORY='riscv-forks/electron-riscv-releases'
   export ELECTRON_SKIP_BINARY_DOWNLOAD=1
   export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-  export VSCODE_SKIP_SETUPENV=1
-elif [[ "${VSCODE_ARCH}" == "loong64" ]]; then
-  export VSCODE_ELECTRON_REPOSITORY='darkyzhou/electron-loong64'
+  export GENCODE_SKIP_SETUPENV=1
+elif [[ "${GENCODE_ARCH}" == "loong64" ]]; then
+  export GENCODE_ELECTRON_REPOSITORY='darkyzhou/electron-loong64'
   export ELECTRON_SKIP_BINARY_DOWNLOAD=1
   export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-  export VSCODE_SKIP_SETUPENV=1
+  export GENCODE_SKIP_SETUPENV=1
 fi
 
-if [[ -f "../build/linux/${VSCODE_ARCH}/electron.sh" ]]; then
+if [[ -f "../build/linux/${GENCODE_ARCH}/electron.sh" ]]; then
   # add newline at the end of the file
   echo "" >> build/checksums/electron.txt
 
-  if [[ -f "../build/linux/${VSCODE_ARCH}/electron.sha256sums" ]]; then
-    cat "../build/linux/${VSCODE_ARCH}/electron.sha256sums" >> build/checksums/electron.txt
+  if [[ -f "../build/linux/${GENCODE_ARCH}/electron.sha256sums" ]]; then
+    cat "../build/linux/${GENCODE_ARCH}/electron.sha256sums" >> build/checksums/electron.txt
   fi
 
   # shellcheck disable=SC1090
-  source "../build/linux/${VSCODE_ARCH}/electron.sh"
+  source "../build/linux/${GENCODE_ARCH}/electron.sh"
 
   TARGET=$( grep -Eo '[0-9]+\.[0-9]+\.[0-9]+' .npmrc )
 
   # Only fails at different major versions
   if [[ "${ELECTRON_VERSION%%.*}" != "${TARGET%%.*}" ]] && [[ "${IGNORE_ELECTRON_VERSION}" != "yes" ]]; then
     # Fail the pipeline if electron target doesn't match what is used.
-    echo "Electron ${VSCODE_ARCH} binary version doesn't match target electron version!"
-    echo "Releases available at: https://github.com/${VSCODE_ELECTRON_REPOSITORY}/releases"
+    echo "Electron ${GENCODE_ARCH} binary version doesn't match target electron version!"
+    echo "Releases available at: https://github.com/${GENCODE_ELECTRON_REPOSITORY}/releases"
     exit 1
   fi
 
@@ -72,7 +72,7 @@ if [[ -f "../build/linux/${VSCODE_ARCH}/electron.sh" ]]; then
 
     cat .npmrc
 
-    export VSCODE_ELECTRON_VERSION="${ELECTRON_VERSION}"
+    export GENCODE_ELECTRON_VERSION="${ELECTRON_VERSION}"
   fi
 fi
 
@@ -115,8 +115,8 @@ for i in {1..5}; do # try 5 times
   echo "Npm install failed $i, trying again..."
 done
 
-if [[ -z "${VSCODE_SKIP_SETUPENV}" ]]; then
-  if [[ -n "${VSCODE_SKIP_SYSROOT}" ]]; then
+if [[ -z "${GENCODE_SKIP_SETUPENV}" ]]; then
+  if [[ -n "${GENCODE_SKIP_SYSROOT}" ]]; then
     source ./build/azure-pipelines/linux/setup-env.sh --skip-sysroot
   else
     source ./build/azure-pipelines/linux/setup-env.sh
@@ -141,20 +141,20 @@ find .build/extensions -type f -name '*.node' -print -delete
 npm run copy-policy-dto --prefix build
 node build/lib/policies/policyGenerator.ts build/lib/policies/policyData.jsonc linux
 
-npm run gulp "vscode-linux-${VSCODE_ARCH}-min-packing"
+npm run gulp "gencode-linux-${GENCODE_ARCH}-min-packing"
 
-if [[ -f "../build/linux/${VSCODE_ARCH}/ripgrep.sh" ]]; then
-  bash "../build/linux/${VSCODE_ARCH}/ripgrep.sh" "../VSCode-linux-${VSCODE_ARCH}/resources/app/node_modules"
+if [[ -f "../build/linux/${GENCODE_ARCH}/ripgrep.sh" ]]; then
+  bash "../build/linux/${GENCODE_ARCH}/ripgrep.sh" "../GenCode-linux-${GENCODE_ARCH}/resources/app/node_modules"
 fi
 
-find "../VSCode-linux-${VSCODE_ARCH}" -print0 | xargs -0 touch -c
+find "../GenCode-linux-${GENCODE_ARCH}" -print0 | xargs -0 touch -c
 
 . ../build_cli.sh
 
 if [[ -n "${GITHUB_OUTPUT}" ]]; then
-  echo "VSCODE_SYSROOT_REPOSITORY=${VSCODE_SYSROOT_REPOSITORY:-}" >> "${GITHUB_OUTPUT}"
-  echo "VSCODE_SYSROOT_VERSION=${VSCODE_SYSROOT_VERSION:-}" >> "${GITHUB_OUTPUT}"
-  echo "VSCODE_SYSROOT_PREFIX=${VSCODE_SYSROOT_PREFIX:-}" >> "${GITHUB_OUTPUT}"
+  echo "GENCODE_SYSROOT_REPOSITORY=${GENCODE_SYSROOT_REPOSITORY:-}" >> "${GITHUB_OUTPUT}"
+  echo "GENCODE_SYSROOT_VERSION=${GENCODE_SYSROOT_VERSION:-}" >> "${GITHUB_OUTPUT}"
+  echo "GENCODE_SYSROOT_PREFIX=${GENCODE_SYSROOT_PREFIX:-}" >> "${GITHUB_OUTPUT}"
 fi
 
 cd ..

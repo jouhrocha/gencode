@@ -9,8 +9,8 @@ index f701b518..093e19ce 100755
  
 @@ -22,3 +22,3 @@ else
    echo "Downloading remote sysroot"
--  SYSROOT_ARCH="$SYSROOT_ARCH" VSCODE_SYSROOT_DIR="$VSCODE_REMOTE_SYSROOT_DIR" VSCODE_SYSROOT_PREFIX="-glibc-2.28-gcc-8.5.0" node -e 'import { getVSCodeSysroot } from "./build/linux/debian/install-sysroot.ts"; (async () => { await getVSCodeSysroot(process.env["SYSROOT_ARCH"]); })()'
-+  SYSROOT_ARCH="$SYSROOT_ARCH" VSCODE_SYSROOT_DIR="$VSCODE_REMOTE_SYSROOT_DIR" node -e 'import { getVSCodeSysroot } from "./build/linux/debian/install-sysroot.ts"; (async () => { await getVSCodeSysroot(process.env["SYSROOT_ARCH"]); })()'
+-  SYSROOT_ARCH="$SYSROOT_ARCH" GENCODE_SYSROOT_DIR="$GENCODE_REMOTE_SYSROOT_DIR" GENCODE_SYSROOT_PREFIX="-glibc-2.28-gcc-8.5.0" node -e 'import { getGenCodeSysroot } from "./build/linux/debian/install-sysroot.ts"; (async () => { await getGenCodeSysroot(process.env["SYSROOT_ARCH"]); })()'
++  SYSROOT_ARCH="$SYSROOT_ARCH" GENCODE_SYSROOT_DIR="$GENCODE_REMOTE_SYSROOT_DIR" node -e 'import { getGenCodeSysroot } from "./build/linux/debian/install-sysroot.ts"; (async () => { await getGenCodeSysroot(process.env["SYSROOT_ARCH"]); })()'
  fi
 diff --git a/build/gulpfile.reh.ts b/build/gulpfile.reh.ts
 index b1075fa4..d13a5530 100644
@@ -31,18 +31,18 @@ index b1075fa4..d13a5530 100644
 -				.pipe(util.setExecutableBit('**'))
 -				.pipe(rename('node'));
 +			let downloaded: NodeJS.ReadWriteStream;
-+			if (process.env.VSCODE_NODEJS_REPOSITORY) {
-+				const nodejsVersion = (process.env.VSCODE_NODEJS_TAG ?? `${nodeVersion}-${internalNodeVersion}`).replace(/^v/, '');
-+				const nodejsName = process.env.VSCODE_NODEJS_NAME ?? expectedName!;
++			if (process.env.GENCODE_NODEJS_REPOSITORY) {
++				const nodejsVersion = (process.env.GENCODE_NODEJS_TAG ?? `${nodeVersion}-${internalNodeVersion}`).replace(/^v/, '');
++				const nodejsName = process.env.GENCODE_NODEJS_NAME ?? expectedName!;
 +				const nodejsChecksumSha256 = getNodeChecksum(nodejsName) ?? checksumSha256;
-+				downloaded = fetchGithub(process.env.VSCODE_NODEJS_REPOSITORY, { version: nodejsVersion, name: nodejsName, checksumSha256: nodejsChecksumSha256 })
++				downloaded = fetchGithub(process.env.GENCODE_NODEJS_REPOSITORY, { version: nodejsVersion, name: nodejsName, checksumSha256: nodejsChecksumSha256 })
 +					.pipe(flatmap(stream => stream.pipe(gunzip()).pipe(untar())))
 +					.pipe(filter('**/node'))
 +					.pipe(util.setExecutableBit('**'))
 +					.pipe(rename('node'));
 +			}
-+			else if (process.env.VSCODE_NODEJS_SITE && process.env.VSCODE_NODEJS_URLROOT) {
-+				downloaded = fetchUrls(`${process.env.VSCODE_NODEJS_URLROOT}/v${nodeVersion}/node-v${nodeVersion}-${platform}-${arch}${process.env.VSCODE_NODEJS_URLSUFFIX}.tar.gz`, { base: process.env.VSCODE_NODEJS_SITE, checksumSha256 })
++			else if (process.env.GENCODE_NODEJS_SITE && process.env.GENCODE_NODEJS_URLROOT) {
++				downloaded = fetchUrls(`${process.env.GENCODE_NODEJS_URLROOT}/v${nodeVersion}/node-v${nodeVersion}-${platform}-${arch}${process.env.GENCODE_NODEJS_URLSUFFIX}.tar.gz`, { base: process.env.GENCODE_NODEJS_SITE, checksumSha256 })
 +					.pipe(flatmap(stream => stream.pipe(gunzip()).pipe(untar())))
 +					.pipe(filter('**/node'))
 +					.pipe(util.setExecutableBit('**'))
@@ -56,21 +56,21 @@ index b1075fa4..d13a5530 100644
 +					.pipe(rename('node'));
 +			}
  			return platform === 'linux' && arch === 'x64' ? downloaded.pipe(patchElfLoadAlign()) : downloaded;
-diff --git a/build/gulpfile.vscode.ts b/build/gulpfile.vscode.ts
+diff --git a/build/gulpfile.gencode.ts b/build/gulpfile.gencode.ts
 index accd13df..1f9eba48 100644
---- a/build/gulpfile.vscode.ts
-+++ b/build/gulpfile.vscode.ts
+--- a/build/gulpfile.gencode.ts
++++ b/build/gulpfile.gencode.ts
 @@ -353,4 +353,17 @@ function packageTask(platform: string, arch: string, sourceFolderName: string, d
  
 +		const electronOverride: { repo?: string; tag?: string } = {};
-+		if (process.env.VSCODE_ELECTRON_REPOSITORY) {
-+			// official electron doesn't support all arch, override the repo with `VSCODE_ELECTRON_REPOSITORY`.
-+			electronOverride.repo = process.env.VSCODE_ELECTRON_REPOSITORY;
++		if (process.env.GENCODE_ELECTRON_REPOSITORY) {
++			// official electron doesn't support all arch, override the repo with `GENCODE_ELECTRON_REPOSITORY`.
++			electronOverride.repo = process.env.GENCODE_ELECTRON_REPOSITORY;
 +			console.log('Using Electron Repository:', electronOverride.repo);
 +		}
 +
-+		if (process.env.VSCODE_ELECTRON_TAG) {
-+			electronOverride.tag = process.env.VSCODE_ELECTRON_TAG;
++		if (process.env.GENCODE_ELECTRON_TAG) {
++			electronOverride.tag = process.env.GENCODE_ELECTRON_TAG;
 +			console.log('Using Electron Tag:', electronOverride.tag);
 +		}
 +
@@ -85,7 +85,7 @@ index a3c8dd15..04ff8a09 100644
 @@ -12,3 +12,3 @@ export function getElectronVersion(rootDir: string = root): Record<string, strin
  	const npmrc = fs.readFileSync(path.join(rootDir, '.npmrc'), 'utf8');
 -	const electronVersion = /^target="(.*)"$/m.exec(npmrc)![1];
-+	const electronVersion = process.env.VSCODE_ELECTRON_VERSION ?? /^target="(.*)"$/m.exec(npmrc)![1];
++	const electronVersion = process.env.GENCODE_ELECTRON_VERSION ?? /^target="(.*)"$/m.exec(npmrc)![1];
  	const msBuildId = /^ms_build_id="(.*)"$/m.exec(npmrc)![1];
 diff --git a/build/linux/debian/dep-lists.ts b/build/linux/debian/dep-lists.ts
 index eb8b4262..432c184b 100644
@@ -102,13 +102,13 @@ index 28cd4e85..1e9b2da1 100644
 +++ b/build/linux/debian/install-sysroot.ts
 @@ -73,3 +73,5 @@ async function fetchUrl(options: IFetchOptions): Promise<void> {
  	const version = '20260212-405735';
--	const releaseUrl = `https://api.github.com/repos/Microsoft/vscode-linux-build-agent/releases/tags/v${version}`;
-+	const repository = process.env['VSCODE_SYSROOT_REPOSITORY'] ?? 'Microsoft/vscode-linux-build-agent';
-+	const actualVersion = process.env['VSCODE_SYSROOT_VERSION'] ?? version;
+-	const releaseUrl = `https://api.github.com/repos/Microsoft/gencode-linux-build-agent/releases/tags/v${version}`;
++	const repository = process.env['GENCODE_SYSROOT_REPOSITORY'] ?? 'Microsoft/gencode-linux-build-agent';
++	const actualVersion = process.env['GENCODE_SYSROOT_VERSION'] ?? version;
 +	const releaseUrl = `https://api.github.com/repos/${repository}/releases/tags/v${actualVersion}`;
  	const downloadOptions = {
 @@ -81,3 +83,3 @@ async function fetchUrl(options: IFetchOptions): Promise<void> {
  	if (!asset) {
--		throw new Error(`Could not find asset in release of Microsoft/vscode-linux-build-agent @ ${version}`);
+-		throw new Error(`Could not find asset in release of Microsoft/gencode-linux-build-agent @ ${version}`);
 +		throw new Error(`Could not find asset in release of ${repository} @ ${actualVersion}`);
  	}

@@ -1,24 +1,24 @@
 #!/usr/bin/env bash
 
-cd vscode || { echo "'vscode' dir not found"; exit 1; }
+cd gencode || { echo "'gencode' dir not found"; exit 1; }
 
-npm run gulp "vscode-win32-${VSCODE_ARCH}-inno-updater"
+npm run gulp "gencode-win32-${GENCODE_ARCH}-inno-updater"
 
 # . ../build/windows/appx/build.sh
 
 if [[ "${SHOULD_BUILD_ZIP}" != "no" ]]; then
-  7z.exe a -tzip "../assets/${APP_NAME}-win32-${VSCODE_ARCH}-${RELEASE_VERSION}.zip" -x!CodeSignSummary*.md -x!tools "../VSCode-win32-${VSCODE_ARCH}/*" -r
+  7z.exe a -tzip "../assets/${APP_NAME}-win32-${GENCODE_ARCH}-${RELEASE_VERSION}.zip" -x!CodeSignSummary*.md -x!tools "../GenCode-win32-${GENCODE_ARCH}/*" -r
 fi
 
 if [[ "${SHOULD_BUILD_EXE_SYS}" != "no" ]]; then
-  npm run gulp "vscode-win32-${VSCODE_ARCH}-system-setup"
+  npm run gulp "gencode-win32-${GENCODE_ARCH}-system-setup"
 fi
 
 if [[ "${SHOULD_BUILD_EXE_USR}" != "no" ]]; then
-  npm run gulp "vscode-win32-${VSCODE_ARCH}-user-setup"
+  npm run gulp "gencode-win32-${GENCODE_ARCH}-user-setup"
 fi
 
-if [[ "${VSCODE_ARCH}" == "ia32" || "${VSCODE_ARCH}" == "x64" ]]; then
+if [[ "${GENCODE_ARCH}" == "ia32" || "${GENCODE_ARCH}" == "x64" ]]; then
   if [[ "${SHOULD_BUILD_MSI}" != "no" ]]; then
     . ../build/windows/msi/build.sh
   fi
@@ -32,22 +32,22 @@ cd ..
 
 if [[ "${SHOULD_BUILD_EXE_SYS}" != "no" ]]; then
   echo "Moving System EXE"
-  mv "vscode\\.build\\win32-${VSCODE_ARCH}\\system-setup\\VSCodeSetup.exe" "assets\\${APP_NAME}Setup-${VSCODE_ARCH}-${RELEASE_VERSION}.exe"
+  mv "gencode\\.build\\win32-${GENCODE_ARCH}\\system-setup\\GenCodeSetup.exe" "assets\\${APP_NAME}Setup-${GENCODE_ARCH}-${RELEASE_VERSION}.exe"
 fi
 
 if [[ "${SHOULD_BUILD_EXE_USR}" != "no" ]]; then
   echo "Moving User EXE"
-  mv "vscode\\.build\\win32-${VSCODE_ARCH}\\user-setup\\VSCodeSetup.exe" "assets\\${APP_NAME}UserSetup-${VSCODE_ARCH}-${RELEASE_VERSION}.exe"
+  mv "gencode\\.build\\win32-${GENCODE_ARCH}\\user-setup\\GenCodeSetup.exe" "assets\\${APP_NAME}UserSetup-${GENCODE_ARCH}-${RELEASE_VERSION}.exe"
 fi
 
-if [[ "${VSCODE_ARCH}" == "ia32" || "${VSCODE_ARCH}" == "x64" ]]; then
+if [[ "${GENCODE_ARCH}" == "ia32" || "${GENCODE_ARCH}" == "x64" ]]; then
   if [[ "${SHOULD_BUILD_MSI}" != "no" ]]; then
     echo "Moving MSI"
-    mv "build\\windows\\msi\\releasedir\\${APP_NAME}-${VSCODE_ARCH}-${RELEASE_VERSION}.msi" assets/
+    mv "build\\windows\\msi\\releasedir\\${APP_NAME}-${GENCODE_ARCH}-${RELEASE_VERSION}.msi" assets/
   fi
 
   if [[ "${SHOULD_BUILD_MSI_NOUP}" != "no" ]]; then
     echo "Moving MSI with disabled updates"
-    mv "build\\windows\\msi\\releasedir\\${APP_NAME}-${VSCODE_ARCH}-updates-disabled-${RELEASE_VERSION}.msi" assets/
+    mv "build\\windows\\msi\\releasedir\\${APP_NAME}-${GENCODE_ARCH}-updates-disabled-${RELEASE_VERSION}.msi" assets/
   fi
 fi

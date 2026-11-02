@@ -8,8 +8,8 @@ if [[ "${SHOULD_BUILD}" != "yes" ]]; then
   exit 0
 fi
 
-jsonTmp=$( cat "./upstream/${VSCODE_QUALITY}.json" | jq --arg 'tag' "${MS_TAG/\-insider/}" --arg 'commit' "${MS_COMMIT}" '. | .tag=$tag | .commit=$commit' )
-echo "${jsonTmp}" > "./upstream/${VSCODE_QUALITY}.json" && unset jsonTmp
+jsonTmp=$( cat "./upstream/${GENCODE_QUALITY}.json" | jq --arg 'tag' "${MS_TAG/\-insider/}" --arg 'commit' "${MS_COMMIT}" '. | .tag=$tag | .commit=$commit' )
+echo "${jsonTmp}" > "./upstream/${GENCODE_QUALITY}.json" && unset jsonTmp
 
 # stage notary files
 git add upstream/*
@@ -20,7 +20,7 @@ git restore .
 CHANGES=$( git status --porcelain )
 
 if [[ -n "${CHANGES}" ]]; then
-  git commit -S -m "build(${VSCODE_QUALITY}): update to commit ${MS_COMMIT:0:7}"
+  git commit -S -m "build(${GENCODE_QUALITY}): update to commit ${MS_COMMIT:0:7}"
 
   BRANCH_NAME=$( git rev-parse --abbrev-ref HEAD )
 

@@ -5,29 +5,29 @@
 # to run with Bash: "C:\Program Files\Git\bin\bash.exe" ./dev/build.sh
 ###
 
-export APP_NAME="VSCodium"
-export ASSETS_REPOSITORY="VSCodium/vscodium"
+export APP_NAME="GenCode"
+export ASSETS_REPOSITORY="GenCode/gencode"
 export BINARY_NAME="codium"
 export CI_BUILD="no"
-export GH_REPO_PATH="VSCodium/vscodium"
-export ORG_NAME="VSCodium"
+export GH_REPO_PATH="GenCode/gencode"
+export ORG_NAME="GenCode"
 export SHOULD_BUILD="yes"
 export SKIP_ASSETS="yes"
 export SKIP_BUILD="no"
 export SKIP_SOURCE="no"
-export VSCODE_LATEST="no"
-export VSCODE_QUALITY="stable"
-export VSCODE_SKIP_NODE_VERSION_CHECK="yes"
+export GENCODE_LATEST="no"
+export GENCODE_QUALITY="stable"
+export GENCODE_SKIP_NODE_VERSION_CHECK="yes"
 
 while getopts ":ilops" opt; do
   case "$opt" in
     i)
-      export ASSETS_REPOSITORY="VSCodium/vscodium-insiders"
+      export ASSETS_REPOSITORY="GenCode/gencode-insiders"
       export BINARY_NAME="codium-insiders"
-      export VSCODE_QUALITY="insider"
+      export GENCODE_QUALITY="insider"
       ;;
     l)
-      export VSCODE_LATEST="yes"
+      export GENCODE_LATEST="yes"
       ;;
     o)
       export SKIP_BUILD="yes"
@@ -58,17 +58,17 @@ esac
 UNAME_ARCH=$( uname -m )
 
 if [[ "${UNAME_ARCH}" == "aarch64" || "${UNAME_ARCH}" == "arm64" ]]; then
-  export VSCODE_ARCH="arm64"
+  export GENCODE_ARCH="arm64"
 elif [[ "${UNAME_ARCH}" == "ppc64le" ]]; then
-  export VSCODE_ARCH="ppc64le"
+  export GENCODE_ARCH="ppc64le"
 elif [[ "${UNAME_ARCH}" == "riscv64" ]]; then
-  export VSCODE_ARCH="riscv64"
+  export GENCODE_ARCH="riscv64"
 elif [[ "${UNAME_ARCH}" == "loongarch64" ]]; then
-  export VSCODE_ARCH="loong64"
+  export GENCODE_ARCH="loong64"
 elif [[ "${UNAME_ARCH}" == "s390x" ]]; then
-  export VSCODE_ARCH="s390x"
+  export GENCODE_ARCH="s390x"
 else
-  export VSCODE_ARCH="x64"
+  export GENCODE_ARCH="x64"
 fi
 
 export NODE_OPTIONS="--max-old-space-size=8192"
@@ -77,12 +77,12 @@ echo "OS_NAME=\"${OS_NAME}\""
 echo "SKIP_SOURCE=\"${SKIP_SOURCE}\""
 echo "SKIP_BUILD=\"${SKIP_BUILD}\""
 echo "SKIP_ASSETS=\"${SKIP_ASSETS}\""
-echo "VSCODE_ARCH=\"${VSCODE_ARCH}\""
-echo "VSCODE_LATEST=\"${VSCODE_LATEST}\""
-echo "VSCODE_QUALITY=\"${VSCODE_QUALITY}\""
+echo "GENCODE_ARCH=\"${GENCODE_ARCH}\""
+echo "GENCODE_LATEST=\"${GENCODE_LATEST}\""
+echo "GENCODE_QUALITY=\"${GENCODE_QUALITY}\""
 
 if [[ "${SKIP_SOURCE}" == "no" ]]; then
-  rm -rf vscode* VSCode*
+  rm -rf gencode* GenCode*
 
   . get_repo.sh
   . version.sh
@@ -94,7 +94,7 @@ if [[ "${SKIP_SOURCE}" == "no" ]]; then
   echo "BUILD_SOURCEVERSION=\"${BUILD_SOURCEVERSION}\"" >> dev/build.env
 else
   if [[ "${SKIP_ASSETS}" != "no" ]]; then
-    rm -rf vscode-* VSCode-*
+    rm -rf gencode-* GenCode-*
   fi
 
   . dev/build.env
@@ -107,12 +107,12 @@ fi
 
 if [[ "${SKIP_BUILD}" == "no" ]]; then
   if [[ "${SKIP_SOURCE}" != "no" ]]; then
-    cd vscode || { echo "'vscode' dir not found"; exit 1; }
+    cd gencode || { echo "'gencode' dir not found"; exit 1; }
 
     git add .
     git reset -q --hard HEAD
 
-    while [[ -n "$( git log -1 | grep "VSCODIUM HELPER" )" ]]; do
+    while [[ -n "$( git log -1 | grep "GENCODE HELPER" )" ]]; do
       git reset -q --hard HEAD~
     done
 
@@ -127,9 +127,9 @@ if [[ "${SKIP_BUILD}" == "no" ]]; then
     mkdir -p ~/.gyp
 
     if [[ -f "${HOME}/.gyp/include.gypi" ]]; then
-      mv ~/.gyp/include.gypi ~/.gyp/include.gypi.pre-vscodium
+      mv ~/.gyp/include.gypi ~/.gyp/include.gypi.pre-gencode
     else
-      echo "{}" > ~/.gyp/include.gypi.pre-vscodium
+      echo "{}" > ~/.gyp/include.gypi.pre-gencode
     fi
 
     cp ./build/osx/include.gypi ~/.gyp/include.gypi
@@ -138,12 +138,12 @@ if [[ "${SKIP_BUILD}" == "no" ]]; then
   . build.sh
 
   if [[ -f "./include_${OS_NAME}.gypi" ]]; then
-    mv ~/.gyp/include.gypi.pre-vscodium ~/.gyp/include.gypi
+    mv ~/.gyp/include.gypi.pre-gencode ~/.gyp/include.gypi
   fi
 
-  if [[ "${VSCODE_LATEST}" == "yes" ]]; then
-    jsonTmp=$( cat "./upstream/${VSCODE_QUALITY}.json" | jq --arg 'tag' "${MS_TAG/\-insider/}" --arg 'commit' "${MS_COMMIT}" '. | .tag=$tag | .commit=$commit' )
-    echo "${jsonTmp}" > "./upstream/${VSCODE_QUALITY}.json" && unset jsonTmp
+  if [[ "${GENCODE_LATEST}" == "yes" ]]; then
+    jsonTmp=$( cat "./upstream/${GENCODE_QUALITY}.json" | jq --arg 'tag' "${MS_TAG/\-insider/}" --arg 'commit' "${MS_COMMIT}" '. | .tag=$tag | .commit=$commit' )
+    echo "${jsonTmp}" > "./upstream/${GENCODE_QUALITY}.json" && unset jsonTmp
   fi
 fi
 

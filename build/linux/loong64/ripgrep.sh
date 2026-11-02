@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# When installing @vscode/ripgrep, it will try to download prebuilt ripgrep binary from https://github.com/microsoft/ripgrep-prebuilt,
+# When installing @gencode/ripgrep, it will try to download prebuilt ripgrep binary from https://github.com/microsoft/ripgrep-prebuilt,
 # however, loong64 is not a supported architecture and x86 will be picked as fallback, so we need to replace it with a native one.
 
 if [ "$#" -ne 1 ]; then
@@ -8,7 +8,7 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-RG_PATH="$1/@vscode/ripgrep-universal/bin/linux-loong64/rg"
+RG_PATH="$1/@gencode/ripgrep-universal/bin/linux-loong64/rg"
 RG_VERSION="14.1.1"
 
 echo "Replacing ripgrep binary with loong64 one"

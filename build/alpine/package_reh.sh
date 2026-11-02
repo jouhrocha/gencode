@@ -12,17 +12,17 @@ fi
 
 mkdir -p assets
 
-tar -xzf ./vscode.tar.gz
+tar -xzf ./gencode.tar.gz
 
-cd vscode || { echo "'vscode' dir not found"; exit 1; }
+cd gencode || { echo "'gencode' dir not found"; exit 1; }
 
-export VSCODE_PLATFORM='alpine'
-export VSCODE_SKIP_NODE_VERSION_CHECK=1
+export GENCODE_PLATFORM='alpine'
+export GENCODE_SKIP_NODE_VERSION_CHECK=1
 
-VSCODE_HOST_MOUNT="$( pwd )"
-VSCODE_REMOTE_DEPENDENCIES_CONTAINER_NAME="vscodium/vscodium-linux-build-agent:alpine-${VSCODE_ARCH}"
+GENCODE_HOST_MOUNT="$( pwd )"
+GENCODE_REMOTE_DEPENDENCIES_CONTAINER_NAME="gencode/gencode-linux-build-agent:alpine-${GENCODE_ARCH}"
 
-export VSCODE_HOST_MOUNT VSCODE_REMOTE_DEPENDENCIES_CONTAINER_NAME
+export GENCODE_HOST_MOUNT GENCODE_REMOTE_DEPENDENCIES_CONTAINER_NAME
 
 if [[ -d "../patches/alpine/reh/" ]]; then
   for file in "../patches/alpine/reh/"*.patch; do
@@ -43,7 +43,7 @@ done
 
 node build/azure-pipelines/distro/mixin-npm.ts
 
-if [[ "${VSCODE_ARCH}" == "x64" ]]; then
+if [[ "${GENCODE_ARCH}" == "x64" ]]; then
   PA_NAME="linux-alpine"
 else
   PA_NAME="alpine-arm64"
@@ -51,24 +51,24 @@ fi
 
 if [[ "${SHOULD_BUILD_REH}" != "no" ]]; then
   echo "Building REH"
-  npm run gulp "vscode-reh-${PA_NAME}-min"
+  npm run gulp "gencode-reh-${PA_NAME}-min"
 
-  pushd "../vscode-reh-${PA_NAME}"
+  pushd "../gencode-reh-${PA_NAME}"
 
   echo "Archiving REH"
-  tar czf "../assets/${APP_NAME_LC}-reh-${VSCODE_PLATFORM}-${VSCODE_ARCH}-${RELEASE_VERSION}.tar.gz" .
+  tar czf "../assets/${APP_NAME_LC}-reh-${GENCODE_PLATFORM}-${GENCODE_ARCH}-${RELEASE_VERSION}.tar.gz" .
 
   popd
 fi
 
 if [[ "${SHOULD_BUILD_REH_WEB}" != "no" ]]; then
   echo "Building REH-web"
-  npm run gulp "vscode-reh-web-${PA_NAME}-min"
+  npm run gulp "gencode-reh-web-${PA_NAME}-min"
 
-  pushd "../vscode-reh-web-${PA_NAME}"
+  pushd "../gencode-reh-web-${PA_NAME}"
 
   echo "Archiving REH-web"
-  tar czf "../assets/${APP_NAME_LC}-reh-web-${VSCODE_PLATFORM}-${VSCODE_ARCH}-${RELEASE_VERSION}.tar.gz" .
+  tar czf "../assets/${APP_NAME_LC}-reh-web-${GENCODE_PLATFORM}-${GENCODE_ARCH}-${RELEASE_VERSION}.tar.gz" .
 
   popd
 fi
