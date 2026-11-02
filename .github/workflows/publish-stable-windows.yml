@@ -9,7 +9,7 @@ on:
 env:
   APP_NAME: GenCode
   ASSETS_REPOSITORY: ${{ github.repository }}
-  BINARY_NAME: codium
+  BINARY_NAME: gencode
   GH_REPO_PATH: ${{ github.repository }}
   GITHUB_BRANCH: master
   ORG_NAME: ${{ github.repository_owner }}

@@ -10,7 +10,7 @@ env:
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
   APP_NAME: GenCode
   ASSETS_REPOSITORY: ${{ github.repository }}
-  BINARY_NAME: codium
+  BINARY_NAME: gencode
   DISABLE_UPDATE: yes
   GH_REPO_PATH: ${{ github.repository }}
   GITHUB_BRANCH: master
@@ -528,7 +528,7 @@ jobs:
     permissions: {}
     env:
       RELEASE_VERSION: ${{ needs.check.outputs.RELEASE_VERSION }}
-      SNAP_NAME: codium
+      SNAP_NAME: gencode
       SNAP_PUBLISHER: gencode
     strategy:
       fail-fast: false

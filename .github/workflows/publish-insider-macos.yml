@@ -9,7 +9,7 @@ on:
 env:
   APP_NAME: GenCode
   ASSETS_REPOSITORY: ${{ github.repository }}-insiders
-  BINARY_NAME: codium-insiders
+  BINARY_NAME: gencode-insiders
   GH_REPO_PATH: ${{ github.repository }}
   GITHUB_BRANCH: insider
   MAX_OLD_SPACE_SIZE: 12288

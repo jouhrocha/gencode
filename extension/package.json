@@ -1,8 +1,8 @@
 {
-  "name": "codium-ai-bridge",
-  "displayName": "Codium AI Bridge",
+  "name": "gencode-ai-bridge",
+  "displayName": "Gencode AI Bridge",
   "description": "Proveedor de modelos OpenAI-compatible para el chat, sin telemetria ni servicios de Microsoft.",
-  "publisher": "codium-ai",
+  "publisher": "gencode-ai",
   "version": "0.1.0",
   "license": "MIT",
   "engines": {
@@ -17,24 +17,24 @@
   "contributes": {
     "languageModelChatProviders": [
       {
-        "vendor": "codium",
-        "displayName": "Codium AI (OpenAI-compatible)"
+        "vendor": "gencode",
+        "displayName": "Gencode AI (OpenAI-compatible)"
       }
     ],
     "configuration": {
-      "title": "Codium AI Bridge",
+      "title": "Gencode AI Bridge",
       "properties": {
-        "codiumAi.baseUrl": {
+        "gencodeAi.baseUrl": {
           "type": "string",
           "default": "http://127.0.0.1:11434/v1",
           "description": "Endpoint OpenAI-compatible, sin barra final. Ejemplos: http://127.0.0.1:11434/v1 (Ollama), http://127.0.0.1:1234/v1 (LM Studio), https://api.openai.com/v1."
         },
-        "codiumAi.apiKey": {
+        "gencodeAi.apiKey": {
           "type": "string",
           "default": "",
           "description": "Clave enviada como Bearer. Vacio para endpoints locales."
         },
-        "codiumAi.models": {
+        "gencodeAi.models": {
           "type": "array",
           "items": {
             "type": "object",
@@ -65,12 +65,12 @@
           "default": [],
           "description": "Modelos expuestos al selector de chat. Si queda vacio se consulta GET {baseUrl}/models."
         },
-        "codiumAi.maxOutputTokens": {
+        "gencodeAi.maxOutputTokens": {
           "type": "number",
           "default": 4096,
           "description": "Tokens maximos de salida por peticion."
         },
-        "codiumAi.temperature": {
+        "gencodeAi.temperature": {
           "type": "number",
           "default": 0,
           "description": "Temperatura de muestreo."

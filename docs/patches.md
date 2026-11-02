@@ -33,11 +33,11 @@ HKLM\SOFTWARE\Policies\GenCode\GenCode\<PolicyName>
 (or `HKCU\SOFTWARE\Policies\GenCode\GenCode\<PolicyName>` for per-user policies)
 
 This differs from VS Code's path (`Microsoft\GenCode`) and is the root cause of
-[issue #2714](https://github.com/GenCode/gencode/issues/2714) where users mirror
+[issue #2714](https://github.com/VSCodium/vscodium/issues/2714) where users mirror
 VS Code's registry structure and find their GPOs ignored. Enterprise admins must
 use the GenCode-specific registry path.
 
 ### References
 
-- [GenCode issue #2714](https://github.com/GenCode/gencode/issues/2714)
-- [GenCode/policy-watcher — RegistryPolicy.hh](https://github.com/GenCode/policy-watcher/blob/main/src/windows/RegistryPolicy.hh)
+- [GenCode issue #2714](https://github.com/VSCodium/vscodium/issues/2714)
+- [GenCode/policy-watcher — RegistryPolicy.hh](https://github.com/VSCodium/policy-watcher/blob/main/src/windows/RegistryPolicy.hh)

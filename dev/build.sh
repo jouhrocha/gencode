@@ -7,7 +7,7 @@
 
 export APP_NAME="GenCode"
 export ASSETS_REPOSITORY="GenCode/gencode"
-export BINARY_NAME="codium"
+export BINARY_NAME="gencode"
 export CI_BUILD="no"
 export GH_REPO_PATH="GenCode/gencode"
 export ORG_NAME="GenCode"
@@ -23,7 +23,7 @@ while getopts ":ilops" opt; do
   case "$opt" in
     i)
       export ASSETS_REPOSITORY="GenCode/gencode-insiders"
-      export BINARY_NAME="codium-insiders"
+      export BINARY_NAME="gencode-insiders"
       export GENCODE_QUALITY="insider"
       ;;
     l)

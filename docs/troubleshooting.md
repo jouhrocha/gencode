@@ -24,7 +24,7 @@ The following command should help:
 
 ```
 rm -rf ~/.cache/fontconfig
-rm -rf ~/snap/codium/common/.cache
+rm -rf ~/snap/gencode/common/.cache
 fc-cache -r
 ```
 
@@ -46,13 +46,13 @@ Install these packages on Fedora:
 
 On Ubuntu this package is called `libdbusmenu-glib4`.
 
-Credits: [Gerson](https://gitlab.com/paulcarroty/gencode-deb-rpm-repo/-/issues/91)
+Credits: [Gerson](https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/issues/91)
 
 ### <a id="linux-flatpak-most-common-issues"></a>_Flatpak most common issues_
 
 - blurry screen with HiDPI on wayland run:
    ```bash
-   flatpak override --user --nosocket=wayland com.gencode.codium
+   flatpak override --user --nosocket=wayland com.gencode.gencode
    ```
 - To execute commands on the host system, run inside the sandbox
    ```bash
@@ -64,9 +64,9 @@ Credits: [Gerson](https://gitlab.com/paulcarroty/gencode-deb-rpm-repo/-/issues/9
    TL;DR: use https://open-vsx.org/extension/zokugun/vsix-manager
 
 - SDKs
-   see [this](https://github.com/flathub/com.gencode.codium?tab=readme-ov-file#sdks)
+   see [this](https://github.com/flathub/com.vscodium.codium?tab=readme-ov-file#sdks)
 
-- If you have any other problems with the flatpak package try to look on the [FAQ](https://github.com/flathub/com.gencode.codium?tab=readme-ov-file#faq) maybe the solution is already there or open an [issue](https://github.com/flathub/com.gencode.codium/issues).
+- If you have any other problems with the flatpak package try to look on the [FAQ](https://github.com/flathub/com.vscodium.codium?tab=readme-ov-file#faq) maybe the solution is already there or open an [issue](https://github.com/flathub/com.vscodium.codium/issues).
 
 ### <a id="linux-remote-ssh"></a>_Remote SSH doesn't work_
 
@@ -80,9 +80,9 @@ It might requires additional dependencies due to the OS/distro (alpine).
 
 If you are under Wayland:
 
-- try the command `codium --verbose`
+- try the command `gencode --verbose`
 - if you see an error like `:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Error) eglCreateContext: Requested version is not supported`
-- try `codium --ozone-platform=x11`
+- try `gencode --ozone-platform=x11`
 
 ## <a id="windows"></a>Windows
 
@@ -148,7 +148,7 @@ If the **"Open with GenCode"** option does not appear after installation (even w
 
 Some users report Windows Defender detecting the GenCode installer as `Cinjo` or another threat. This is a **false positive** caused by the unsigned nature of certain build artifacts.
 
-- Download GenCode **only from the official [GitHub Releases page](https://github.com/GenCode/gencode/releases)**.
+- Download GenCode **only from the official [GitHub Releases page](https://github.com/VSCodium/vscodium/releases)**.
 - Verify the SHA256/SHA512 checksum of the downloaded file against the `.sha256` or `.sha512` file published alongside each release.
 - If Defender blocks the installer, add an exclusion for the downloaded file, run the install, then remove the exclusion.
 - You can also report the false positive directly to Microsoft via the [Windows Defender Security Intelligence submission portal](https://www.microsoft.com/en-us/wdsi/filesubmission).

@@ -5,7 +5,7 @@
 ## Table of Contents
 
 - [Sign in with GitHub](#signin-github)
-- [Accounts authentication](https://github.com/GenCode/gencode/blob/master/docs/accounts-authentication.md)
+- [Accounts authentication](https://github.com/VSCodium/vscodium/blob/master/docs/accounts-authentication.md)
 - [How do I run GenCode in portable mode?](#portable)
 - [How do I fix the default file manager?](#file-manager)
 - [How do I press and hold a key and have it repeat in GenCode?](#press-and-hold)
@@ -25,7 +25,7 @@ If you are getting the error `Writing login information to the keychain failed w
 ## <a id="portable"></a>How do I run GenCode in portable mode?
 You can follow the [Portable Mode instructions](https://code.visualstudio.com/docs/editor/portable) from the Visual Studio Code website.
 - **Windows** / **Linux** : the instructions can be followed as written.
-- **macOS** : portable mode is enabled by the existence of a specially named folder. For Visual Studio Code that folder name is `code-portable-data`. For GenCode, that folder name is `codium-portable-data`. So to enable portable mode for GenCode on Mac OS, follow the instructions outlined in the [link above](https://code.visualstudio.com/docs/editor/portable), but create a folder named `codium-portable-data` instead of `code-portable-data`.
+- **macOS** : portable mode is enabled by the existence of a specially named folder. For Visual Studio Code that folder name is `code-portable-data`. For GenCode, that folder name is `gencode-portable-data`. So to enable portable mode for GenCode on Mac OS, follow the instructions outlined in the [link above](https://code.visualstudio.com/docs/editor/portable), but create a folder named `gencode-portable-data` instead of `code-portable-data`.
 
 ## <a id="file-manager"></a>How do I fix the default file manager (Linux)?
 
@@ -41,7 +41,7 @@ inode/directory=org.gnome.Nautilus.desktop;
 You can find your regular file manager with the command:
 ```
 > grep directory /usr/share/applications/mimeinfo.cache
-inode/directory=codium.desktop;org.gnome.Nautilus.desktop;
+inode/directory=gencode.desktop;org.gnome.Nautilus.desktop;
 ```
 
 ## <a id="press-and-hold"></a>How do I press and hold a key and have it repeat in GenCode (Mac)?
@@ -56,21 +56,21 @@ $ defaults write com.gencode ApplePressAndHoldEnabled -bool false
 
 For macOS and Windows:
 - Go to the command palette (View | Command Palette...)
-- Choose `Shell command: Install 'codium' command in PATH`.
+- Choose `Shell command: Install 'gencode' command in PATH`.
 
 ![](https://user-images.githubusercontent.com/2707340/60140295-18338a00-9766-11e9-8fda-b525b6f15c13.png)
 
 This allows you to open files or directories in GenCode directly from your terminal:
 
 ```bash
-~/in-my-project $ codium . # open this directory
-~/in-my-project $ codium file.txt # open this file
+~/in-my-project $ gencode . # open this directory
+~/in-my-project $ gencode file.txt # open this file
 ```
 
-Feel free to alias this command to something easier to type in your shell profile (e.g. `alias code=codium`).
+Feel free to alias this command to something easier to type in your shell profile (e.g. `alias code=gencode`).
 
-On Linux, when installed with a package manager, `codium` has been installed in your `PATH`.
+On Linux, when installed with a package manager, `gencode` has been installed in your `PATH`.
 
 ### <a id="from-linux-targz"></a>From Linux .tar.gz
 
-When the archive `GenCode-linux-<arch>-<version>.tar.gz` is extracted, the main entry point for GenCode is `./bin/codium`.
+When the archive `GenCode-linux-<arch>-<version>.tar.gz` is extracted, the main entry point for GenCode is `./bin/gencode`.

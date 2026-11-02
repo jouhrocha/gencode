@@ -32,8 +32,8 @@ Discussions, issues or PR that consist solely of unvetted AI outputs may be clos
 
 ### Before Submitting an Issue
 
-Before creating bug reports, please check existing issues and [the Troubleshooting page](https://github.com/GenCode/gencode/blob/master/docs/troubleshooting.md) as you might find out that you don't need to create one.
-When you are creating a bug report, please include as many details as possible. Fill out [the required template](https://github.com/GenCode/gencode/issues/new?&labels=bug&&template=bug_report.md), the information it asks for helps us resolve issues faster.
+Before creating bug reports, please check existing issues and [the Troubleshooting page](https://github.com/VSCodium/vscodium/blob/master/docs/troubleshooting.md) as you might find out that you don't need to create one.
+When you are creating a bug report, please include as many details as possible. Fill out [the required template](https://github.com/VSCodium/vscodium/issues/new?&labels=bug&&template=bug_report.md), the information it asks for helps us resolve issues faster.
 
 ## Making Changes
 

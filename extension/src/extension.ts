@@ -46,10 +46,10 @@ type OpenAiChunk = {
 	}>;
 };
 
-const VENDOR = 'codium';
+const VENDOR = 'gencode';
 
 function config(): vscode.WorkspaceConfiguration {
-	return vscode.workspace.getConfiguration('codiumAi');
+	return vscode.workspace.getConfiguration('gencodeAi');
 }
 
 function baseUrl(): string {
@@ -179,7 +179,7 @@ function messageText(message: vscode.LanguageModelChatRequestMessage): string {
 		.join('');
 }
 
-class CodiumProvider implements vscode.LanguageModelChatProvider<vscode.LanguageModelChatInformation> {
+class GencodeProvider implements vscode.LanguageModelChatProvider<vscode.LanguageModelChatInformation> {
 	private readonly changed = new vscode.EventEmitter<void>();
 	readonly onDidChangeLanguageModelChatInformation = this.changed.event;
 
@@ -332,10 +332,10 @@ class CodiumProvider implements vscode.LanguageModelChatProvider<vscode.Language
 }
 
 export function activate(context: vscode.ExtensionContext): void {
-	const provider = new CodiumProvider();
+	const provider = new GencodeProvider();
 	context.subscriptions.push(vscode.lm.registerLanguageModelChatProvider(VENDOR, provider));
 	context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(event => {
-		if (event.affectsConfiguration('codiumAi')) {
+		if (event.affectsConfiguration('gencodeAi')) {
 			provider.refresh();
 		}
 	}));

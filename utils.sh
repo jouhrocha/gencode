@@ -3,7 +3,7 @@
 APP_NAME="${APP_NAME:-GenCode}"
 APP_NAME_LC="$( echo "${APP_NAME}" | awk '{print tolower($0)}' )"
 ASSETS_REPOSITORY="${ASSETS_REPOSITORY:-GenCode/gencode}"
-BINARY_NAME="${BINARY_NAME:-codium}"
+BINARY_NAME="${BINARY_NAME:-gencode}"
 GH_REPO_PATH="${GH_REPO_PATH:-GenCode/gencode}"
 ORG_NAME="${ORG_NAME:-GenCode}"
 TUNNEL_APP_NAME="${TUNNEL_APP_NAME:-"${BINARY_NAME}-tunnel"}"

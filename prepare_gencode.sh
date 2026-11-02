@@ -35,28 +35,28 @@ setpath_json() {
 }
 
 setpath "product" "checksumFailMoreInfoUrl" "https://go.microsoft.com/fwlink/?LinkId=828886"
-setpath "product" "documentationUrl" "https://go.microsoft.com/fwlink/?LinkID=533484#gencode"
-setpath_json "product" "extensionsGallery" '{"serviceUrl": "https://open-vsx.org/gencode/gallery", "itemUrl": "https://open-vsx.org/gencode/item", "latestUrlTemplate": "https://open-vsx.org/gencode/gallery/{publisher}/{name}/latest", "controlUrl": "https://raw.githubusercontent.com/EclipseFdn/publish-extensions/refs/heads/master/extension-control/extensions.json"}'
+setpath "product" "documentationUrl" "https://go.microsoft.com/fwlink/?LinkID=533484#vscode"
+setpath_json "product" "extensionsGallery" '{"serviceUrl": "https://open-vsx.org/vscode/gallery", "itemUrl": "https://open-vsx.org/vscode/item", "latestUrlTemplate": "https://open-vsx.org/vscode/gallery/{publisher}/{name}/latest", "controlUrl": "https://raw.githubusercontent.com/EclipseFdn/publish-extensions/refs/heads/master/extension-control/extensions.json"}'
 
 setpath "product" "introductoryVideosUrl" "https://go.microsoft.com/fwlink/?linkid=832146"
 setpath "product" "keyboardShortcutsUrlLinux" "https://go.microsoft.com/fwlink/?linkid=832144"
 setpath "product" "keyboardShortcutsUrlMac" "https://go.microsoft.com/fwlink/?linkid=832143"
 setpath "product" "keyboardShortcutsUrlWin" "https://go.microsoft.com/fwlink/?linkid=832145"
-setpath "product" "licenseUrl" "https://github.com/GenCode/gencode/blob/master/LICENSE"
+setpath "product" "licenseUrl" "https://github.com/VSCodium/vscodium/blob/master/LICENSE"
 setpath_json "product" "linkProtectionTrustedDomains" '["https://open-vsx.org"]'
-setpath "product" "releaseNotesUrl" "https://go.microsoft.com/fwlink/?LinkID=533483#gencode"
-setpath "product" "reportIssueUrl" "https://github.com/GenCode/gencode/issues/new"
+setpath "product" "releaseNotesUrl" "https://go.microsoft.com/fwlink/?LinkID=533483#vscode"
+setpath "product" "reportIssueUrl" "https://github.com/VSCodium/vscodium/issues/new"
 setpath "product" "requestFeatureUrl" "https://go.microsoft.com/fwlink/?LinkID=533482"
 setpath "product" "tipsAndTricksUrl" "https://go.microsoft.com/fwlink/?linkid=852118"
 setpath "product" "twitterUrl" "https://go.microsoft.com/fwlink/?LinkID=533687"
 
 if [[ "${DISABLE_UPDATE}" != "yes" ]]; then
-  setpath "product" "updateUrl" "https://raw.githubusercontent.com/GenCode/versions/refs/heads/master"
+  setpath "product" "updateUrl" "https://raw.githubusercontent.com/VSCodium/versions/refs/heads/master"
 
   if [[ "${GENCODE_QUALITY}" == "insider" ]]; then
-    setpath "product" "downloadUrl" "https://github.com/GenCode/gencode-insiders/releases"
+    setpath "product" "downloadUrl" "https://github.com/VSCodium/vscodium-insiders/releases"
   else
-    setpath "product" "downloadUrl" "https://github.com/GenCode/gencode/releases"
+    setpath "product" "downloadUrl" "https://github.com/VSCodium/vscodium/releases"
   fi
 fi
 
@@ -67,12 +67,12 @@ fi
 if [[ "${GENCODE_QUALITY}" == "insider" ]]; then
   setpath "product" "nameShort" "GenCode - Insiders"
   setpath "product" "nameLong" "GenCode - Insiders"
-  setpath "product" "applicationName" "codium-insiders"
+  setpath "product" "applicationName" "gencode-insiders"
   setpath "product" "dataFolderName" ".gencode-insiders"
   setpath "product" "linuxIconName" "gencode-insiders"
   setpath "product" "quality" "insider"
   setpath "product" "urlProtocol" "gencode-insiders"
-  setpath "product" "serverApplicationName" "codium-server-insiders"
+  setpath "product" "serverApplicationName" "gencode-server-insiders"
   setpath "product" "serverDataFolderName" ".gencode-server-insiders"
   setpath "product" "darwinBundleIdentifier" "com.gencode.GenCodeInsiders"
   setpath "product" "win32AppUserModelId" "GenCode.GenCodeInsiders"
@@ -87,7 +87,7 @@ if [[ "${GENCODE_QUALITY}" == "insider" ]]; then
   setpath "product" "win32UserAppId" "{{ED2E5618-3E7E-4888-BF3C-A6CCC84F586F}"
   setpath "product" "win32x64UserAppId" "{{20F79D0D-A9AC-4220-9A81-CE675FFB6B41}"
   setpath "product" "win32arm64UserAppId" "{{2E362F92-14EA-455A-9ABD-3E656BBBFE71}"
-  setpath "product" "tunnelApplicationName" "codium-insiders-tunnel"
+  setpath "product" "tunnelApplicationName" "gencode-insiders-tunnel"
   setpath "product" "win32TunnelServiceMutex" "gencodeinsiders-tunnelservice"
   setpath "product" "win32TunnelMutex" "gencodeinsiders-tunnel"
   setpath "product" "win32ContextMenu.x64.clsid" "90AAD229-85FD-43A3-B82D-8598A88829CF"
@@ -95,11 +95,11 @@ if [[ "${GENCODE_QUALITY}" == "insider" ]]; then
 else
   setpath "product" "nameShort" "GenCode"
   setpath "product" "nameLong" "GenCode"
-  setpath "product" "applicationName" "codium"
+  setpath "product" "applicationName" "gencode"
   setpath "product" "linuxIconName" "gencode"
   setpath "product" "quality" "stable"
   setpath "product" "urlProtocol" "gencode"
-  setpath "product" "serverApplicationName" "codium-server"
+  setpath "product" "serverApplicationName" "gencode-server"
   setpath "product" "serverDataFolderName" ".gencode-server"
   setpath "product" "darwinBundleIdentifier" "com.gencode"
   setpath "product" "win32AppUserModelId" "GenCode.GenCode"
@@ -114,7 +114,7 @@ else
   setpath "product" "win32UserAppId" "{{0FD05EB4-651E-4E78-A062-515204B47A3A}"
   setpath "product" "win32x64UserAppId" "{{2E1F05D1-C245-4562-81EE-28188DB6FD17}"
   setpath "product" "win32arm64UserAppId" "{{57FD70A5-1B8D-4875-9F40-C5553F094828}"
-  setpath "product" "tunnelApplicationName" "codium-tunnel"
+  setpath "product" "tunnelApplicationName" "gencode-tunnel"
   setpath "product" "win32TunnelServiceMutex" "gencode-tunnelservice"
   setpath "product" "win32TunnelMutex" "gencode-tunnel"
   setpath "product" "win32ContextMenu.x64.clsid" "D910D5E6-B277-4F4A-BDC5-759A34EEE25D"
@@ -183,7 +183,7 @@ done
 # }}}
 
 while IFS= read -r source; do
-  sed -i 's|@gencode/vsce-sign|@vscode/vsce-sign|g; s|@gencode/ripgrep-universal|@vscode/ripgrep-universal|g; s|@gencode/|@vscodium/|g' "${source}"
+  sed -i 's|@gencode/vsce-sign|@vscode/vsce-sign|g; s|@gencode/ripgrep-universal|@vscode/ripgrep-universal|g; s|@gencode/|@vsgencode/|g' "${source}"
 done < <(grep -rl "@gencode/" . --include='*.ts' --include='*.js' --include='package.json' --include='package-lock.json' 2>/dev/null | grep -v node_modules)
 
 if [[ -f ../tools/reconcile_branding.py ]]; then
@@ -271,43 +271,43 @@ if [[ "${OS_NAME}" == "linux" ]]; then
   # as we are renaming the application to gencode
   # we need to edit a line in the post install template
   if [[ "${GENCODE_QUALITY}" == "insider" ]]; then
-    sed -i "s/code-oss/codium-insiders/" resources/linux/debian/postinst.template
+    sed -i "s/code-oss/gencode-insiders/" resources/linux/debian/postinst.template
   else
-    sed -i "s/code-oss/codium/" resources/linux/debian/postinst.template
+    sed -i "s/code-oss/gencode/" resources/linux/debian/postinst.template
   fi
 
   # fix the packages metadata
   # code.appdata.xml
   sed -i 's|Visual Studio Code|GenCode|g' resources/linux/code.appdata.xml
-  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/GenCode/gencode#download-install|' resources/linux/code.appdata.xml
-  sed -i 's|https://code.visualstudio.com/home/home-screenshot-linux-lg.png|https://gencode.com/img/gencode.png|' resources/linux/code.appdata.xml
-  sed -i 's|https://code.visualstudio.com|https://gencode.com|' resources/linux/code.appdata.xml
+  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/VSCodium/vscodium#download-install|' resources/linux/code.appdata.xml
+  sed -i 's|https://code.visualstudio.com/home/home-screenshot-linux-lg.png|https://vscodium.com/img/vscodium.png|' resources/linux/code.appdata.xml
+  sed -i 's|https://code.visualstudio.com|https://vscodium.com|' resources/linux/code.appdata.xml
 
   # control.template
-  sed -i 's|Microsoft Corporation <gencode-linux@microsoft.com>|GenCode Team https://github.com/GenCode/gencode/graphs/contributors|'  resources/linux/debian/control.template
+  sed -i 's|Microsoft Corporation <gencode-linux@microsoft.com>|GenCode Team https://github.com/VSCodium/vscodium/graphs/contributors|'  resources/linux/debian/control.template
   sed -i 's|Visual Studio Code|GenCode|g' resources/linux/debian/control.template
-  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/GenCode/gencode#download-install|' resources/linux/debian/control.template
-  sed -i 's|https://code.visualstudio.com|https://gencode.com|' resources/linux/debian/control.template
+  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/VSCodium/vscodium#download-install|' resources/linux/debian/control.template
+  sed -i 's|https://code.visualstudio.com|https://vscodium.com|' resources/linux/debian/control.template
 
   # code.spec.template
   sed -i 's|Microsoft Corporation|GenCode Team|' resources/linux/rpm/code.spec.template
-  sed -i 's|Visual Studio Code Team <gencode-linux@microsoft.com>|GenCode Team https://github.com/GenCode/gencode/graphs/contributors|' resources/linux/rpm/code.spec.template
+  sed -i 's|Visual Studio Code Team <gencode-linux@microsoft.com>|GenCode Team https://github.com/VSCodium/vscodium/graphs/contributors|' resources/linux/rpm/code.spec.template
   sed -i 's|Visual Studio Code|GenCode|' resources/linux/rpm/code.spec.template
-  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/GenCode/gencode#download-install|' resources/linux/rpm/code.spec.template
-  sed -i 's|https://code.visualstudio.com|https://gencode.com|' resources/linux/rpm/code.spec.template
+  sed -i 's|https://code.visualstudio.com/docs/setup/linux|https://github.com/VSCodium/vscodium#download-install|' resources/linux/rpm/code.spec.template
+  sed -i 's|https://code.visualstudio.com|https://vscodium.com|' resources/linux/rpm/code.spec.template
 
   # snapcraft.yaml
   sed -i 's|Visual Studio Code|GenCode|' resources/linux/rpm/code.spec.template
 elif [[ "${OS_NAME}" == "windows" ]]; then
   # code.iss
-  sed -i 's|https://code.visualstudio.com|https://gencode.com|' build/win32/code.iss
+  sed -i 's|https://code.visualstudio.com|https://vscodium.com|' build/win32/code.iss
   sed -i 's|Microsoft Corporation|GenCode|' build/win32/code.iss
 fi
 
 if [[ -d "../extension" ]]; then
-  rm -rf extensions/codium-ai-bridge
-  mkdir -p extensions/codium-ai-bridge
-  cp -R ../extension/. extensions/codium-ai-bridge/
+  rm -rf extensions/gencode-ai-bridge
+  mkdir -p extensions/gencode-ai-bridge
+  cp -R ../extension/. extensions/gencode-ai-bridge/
 fi
 
 cd ..

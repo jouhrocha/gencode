@@ -153,9 +153,9 @@ index d3de2241..94eea2fb 100644
 +++ b/extensions/css-language-features/package.nls.json
 @@ -4,4 +4,4 @@
  	"css.title": "CSS",
--	"css.customData.desc": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/gencode-css-languageservice/blob/master/docs/customData.md).\n\nVS Code loads custom data on startup to enhance its CSS support for CSS custom properties (variables), at-rules, pseudo-classes, and pseudo-elements you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
+-	"css.customData.desc": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/vscode-css-languageservice/blob/master/docs/customData.md).\n\nVS Code loads custom data on startup to enhance its CSS support for CSS custom properties (variables), at-rules, pseudo-classes, and pseudo-elements you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
 -	"css.completion.triggerPropertyValueCompletion.desc": "By default, VS Code triggers property value completion after selecting a CSS property. Use this setting to disable this behavior.",
-+	"css.customData.desc": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/gencode-css-languageservice/blob/master/docs/customData.md).\n\nGenCode loads custom data on startup to enhance its CSS support for CSS custom properties (variables), at-rules, pseudo-classes, and pseudo-elements you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
++	"css.customData.desc": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/vscode-css-languageservice/blob/master/docs/customData.md).\n\nGenCode loads custom data on startup to enhance its CSS support for CSS custom properties (variables), at-rules, pseudo-classes, and pseudo-elements you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
 +	"css.completion.triggerPropertyValueCompletion.desc": "By default, GenCode triggers property value completion after selecting a CSS property. Use this setting to disable this behavior.",
  	"css.completion.completePropertyWithSemicolon.desc": "Insert semicolon at end of line when completing CSS properties.",
 @@ -27,3 +27,3 @@
@@ -232,8 +232,8 @@ index e8acff68..7715c7b2 100644
  			"Please make sure there is no space between the right bracket and left parenthesis:  ]( this is an internal syntax for links"
 @@ -391,6 +391,6 @@
  	"view.workbench.scm.disabled": {
--		"message": "If you would like to use Git features, please enable Git in your [settings](command:workbench.action.openSettings?%5B%22git.enabled%22%5D).\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/gencode-scm).",
-+		"message": "If you would like to use Git features, please enable Git in your [settings](command:workbench.action.openSettings?%5B%22git.enabled%22%5D).\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/gencode-scm).",
+-		"message": "If you would like to use Git features, please enable Git in your [settings](command:workbench.action.openSettings?%5B%22git.enabled%22%5D).\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/vscode-scm).",
++		"message": "If you would like to use Git features, please enable Git in your [settings](command:workbench.action.openSettings?%5B%22git.enabled%22%5D).\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/vscode-scm).",
  		"comment": [
  			"{Locked='](command:workbench.action.openSettings?%5B%22git.enabled%22%5D'}",
 -			"Do not translate the 'command:*' part inside of the '(..)'. It is an internal command syntax for VS Code",
@@ -241,8 +241,8 @@ index e8acff68..7715c7b2 100644
  			"Please make sure there is no space between the right bracket and left parenthesis:  ]( this is an internal syntax for links"
 @@ -399,6 +399,6 @@
  	"view.workbench.scm.empty": {
--		"message": "In order to use Git features, you can open a folder containing a Git repository or clone from a URL.\n[Open Folder](command:gencode.openFolder)\n[Clone Repository](command:git.cloneRecursive)\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/gencode-scm).",
-+		"message": "In order to use Git features, you can open a folder containing a Git repository or clone from a URL.\n[Open Folder](command:gencode.openFolder)\n[Clone Repository](command:git.cloneRecursive)\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/gencode-scm).",
+-		"message": "In order to use Git features, you can open a folder containing a Git repository or clone from a URL.\n[Open Folder](command:gencode.openFolder)\n[Clone Repository](command:git.cloneRecursive)\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/vscode-scm).",
++		"message": "In order to use Git features, you can open a folder containing a Git repository or clone from a URL.\n[Open Folder](command:gencode.openFolder)\n[Clone Repository](command:git.cloneRecursive)\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/vscode-scm).",
  		"comment": [
  			"{Locked='](command:gencode.openFolder'}",
 -			"Do not translate the 'command:*' part inside of the '(..)'. It is an internal command syntax for VS Code",
@@ -250,8 +250,8 @@ index e8acff68..7715c7b2 100644
  			"Please make sure there is no space between the right bracket and left parenthesis:  ]( this is an internal syntax for links"
 @@ -407,6 +407,6 @@
  	"view.workbench.scm.folder": {
--		"message": "The folder currently open doesn't have a Git repository. You can initialize a repository which will enable source control features powered by Git.\n[Initialize Repository](command:git.init?%5Btrue%5D)\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/gencode-scm).",
-+		"message": "The folder currently open doesn't have a Git repository. You can initialize a repository which will enable source control features powered by Git.\n[Initialize Repository](command:git.init?%5Btrue%5D)\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/gencode-scm).",
+-		"message": "The folder currently open doesn't have a Git repository. You can initialize a repository which will enable source control features powered by Git.\n[Initialize Repository](command:git.init?%5Btrue%5D)\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/vscode-scm).",
++		"message": "The folder currently open doesn't have a Git repository. You can initialize a repository which will enable source control features powered by Git.\n[Initialize Repository](command:git.init?%5Btrue%5D)\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/vscode-scm).",
  		"comment": [
  			"{Locked='](command:git.init?%5Btrue%5D'}",
 -			"Do not translate the 'command:*' part inside of the '(..)'. It is an internal command syntax for VS Code",
@@ -259,8 +259,8 @@ index e8acff68..7715c7b2 100644
  			"Please make sure there is no space between the right bracket and left parenthesis:  ]( this is an internal syntax for links"
 @@ -415,6 +415,6 @@
  	"view.workbench.scm.workspace": {
--		"message": "The workspace currently open doesn't have any folders containing Git repositories. You can initialize a repository on a folder which will enable source control features powered by Git.\n[Initialize Repository](command:git.init)\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/gencode-scm).",
-+		"message": "The workspace currently open doesn't have any folders containing Git repositories. You can initialize a repository on a folder which will enable source control features powered by Git.\n[Initialize Repository](command:git.init)\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/gencode-scm).",
+-		"message": "The workspace currently open doesn't have any folders containing Git repositories. You can initialize a repository on a folder which will enable source control features powered by Git.\n[Initialize Repository](command:git.init)\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/vscode-scm).",
++		"message": "The workspace currently open doesn't have any folders containing Git repositories. You can initialize a repository on a folder which will enable source control features powered by Git.\n[Initialize Repository](command:git.init)\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/vscode-scm).",
  		"comment": [
  			"{Locked='](command:git.init'}",
 -			"Do not translate the 'command:*' part inside of the '(..)'. It is an internal command syntax for VS Code",
@@ -268,8 +268,8 @@ index e8acff68..7715c7b2 100644
  			"Please make sure there is no space between the right bracket and left parenthesis:  ]( this is an internal syntax for links"
 @@ -423,6 +423,6 @@
  	"view.workbench.scm.emptyWorkspace": {
--		"message": "The workspace currently open doesn't have any folders containing Git repositories.\n[Add Folder to Workspace](command:workbench.action.addRootFolder)\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/gencode-scm).",
-+		"message": "The workspace currently open doesn't have any folders containing Git repositories.\n[Add Folder to Workspace](command:workbench.action.addRootFolder)\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/gencode-scm).",
+-		"message": "The workspace currently open doesn't have any folders containing Git repositories.\n[Add Folder to Workspace](command:workbench.action.addRootFolder)\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/vscode-scm).",
++		"message": "The workspace currently open doesn't have any folders containing Git repositories.\n[Add Folder to Workspace](command:workbench.action.addRootFolder)\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/vscode-scm).",
  		"comment": [
  			"{Locked='](command:workbench.action.addRootFolder'}",
 -			"Do not translate the 'command:*' part inside of the '(..)'. It is an internal command syntax for VS Code",
@@ -297,8 +297,8 @@ index e8acff68..7715c7b2 100644
  			"Please make sure there is no space between the right bracket and left parenthesis:  ]( this is an internal syntax for links"
 @@ -471,6 +471,6 @@
  	"view.workbench.scm.closedRepository": {
--		"message": "A Git repository was found that was previously closed.\n[Reopen Closed Repository](command:git.reopenClosedRepositories)\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/gencode-scm).",
-+		"message": "A Git repository was found that was previously closed.\n[Reopen Closed Repository](command:git.reopenClosedRepositories)\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/gencode-scm).",
+-		"message": "A Git repository was found that was previously closed.\n[Reopen Closed Repository](command:git.reopenClosedRepositories)\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/vscode-scm).",
++		"message": "A Git repository was found that was previously closed.\n[Reopen Closed Repository](command:git.reopenClosedRepositories)\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/vscode-scm).",
  		"comment": [
  			"{Locked='](command:git.reopenClosedRepositories'}",
 -			"Do not translate the 'command:*' part inside of the '(..)'. It is an internal command syntax for VS Code",
@@ -306,8 +306,8 @@ index e8acff68..7715c7b2 100644
  			"Please make sure there is no space between the right bracket and left parenthesis:  ]( this is an internal syntax for links"
 @@ -479,6 +479,6 @@
  	"view.workbench.scm.closedRepositories": {
--		"message": "Git repositories were found that were previously closed.\n[Reopen Closed Repositories](command:git.reopenClosedRepositories)\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/gencode-scm).",
-+		"message": "Git repositories were found that were previously closed.\n[Reopen Closed Repositories](command:git.reopenClosedRepositories)\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/gencode-scm).",
+-		"message": "Git repositories were found that were previously closed.\n[Reopen Closed Repositories](command:git.reopenClosedRepositories)\nTo learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/vscode-scm).",
++		"message": "Git repositories were found that were previously closed.\n[Reopen Closed Repositories](command:git.reopenClosedRepositories)\nTo learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/vscode-scm).",
  		"comment": [
  			"{Locked='](command:git.reopenClosedRepositories'}",
 -			"Do not translate the 'command:*' part inside of the '(..)'. It is an internal command syntax for VS Code",
@@ -320,8 +320,8 @@ index e8acff68..7715c7b2 100644
  			"Please make sure there is no space between the right bracket and left parenthesis:  ]( this is an internal syntax for links"
 @@ -494,3 +494,3 @@
  	},
--	"view.workbench.learnMore": "To learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/gencode-scm)."
-+	"view.workbench.learnMore": "To learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/gencode-scm)."
+-	"view.workbench.learnMore": "To learn more about how to use Git and source control in VS Code [read our docs](https://aka.ms/vscode-scm)."
++	"view.workbench.learnMore": "To learn more about how to use Git and source control in GenCode [read our docs](https://aka.ms/vscode-scm)."
  }
 diff --git a/extensions/github/package.nls.json b/extensions/github/package.nls.json
 index 04497595..70a7c7ce 100644
@@ -373,8 +373,8 @@ index 21bbbad9..5ebe9edf 100644
 +++ b/extensions/html-language-features/package.nls.json
 @@ -3,3 +3,3 @@
  	"description": "Provides rich language support for HTML and Handlebar files",
--	"html.customData.desc": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/gencode-html-languageservice/blob/master/docs/customData.md).\n\nVS Code loads custom data on startup to enhance its HTML support for the custom HTML tags, attributes and attribute values you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
-+	"html.customData.desc": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/gencode-html-languageservice/blob/master/docs/customData.md).\n\nGenCode loads custom data on startup to enhance its HTML support for the custom HTML tags, attributes and attribute values you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
+-	"html.customData.desc": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/vscode-html-languageservice/blob/master/docs/customData.md).\n\nVS Code loads custom data on startup to enhance its HTML support for the custom HTML tags, attributes and attribute values you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
++	"html.customData.desc": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/vscode-html-languageservice/blob/master/docs/customData.md).\n\nGenCode loads custom data on startup to enhance its HTML support for the custom HTML tags, attributes and attribute values you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
  	"html.format.enable.desc": "Enable/disable default HTML formatter.",
 @@ -26,3 +26,3 @@
  	"html.suggest.hideEndTagSuggestions.desc": "Controls whether the built-in HTML language support suggests closing tags. When disabled, end tag completions like `</div>` will not be shown.",
@@ -387,8 +387,8 @@ index 205143c3..cc9f918a 100644
 +++ b/extensions/html-language-features/schemas/package.schema.json
 @@ -9,3 +9,3 @@
  					"type": "array",
--					"markdownDescription": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/gencode-html-languageservice/blob/master/docs/customData.md).\n\nVS Code loads custom data on startup to enhance its HTML support for the custom HTML tags, attributes and attribute values you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
-+					"markdownDescription": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/gencode-html-languageservice/blob/master/docs/customData.md).\n\nGenCode loads custom data on startup to enhance its HTML support for the custom HTML tags, attributes and attribute values you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
+-					"markdownDescription": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/vscode-html-languageservice/blob/master/docs/customData.md).\n\nVS Code loads custom data on startup to enhance its HTML support for the custom HTML tags, attributes and attribute values you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
++					"markdownDescription": "A list of relative file paths pointing to JSON files following the [custom data format](https://github.com/microsoft/vscode-html-languageservice/blob/master/docs/customData.md).\n\nGenCode loads custom data on startup to enhance its HTML support for the custom HTML tags, attributes and attribute values you specify in the JSON files.\n\nThe file paths are relative to workspace and only workspace folder settings are considered.",
  					"items": {
 diff --git a/extensions/jake/package.nls.json b/extensions/jake/package.nls.json
 index e82030ef..ac999f61 100644
@@ -1636,9 +1636,9 @@ index 168a3d01..d64d47ba 100644
  				{
 @@ -281,4 +221,4 @@ export const walkthroughs: GettingStartedWalkthroughContent = [
  					title: localize('gettingStarted.videoTutorial.title', "Watch video tutorials"),
--					description: localize('gettingStarted.videoTutorial.description.interpolated', "Watch the first in a series of short & practical video tutorials for VS Code's key features.\n{0}", Button(localize('watch', "Watch Tutorial"), 'https://aka.ms/gencode-getting-started-video')),
+-					description: localize('gettingStarted.videoTutorial.description.interpolated', "Watch the first in a series of short & practical video tutorials for VS Code's key features.\n{0}", Button(localize('watch', "Watch Tutorial"), 'https://aka.ms/vscode-getting-started-video')),
 -					media: { type: 'svg', altText: 'VS Code Settings', path: 'learn.svg' },
-+					description: localize('gettingStarted.videoTutorial.description.interpolated', "Watch the first in a series of short & practical video tutorials for GenCode's key features.\n{0}", Button(localize('watch', "Watch Tutorial"), 'https://aka.ms/gencode-getting-started-video')),
++					description: localize('gettingStarted.videoTutorial.description.interpolated', "Watch the first in a series of short & practical video tutorials for GenCode's key features.\n{0}", Button(localize('watch', "Watch Tutorial"), 'https://aka.ms/vscode-getting-started-video')),
 +					media: { type: 'svg', altText: 'GenCode Settings', path: 'learn.svg' },
  				}
 @@ -290,3 +230,3 @@ export const walkthroughs: GettingStartedWalkthroughContent = [

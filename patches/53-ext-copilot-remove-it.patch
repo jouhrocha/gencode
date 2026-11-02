@@ -1170,7 +1170,7 @@ index 3988197d..a34db59d 100644
      },
 -    "node_modules/@gencode/copilot-api": {
 -      "version": "0.5.2",
--      "resolved": "https://registry.npmjs.org/@gencode/copilot-api/-/copilot-api-0.5.2.tgz",
+-      "resolved": "https://registry.npmjs.org/@vscode/copilot-api/-/copilot-api-0.5.2.tgz",
 -      "integrity": "sha512-U+2jyi0/Hpum2ZnED47cVFKgx5+p+thRhOPDKc1+t2PVAzsKlr3aJPKxMeMLOIXGWyLuQcng5BuFvj1vxD1d8w==",
 -      "license": "SEE LICENSE"
 -    },
@@ -1237,7 +1237,7 @@ index 3988197d..a34db59d 100644
      },
 -    "node_modules/gencode-jsonrpc": {
 -      "version": "8.2.1",
--      "resolved": "https://registry.npmjs.org/gencode-jsonrpc/-/gencode-jsonrpc-8.2.1.tgz",
+-      "resolved": "https://registry.npmjs.org/vscode-jsonrpc/-/vscode-jsonrpc-8.2.1.tgz",
 -      "integrity": "sha512-kdjOSJ2lLIn7r1rtrMbbNCHjyMPfRnowdKjBQ+mGq6NAW5QY2bEZC/khaC5OR8svbbjvLEaIXkOq45e2X9BIbQ==",
 -      "license": "MIT",
 -      "engines": {
@@ -1757,7 +1757,7 @@ index e0ee079f..752f57a5 100644
      },
 -    "node_modules/@gencode/copilot-api": {
 -      "version": "0.5.2",
--      "resolved": "https://registry.npmjs.org/@gencode/copilot-api/-/copilot-api-0.5.2.tgz",
+-      "resolved": "https://registry.npmjs.org/@vscode/copilot-api/-/copilot-api-0.5.2.tgz",
 -      "integrity": "sha512-U+2jyi0/Hpum2ZnED47cVFKgx5+p+thRhOPDKc1+t2PVAzsKlr3aJPKxMeMLOIXGWyLuQcng5BuFvj1vxD1d8w==",
 -      "license": "SEE LICENSE"
 -    },
@@ -1799,7 +1799,7 @@ index e0ee079f..752f57a5 100644
      },
 -    "node_modules/gencode-jsonrpc": {
 -      "version": "8.2.1",
--      "resolved": "https://registry.npmjs.org/gencode-jsonrpc/-/gencode-jsonrpc-8.2.1.tgz",
+-      "resolved": "https://registry.npmjs.org/vscode-jsonrpc/-/vscode-jsonrpc-8.2.1.tgz",
 -      "integrity": "sha512-kdjOSJ2lLIn7r1rtrMbbNCHjyMPfRnowdKjBQ+mGq6NAW5QY2bEZC/khaC5OR8svbbjvLEaIXkOq45e2X9BIbQ==",
 -      "license": "MIT",
 -      "engines": {

@@ -8,8 +8,8 @@ index fdf68387..f8adb5e1 100644
  
 @@ -99,3 +100,3 @@ const compilations = [
  
--const getBaseUrl = (out: string) => `https://main.gencode-cdn.net/sourcemaps/${commit}/${out}`;
-+const getBaseUrl = (out: string) => `https://github.com/GenCode/sourcemaps/releases/download/${product.quality}-${commit}/extensions-${out.replaceAll('/', '-')}`;
+-const getBaseUrl = (out: string) => `https://main.vscode-cdn.net/sourcemaps/${commit}/${out}`;
++const getBaseUrl = (out: string) => `https://github.com/VSCodium/sourcemaps/releases/download/${product.quality}-${commit}/extensions-${out.replaceAll('/', '-')}`;
  
 diff --git a/build/gulpfile.reh.ts b/build/gulpfile.reh.ts
 index c643cf99..31bb52ee 100644
@@ -17,8 +17,8 @@ index c643cf99..31bb52ee 100644
 +++ b/build/gulpfile.reh.ts
 @@ -536,3 +536,3 @@ function prepareCopilotRipgrepShimTaskREH(platform: string, arch: string, destin
  	const esbuildBundleTask = task.define(`esbuild-gencode-${type}`, () => runEsbuildBundle(`out-gencode-${type}`, false, true, target));
--	const esbuildBundleMinTask = task.define(`esbuild-gencode-${type}-min`, () => runEsbuildBundle(`out-gencode-${type}-min`, true, true, target, `https://main.gencode-cdn.net/sourcemaps/${commit}/core`));
-+	const esbuildBundleMinTask = task.define(`esbuild-gencode-${type}-min`, () => runEsbuildBundle(`out-gencode-${type}-min`, true, true, target, `https://github.com/GenCode/sourcemaps/releases/download/${product.quality}-${commit}/core`));
+-	const esbuildBundleMinTask = task.define(`esbuild-gencode-${type}-min`, () => runEsbuildBundle(`out-gencode-${type}-min`, true, true, target, `https://main.vscode-cdn.net/sourcemaps/${commit}/core`));
++	const esbuildBundleMinTask = task.define(`esbuild-gencode-${type}-min`, () => runEsbuildBundle(`out-gencode-${type}-min`, true, true, target, `https://github.com/VSCodium/sourcemaps/releases/download/${product.quality}-${commit}/core`));
  
 diff --git a/build/gulpfile.vscode.ts b/build/gulpfile.vscode.ts
 index 95ae1790..46af72f8 100644
@@ -26,8 +26,8 @@ index 95ae1790..46af72f8 100644
 +++ b/build/gulpfile.vscode.ts
 @@ -61,3 +61,3 @@ function getLockedPackageVersion(packageName: string): string {
  
--const sourceMappingURLBase = `https://main.gencode-cdn.net/sourcemaps/${commit}`;
-+const sourceMappingURLBase = `https://github.com/GenCode/sourcemaps/releases/download/${product.quality}-${commit}`;
+-const sourceMappingURLBase = `https://main.vscode-cdn.net/sourcemaps/${commit}`;
++const sourceMappingURLBase = `https://github.com/VSCodium/sourcemaps/releases/download/${product.quality}-${commit}`;
  const isCI = !!process.env['CI'] || !!process.env['BUILD_ARTIFACTSTAGINGDIRECTORY'] || !!process.env['GITHUB_WORKSPACE'];
 diff --git a/build/gulpfile.vscode.web.ts b/build/gulpfile.vscode.web.ts
 index 6afedb64..9b68bf0a 100644
@@ -35,8 +35,8 @@ index 6afedb64..9b68bf0a 100644
 +++ b/build/gulpfile.vscode.web.ts
 @@ -28,3 +28,3 @@ const version = (quality && quality !== 'stable') ? `${packageJson.version}-${qu
  
--const sourceMappingURLBase = `https://main.gencode-cdn.net/sourcemaps/${commit}`;
-+const sourceMappingURLBase = `https://github.com/GenCode/sourcemaps/releases/download/${product.quality}-${commit}`;
+-const sourceMappingURLBase = `https://main.vscode-cdn.net/sourcemaps/${commit}`;
++const sourceMappingURLBase = `https://github.com/VSCodium/sourcemaps/releases/download/${product.quality}-${commit}`;
  const esbuildBundleGenCodeWebTask = task.define('esbuild-gencode-web', () => runEsbuildBundle('out-gencode-web', false, true, 'web'));
 diff --git a/build/lib/extensions.ts b/build/lib/extensions.ts
 index 10bd9fbd..d6494c55 100644
@@ -45,7 +45,7 @@ index 10bd9fbd..d6494c55 100644
 @@ -29,4 +29,2 @@ const require = createRequire(import.meta.url);
  const root = path.dirname(path.dirname(import.meta.dirname));
 -// const commit = getVersion(root);
--// const sourceMappingURLBase = `https://main.gencode-cdn.net/sourcemaps/${commit}`;
+-// const sourceMappingURLBase = `https://main.vscode-cdn.net/sourcemaps/${commit}`;
  
 diff --git a/build/lib/util.ts b/build/lib/util.ts
 index 82135b31..58385d41 100644

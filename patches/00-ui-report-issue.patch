@@ -35,7 +35,7 @@ index b7734ab7..840638f1 100644
 -		}
 -		const controller = new AbortController();
 -		this.similarIssueSearch.value = toDisposable(() => controller.abort());
--		const url = 'https://gencode-probot.westus.cloudapp.azure.com:7890/duplicate_candidates';
+-		const url = 'https://vscode-probot.westus.cloudapp.azure.com:7890/duplicate_candidates';
 -		const init = {
 -			method: 'POST',
 -			body: JSON.stringify({
@@ -97,11 +97,11 @@ index 10fde69b..77ca0b63 100644
  const reviewGuidanceLabel = localize( // intentionally not escaped because of its embedded tags
 @@ -19,3 +19,3 @@ const reviewGuidanceLabel = localize( // intentionally not escaped because of it
  		comment: [
--			'{Locked="<a href=\"https://github.com/microsoft/gencode/wiki/Submitting-Bugs-and-Suggestions\" target=\"_blank\">"}',
+-			'{Locked="<a href=\"https://github.com/microsoft/vscode/wiki/Submitting-Bugs-and-Suggestions\" target=\"_blank\">"}',
 +			'{Locked="<a href=\"https://github.com/!!GH_REPO_PATH!!/wiki/Submitting-Bugs-and-Suggestions\" target=\"_blank\">"}',
  			'{Locked="</a>"}'
 @@ -23,3 +23,3 @@ const reviewGuidanceLabel = localize( // intentionally not escaped because of it
  	},
--	'Before you report an issue here please <a href="https://github.com/microsoft/gencode/wiki/Submitting-Bugs-and-Suggestions" target="_blank">review the guidance we provide</a>. Please complete the form in English.'
+-	'Before you report an issue here please <a href="https://github.com/microsoft/vscode/wiki/Submitting-Bugs-and-Suggestions" target="_blank">review the guidance we provide</a>. Please complete the form in English.'
 +	'Before you report an issue here please <a href="https://github.com/!!GH_REPO_PATH!!/wiki/Submitting-Bugs-and-Suggestions" target="_blank">review the guidance we provide</a>. Please complete the form in English.'
  );

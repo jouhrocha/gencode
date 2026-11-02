@@ -194,7 +194,7 @@ index 4bcbd35c..d09337f6 100644
      },
 -    "node_modules/@gencode/os-proxy-resolver": {
 -      "version": "0.4.0",
--      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver/-/os-proxy-resolver-0.4.0.tgz",
+-      "resolved": "https://registry.npmjs.org/@vscode/os-proxy-resolver/-/os-proxy-resolver-0.4.0.tgz",
 -      "integrity": "sha512-bSwx24M7okqbI7B57jfARm/ICCPB4w22lXk5YlROmzJ3j5ponIiya23OqMwFNFLtoQktWkbpxxafVL0BBpbRQw==",
 -      "license": "MIT",
 -      "engines": {
@@ -214,7 +214,7 @@ index 4bcbd35c..d09337f6 100644
 -    },
 -    "node_modules/@gencode/os-proxy-resolver-darwin-arm64": {
 -      "version": "0.4.0",
--      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-darwin-arm64/-/os-proxy-resolver-darwin-arm64-0.4.0.tgz",
+-      "resolved": "https://registry.npmjs.org/@vscode/os-proxy-resolver-darwin-arm64/-/os-proxy-resolver-darwin-arm64-0.4.0.tgz",
 -      "integrity": "sha512-QNYOWxTaQ9D/rUf88LjOPYAkMXsX2yGvECW/6Ii0BO5gBr7lZZRDa7lfYqjjcmIiJoxxu/83Wi1pXlB0ZT9UDw==",
 -      "cpu": [
 -        "arm64"
@@ -227,7 +227,7 @@ index 4bcbd35c..d09337f6 100644
 -    },
 -    "node_modules/@gencode/os-proxy-resolver-darwin-x64": {
 -      "version": "0.4.0",
--      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-darwin-x64/-/os-proxy-resolver-darwin-x64-0.4.0.tgz",
+-      "resolved": "https://registry.npmjs.org/@vscode/os-proxy-resolver-darwin-x64/-/os-proxy-resolver-darwin-x64-0.4.0.tgz",
 -      "integrity": "sha512-nV9DTpit6VoVLPOpIr9NVWfDSgql8C62PWkVLumCANF5xqLsHyKjuX/UJ53/WPmOl7Sf7Z+J4tNzQpGSCdV8fg==",
 -      "cpu": [
 -        "x64"
@@ -240,7 +240,7 @@ index 4bcbd35c..d09337f6 100644
 -    },
 -    "node_modules/@gencode/os-proxy-resolver-linux-arm-gnueabihf": {
 -      "version": "0.4.0",
--      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-linux-arm-gnueabihf/-/os-proxy-resolver-linux-arm-gnueabihf-0.4.0.tgz",
+-      "resolved": "https://registry.npmjs.org/@vscode/os-proxy-resolver-linux-arm-gnueabihf/-/os-proxy-resolver-linux-arm-gnueabihf-0.4.0.tgz",
 -      "integrity": "sha512-FOMiZzOe/3IWN/FIGeefF7/R1s3uH7dwqq+4FwBagxhlmEtXfaeJMSInZ56wBrNxXUJXAI/Fsetjm+7eOfCygQ==",
 -      "cpu": [
 -        "arm"
@@ -253,7 +253,7 @@ index 4bcbd35c..d09337f6 100644
 -    },
 -    "node_modules/@gencode/os-proxy-resolver-linux-arm64-gnu": {
 -      "version": "0.4.0",
--      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-linux-arm64-gnu/-/os-proxy-resolver-linux-arm64-gnu-0.4.0.tgz",
+-      "resolved": "https://registry.npmjs.org/@vscode/os-proxy-resolver-linux-arm64-gnu/-/os-proxy-resolver-linux-arm64-gnu-0.4.0.tgz",
 -      "integrity": "sha512-YG9NIXolWmD7x5aLWPGP1UQKfErNonHBT9fSvKuDL6DspGyQJFKkyqudTzHu1ykSgwb1VuWmMSckQQoFhYL6ew==",
 -      "cpu": [
 -        "arm64"
@@ -266,7 +266,7 @@ index 4bcbd35c..d09337f6 100644
 -    },
 -    "node_modules/@gencode/os-proxy-resolver-linux-arm64-musl": {
 -      "version": "0.4.0",
--      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-linux-arm64-musl/-/os-proxy-resolver-linux-arm64-musl-0.4.0.tgz",
+-      "resolved": "https://registry.npmjs.org/@vscode/os-proxy-resolver-linux-arm64-musl/-/os-proxy-resolver-linux-arm64-musl-0.4.0.tgz",
 -      "integrity": "sha512-DnQ/dGjJoQeWgWRqGtXoJlAW1NIbewG5BmbvM8F+w5edgiTw2zLKwVpDVfaERg/Gkn+vXegfzyhOpjPaNyfXIQ==",
 -      "cpu": [
 -        "arm64"
@@ -279,7 +279,7 @@ index 4bcbd35c..d09337f6 100644
 -    },
 -    "node_modules/@gencode/os-proxy-resolver-linux-x64-gnu": {
 -      "version": "0.4.0",
--      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-linux-x64-gnu/-/os-proxy-resolver-linux-x64-gnu-0.4.0.tgz",
+-      "resolved": "https://registry.npmjs.org/@vscode/os-proxy-resolver-linux-x64-gnu/-/os-proxy-resolver-linux-x64-gnu-0.4.0.tgz",
 -      "integrity": "sha512-aIginNUW2UjUDqiDj15PlGz4qzlWZHsNnpcTF6dHMePOGvgjJYdy7I7jNE7Itg6tkTwEh+OY0L2dyUqHRGlw9g==",
 -      "cpu": [
 -        "x64"
@@ -292,7 +292,7 @@ index 4bcbd35c..d09337f6 100644
 -    },
 -    "node_modules/@gencode/os-proxy-resolver-linux-x64-musl": {
 -      "version": "0.4.0",
--      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-linux-x64-musl/-/os-proxy-resolver-linux-x64-musl-0.4.0.tgz",
+-      "resolved": "https://registry.npmjs.org/@vscode/os-proxy-resolver-linux-x64-musl/-/os-proxy-resolver-linux-x64-musl-0.4.0.tgz",
 -      "integrity": "sha512-3f7tzRzyUmT4N9pmdY2mJV1pntkRk61UsB41/MqzI50C+N3byIAmB3HkhYtLPibDNfH8t5ISTl/vOc3ixpk1bw==",
 -      "cpu": [
 -        "x64"
@@ -305,7 +305,7 @@ index 4bcbd35c..d09337f6 100644
 -    },
 -    "node_modules/@gencode/os-proxy-resolver-win32-arm64-msvc": {
 -      "version": "0.4.0",
--      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-win32-arm64-msvc/-/os-proxy-resolver-win32-arm64-msvc-0.4.0.tgz",
+-      "resolved": "https://registry.npmjs.org/@vscode/os-proxy-resolver-win32-arm64-msvc/-/os-proxy-resolver-win32-arm64-msvc-0.4.0.tgz",
 -      "integrity": "sha512-g9kDAbc/PrNdWArYvJmEwrKInZzvmizV83dc2lisHqFa9g9Iq6nFT7KJMVfVjJ6ZmhijuwCYpu91ikjNMnC5Wg==",
 -      "cpu": [
 -        "arm64"
@@ -318,7 +318,7 @@ index 4bcbd35c..d09337f6 100644
 -    },
 -    "node_modules/@gencode/os-proxy-resolver-win32-x64-msvc": {
 -      "version": "0.4.0",
--      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-win32-x64-msvc/-/os-proxy-resolver-win32-x64-msvc-0.4.0.tgz",
+-      "resolved": "https://registry.npmjs.org/@vscode/os-proxy-resolver-win32-x64-msvc/-/os-proxy-resolver-win32-x64-msvc-0.4.0.tgz",
 -      "integrity": "sha512-35NrEYB8MKug3dui465JAV83lHi8pKeM7T4yUNLLAG7z/zFO3fpbB7FgQ+rh4AyZF9QwPvEvy8UgYqXmjA36aw==",
 -      "cpu": [
 -        "x64"
@@ -334,7 +334,7 @@ index 4bcbd35c..d09337f6 100644
      },
 +    "node_modules/@gencode/os-proxy-resolver": {
 +      "version": "0.4.0-265898",
-+      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver/-/os-proxy-resolver-0.4.0-265898.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/os-proxy-resolver/-/os-proxy-resolver-0.4.0-265898.tgz",
 +      "integrity": "sha512-n794Q8JvlKDtltXQyTEX2kbj09I4hcV3tta175ieE2zUPmqDvKiiJ46dL/gzlLJINbXq0o0hdrX+IdmB8NH2Vw==",
 +      "license": "MIT",
 +      "engines": {
@@ -357,7 +357,7 @@ index 4bcbd35c..d09337f6 100644
 +    },
 +    "node_modules/@gencode/os-proxy-resolver-darwin-arm64": {
 +      "version": "0.4.0-265898",
-+      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-darwin-arm64/-/os-proxy-resolver-darwin-arm64-0.4.0-265898.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/os-proxy-resolver-darwin-arm64/-/os-proxy-resolver-darwin-arm64-0.4.0-265898.tgz",
 +      "integrity": "sha512-Yu3ocEBRbbaUp2f5PQpzgRHUBwmtq3DgkTeTXHuTTDMN1s3NaAharp8KzbeZytqsixsJrY/RDI+nXVrjufLtqw==",
 +      "cpu": [
 +        "arm64"
@@ -370,7 +370,7 @@ index 4bcbd35c..d09337f6 100644
 +    },
 +    "node_modules/@gencode/os-proxy-resolver-darwin-x64": {
 +      "version": "0.4.0-265898",
-+      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-darwin-x64/-/os-proxy-resolver-darwin-x64-0.4.0-265898.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/os-proxy-resolver-darwin-x64/-/os-proxy-resolver-darwin-x64-0.4.0-265898.tgz",
 +      "integrity": "sha512-qBBlZKFkKyc1GkKLsrO0pitEWtegalVzCBJAuEopSUlz77OyIzy6rd+qtHZrBXHl49DdY0oy6QJEyv3AAfvCjA==",
 +      "cpu": [
 +        "x64"
@@ -383,7 +383,7 @@ index 4bcbd35c..d09337f6 100644
 +    },
 +    "node_modules/@gencode/os-proxy-resolver-linux-arm-gnueabihf": {
 +      "version": "0.4.0-265898",
-+      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-linux-arm-gnueabihf/-/os-proxy-resolver-linux-arm-gnueabihf-0.4.0-265898.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/os-proxy-resolver-linux-arm-gnueabihf/-/os-proxy-resolver-linux-arm-gnueabihf-0.4.0-265898.tgz",
 +      "integrity": "sha512-c3vowwoR+H0L9Kv8zCgui45GY4dmpv/25RCSqtwygP0O/oFT4u2m3wBObjhwfu8mCuOu8v31e9inVm4c7BsPIA==",
 +      "cpu": [
 +        "arm"
@@ -399,7 +399,7 @@ index 4bcbd35c..d09337f6 100644
 +    },
 +    "node_modules/@gencode/os-proxy-resolver-linux-arm64-gnu": {
 +      "version": "0.4.0-265898",
-+      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-linux-arm64-gnu/-/os-proxy-resolver-linux-arm64-gnu-0.4.0-265898.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/os-proxy-resolver-linux-arm64-gnu/-/os-proxy-resolver-linux-arm64-gnu-0.4.0-265898.tgz",
 +      "integrity": "sha512-f8Rr4dJ5oRFKFH6FqqCpS2VZmexfQQhlJXfhOA+0uZ2CwXURSy80Evo84PbHkNWexKeIwsgINSOs0S9/KSG6mw==",
 +      "cpu": [
 +        "arm64"
@@ -415,7 +415,7 @@ index 4bcbd35c..d09337f6 100644
 +    },
 +    "node_modules/@gencode/os-proxy-resolver-linux-arm64-musl": {
 +      "version": "0.4.0-265898",
-+      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-linux-arm64-musl/-/os-proxy-resolver-linux-arm64-musl-0.4.0-265898.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/os-proxy-resolver-linux-arm64-musl/-/os-proxy-resolver-linux-arm64-musl-0.4.0-265898.tgz",
 +      "integrity": "sha512-dAN+nHmjAy+Z8fewPfyaT7hxUq8Jih8XGkuqXQocI3FEYZOBVdCykyGXqsDBFgcCjW9fCtnZniMLDvStBceKtA==",
 +      "cpu": [
 +        "arm64"
@@ -431,7 +431,7 @@ index 4bcbd35c..d09337f6 100644
 +    },
 +    "node_modules/@gencode/os-proxy-resolver-linux-loong64-gnu": {
 +      "version": "0.4.0-265898",
-+      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-linux-loong64-gnu/-/os-proxy-resolver-linux-loong64-gnu-0.4.0-265898.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/os-proxy-resolver-linux-loong64-gnu/-/os-proxy-resolver-linux-loong64-gnu-0.4.0-265898.tgz",
 +      "integrity": "sha512-4uVdPoaNhc91buooN1ipO47b99t5+tEtU1e6KEbn95SuQIr+MH2Nm6fV+aQ+54gkxFtiKylpV6Gre1GmoVsrlQ==",
 +      "cpu": [
 +        "loong64"
@@ -447,7 +447,7 @@ index 4bcbd35c..d09337f6 100644
 +    },
 +    "node_modules/@gencode/os-proxy-resolver-linux-ppc64le-gnu": {
 +      "version": "0.4.0-265898",
-+      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-linux-ppc64le-gnu/-/os-proxy-resolver-linux-ppc64le-gnu-0.4.0-265898.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/os-proxy-resolver-linux-ppc64le-gnu/-/os-proxy-resolver-linux-ppc64le-gnu-0.4.0-265898.tgz",
 +      "integrity": "sha512-hgPyoX6U8w6hwj1tZ/1SSZycebO6l0hU5xkgOmkJbaIU7QDKDqWlOhlflIg7/nm8muE35xhnLyy7AIh39NfHxQ==",
 +      "cpu": [
 +        "ppc64"
@@ -463,7 +463,7 @@ index 4bcbd35c..d09337f6 100644
 +    },
 +    "node_modules/@gencode/os-proxy-resolver-linux-riscv64-gnu": {
 +      "version": "0.4.0-265898",
-+      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-linux-riscv64-gnu/-/os-proxy-resolver-linux-riscv64-gnu-0.4.0-265898.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/os-proxy-resolver-linux-riscv64-gnu/-/os-proxy-resolver-linux-riscv64-gnu-0.4.0-265898.tgz",
 +      "integrity": "sha512-ozy6nAsqak+h3BCvj2Ct9hO+SKZOCT9w1UGMjbUDqFXUfVjc4sUujRLeYM1HZhRSVYEzXEUP1ahwtZTNar+plw==",
 +      "cpu": [
 +        "riscv64"
@@ -479,7 +479,7 @@ index 4bcbd35c..d09337f6 100644
 +    },
 +    "node_modules/@gencode/os-proxy-resolver-linux-x64-gnu": {
 +      "version": "0.4.0-265898",
-+      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-linux-x64-gnu/-/os-proxy-resolver-linux-x64-gnu-0.4.0-265898.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/os-proxy-resolver-linux-x64-gnu/-/os-proxy-resolver-linux-x64-gnu-0.4.0-265898.tgz",
 +      "integrity": "sha512-7s0ExWUrFbn/npY9PFYDVFEbp+EN7iHgUyIC8RMYlJ9JHEpdzLhhP1N8nnCNUOR1VVXoXtPUhk/LSlxWikIcCg==",
 +      "cpu": [
 +        "x64"
@@ -495,7 +495,7 @@ index 4bcbd35c..d09337f6 100644
 +    },
 +    "node_modules/@gencode/os-proxy-resolver-linux-x64-musl": {
 +      "version": "0.4.0-265898",
-+      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-linux-x64-musl/-/os-proxy-resolver-linux-x64-musl-0.4.0-265898.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/os-proxy-resolver-linux-x64-musl/-/os-proxy-resolver-linux-x64-musl-0.4.0-265898.tgz",
 +      "integrity": "sha512-lEnjDKukoiFt0TWzfq8yVBbSDtRd1H1m3xHgJv53p07U2V7b4UpA9ykbv6PKXv7Y/kRGdKFlwu42RhQNsCiJsQ==",
 +      "cpu": [
 +        "x64"
@@ -511,7 +511,7 @@ index 4bcbd35c..d09337f6 100644
 +    },
 +    "node_modules/@gencode/os-proxy-resolver-win32-arm64-msvc": {
 +      "version": "0.4.0-265898",
-+      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-win32-arm64-msvc/-/os-proxy-resolver-win32-arm64-msvc-0.4.0-265898.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/os-proxy-resolver-win32-arm64-msvc/-/os-proxy-resolver-win32-arm64-msvc-0.4.0-265898.tgz",
 +      "integrity": "sha512-kwnUrloYKpqBKrjCkmqTdksewuv9lBP16czyNKqg4LYk57WzwXh4+3d/lgxegtbOfQ8HpjTj1KZkINIyjb2dHg==",
 +      "cpu": [
 +        "arm64"
@@ -524,7 +524,7 @@ index 4bcbd35c..d09337f6 100644
 +    },
 +    "node_modules/@gencode/os-proxy-resolver-win32-x64-msvc": {
 +      "version": "0.4.0-265898",
-+      "resolved": "https://registry.npmjs.org/@gencode/os-proxy-resolver-win32-x64-msvc/-/os-proxy-resolver-win32-x64-msvc-0.4.0-265898.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/os-proxy-resolver-win32-x64-msvc/-/os-proxy-resolver-win32-x64-msvc-0.4.0-265898.tgz",
 +      "integrity": "sha512-MOlasOcOJi3pLD8/y5Pn7q06rUyu9CckTXVEpTiZ9sMqrrr3A//s7EbieOmDvWTB3V1T2HGIy5IUWsumBfk37A==",
 +      "cpu": [
 +        "x64"

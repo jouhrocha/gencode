@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = activate;
 exports.deactivate = deactivate;
 const vscode = require("vscode");
-const VENDOR = 'codium';
+const VENDOR = 'gencode';
 function config() {
-    return vscode.workspace.getConfiguration('codiumAi');
+    return vscode.workspace.getConfiguration('gencodeAi');
 }
 function baseUrl() {
     return config().get('baseUrl', 'http://127.0.0.1:11434/v1').replace(/\/+$/, '');
@@ -125,7 +125,7 @@ function messageText(message) {
         .map(part => (part instanceof vscode.LanguageModelTextPart ? part.value : ''))
         .join('');
 }
-class CodiumProvider {
+class GencodeProvider {
     changed = new vscode.EventEmitter();
     onDidChangeLanguageModelChatInformation = this.changed.event;
     refresh() {
@@ -265,10 +265,10 @@ class CodiumProvider {
     }
 }
 function activate(context) {
-    const provider = new CodiumProvider();
+    const provider = new GencodeProvider();
     context.subscriptions.push(vscode.lm.registerLanguageModelChatProvider(VENDOR, provider));
     context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(event => {
-        if (event.affectsConfiguration('codiumAi')) {
+        if (event.affectsConfiguration('gencodeAi')) {
             provider.refresh();
         }
     }));

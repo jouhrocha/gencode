@@ -89,7 +89,7 @@ index baa44082..4bcbd35c 100644
      },
 -    "node_modules/@gencode/policy-watcher": {
 -      "version": "1.6.0",
--      "resolved": "https://registry.npmjs.org/@gencode/policy-watcher/-/policy-watcher-1.6.0.tgz",
+-      "resolved": "https://registry.npmjs.org/@vscode/policy-watcher/-/policy-watcher-1.6.0.tgz",
 -      "integrity": "sha512-v7ucf7atz36xRpo4EvqgIZrf0uXKYkmpLQzmT+dzS5M+quMYW8d5TKBKetUGvxOEhKWuwHeR7plAzI4I8K5vyQ==",
 -      "hasInstallScript": true,
 -      "license": "MIT",
@@ -112,7 +112,7 @@ index baa44082..4bcbd35c 100644
      },
 +    "node_modules/@gencode/policy-watcher": {
 +      "version": "1.6.0-267136",
-+      "resolved": "https://registry.npmjs.org/@gencode/policy-watcher/-/policy-watcher-1.6.0-267136.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/policy-watcher/-/policy-watcher-1.6.0-267136.tgz",
 +      "integrity": "sha512-LI/eiTLn4OFqjMEJjAC1rdi86QZPsoKgss2dqRtmWL3oEmBbvA1By9kdw0Qvk48JeHKUN0ePh3PQnRgw/G4Nng==",
 +      "hasInstallScript": true,
 +      "license": "MIT",

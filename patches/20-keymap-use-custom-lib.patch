@@ -48,7 +48,7 @@ index 3988197d..baa44082 100644
      },
 +    "node_modules/@gencode/native-keymap": {
 +      "version": "3.3.9-260952",
-+      "resolved": "https://registry.npmjs.org/@gencode/native-keymap/-/native-keymap-3.3.9-260952.tgz",
++      "resolved": "https://registry.npmjs.org/@vscodium/native-keymap/-/native-keymap-3.3.9-260952.tgz",
 +      "integrity": "sha512-Nk+eD2+57FKS+y/sKMMNc7hreuuM67kR/fChcQabK+azUvJ3GnWPP+LVixeBzR1/Fh+1xiXM5mh/6+8+vYpc4w==",
 +      "hasInstallScript": true,
 +      "license": "MIT"

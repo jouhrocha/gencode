@@ -33,7 +33,7 @@ fi
 # fi
 
 #  {
-#    "url": "https://az764295.vo.msecnd.net/stable/51b0b28134d51361cf996d2f0a1c698247aeabd8/GenCode-darwin-stable.zip",
+#    "url": "https://az764295.vo.msecnd.net/stable/51b0b28134d51361cf996d2f0a1c698247aeabd8/VSCode-darwin-stable.zip",
 #    "name": "1.33.1",
 #    "version": "51b0b28134d51361cf996d2f0a1c698247aeabd8",
 #    "productVersion": "1.33.1",
