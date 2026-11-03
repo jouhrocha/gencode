@@ -1,0 +1,89 @@
+{
+  "name": "codium-ai-bridge",
+  "displayName": "Codium AI Bridge",
+  "description": "Proveedor de modelos OpenAI-compatible para el chat, sin telemetria ni servicios de Microsoft.",
+  "publisher": "codium-ai",
+  "version": "0.1.0",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.104.0"
+  },
+  "categories": [
+    "AI",
+    "Chat"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "languageModelChatProviders": [
+      {
+        "vendor": "codium",
+        "displayName": "Codium AI (OpenAI-compatible)"
+      }
+    ],
+    "configuration": {
+      "title": "Codium AI Bridge",
+      "properties": {
+        "codiumAi.baseUrl": {
+          "type": "string",
+          "default": "http://127.0.0.1:11434/v1",
+          "description": "Endpoint OpenAI-compatible, sin barra final. Ejemplos: http://127.0.0.1:11434/v1 (Ollama), http://127.0.0.1:1234/v1 (LM Studio), https://api.openai.com/v1."
+        },
+        "codiumAi.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Clave enviada como Bearer. Vacio para endpoints locales."
+        },
+        "codiumAi.models": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "maxInputTokens": {
+                "type": "number"
+              },
+              "maxOutputTokens": {
+                "type": "number"
+              },
+              "toolCalling": {
+                "type": "boolean"
+              },
+              "imageInput": {
+                "type": "boolean"
+              }
+            }
+          },
+          "default": [],
+          "description": "Modelos expuestos al selector de chat. Si queda vacio se consulta GET {baseUrl}/models."
+        },
+        "codiumAi.maxOutputTokens": {
+          "type": "number",
+          "default": 4096,
+          "description": "Tokens maximos de salida por peticion."
+        },
+        "codiumAi.temperature": {
+          "type": "number",
+          "default": 0,
+          "description": "Temperatura de muestreo."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.104.0",
+    "typescript": "^5.6.0"
+  }
+}

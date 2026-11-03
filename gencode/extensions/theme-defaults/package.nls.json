@@ -1,0 +1,15 @@
+{
+	"displayName": "Default Themes",
+	"description": "The default GenCode light and dark themes",
+	"light2026ThemeLabel": "Light 2026",
+	"dark2026ThemeLabel": "Dark 2026",
+	"darkPlusColorThemeLabel": "Dark+",
+	"darkModernThemeLabel": "Dark Modern",
+	"lightPlusColorThemeLabel": "Light+",
+	"lightModernThemeLabel": "Light Modern",
+	"darkColorThemeLabel": "Dark (GenCode)",
+	"lightColorThemeLabel": "Light (GenCode)",
+	"hcColorThemeLabel": "Dark High Contrast",
+	"lightHcColorThemeLabel": "Light High Contrast",
+	"minimalIconThemeLabel": "Minimal (GenCode)"
+}
