@@ -38,6 +38,18 @@ setpath "product" "checksumFailMoreInfoUrl" "https://go.microsoft.com/fwlink/?Li
 setpath "product" "documentationUrl" "https://go.microsoft.com/fwlink/?LinkID=533484#vscode"
 setpath_json "product" "extensionsGallery" '{"serviceUrl": "https://open-vsx.org/vscode/gallery", "itemUrl": "https://open-vsx.org/vscode/item", "latestUrlTemplate": "https://open-vsx.org/vscode/gallery/{publisher}/{name}/latest", "controlUrl": "https://raw.githubusercontent.com/EclipseFdn/publish-extensions/refs/heads/master/extension-control/extensions.json"}'
 
+VERSION_STR="${MS_TAG}"
+if [[ -z "${VERSION_STR}" ]]; then
+  if [[ "${RELEASE_VERSION%-insider}" =~ ^([0-9]+\.[0-9]+\.[0-9]+)[0-9]{4}$ ]]; then
+    VERSION_STR="${BASH_REMATCH[1]}"
+  else
+    VERSION_STR="${RELEASE_VERSION%-insider}"
+  fi
+fi
+export VERSION_STR
+
+setpath "product" "version" "${VERSION_STR}"
+
 setpath "product" "introductoryVideosUrl" "https://go.microsoft.com/fwlink/?linkid=832146"
 setpath "product" "keyboardShortcutsUrlLinux" "https://go.microsoft.com/fwlink/?linkid=832144"
 setpath "product" "keyboardShortcutsUrlMac" "https://go.microsoft.com/fwlink/?linkid=832143"
@@ -242,7 +254,7 @@ done
 # package.json
 cp package.json{,.bak}
 
-setpath "package" "version" "${RELEASE_VERSION%-insider}"
+setpath "package" "version" "${VERSION_STR}"
 
 replace 's|Microsoft Corporation|GenCode|' package.json
 replace "s|--max-old-space-size=8192|--max-old-space-size=${MAX_OLD_SPACE_SIZE}|" package.json
